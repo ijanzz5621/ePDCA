@@ -1,9 +1,5 @@
-(function(){
-
-    
-
+(function(){    
 });
 
-$(document).ready(function(){
-    alert('testing...');
+$(document).ready(function(){   
 });
