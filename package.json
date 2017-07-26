@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ijanzz5621/ePDCA#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "handlebars": "^4.0.10"
   }
