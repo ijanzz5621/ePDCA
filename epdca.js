@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //set up handlebars view engine
-var handlebars = require('handlebars')
+var handlebars = require('express-handlebars')
     .create({
         defaultLayout: 'main'
         , helpers: {
@@ -42,6 +42,10 @@ app.get('/', function(req, res){
     res.render('home');
 })
 
+//login page
+app.get('/login', function(req, res){
+    res.render('login', {layout: null});
+});
 
 
 
