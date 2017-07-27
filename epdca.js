@@ -103,7 +103,7 @@ app.get('/admin/login', function(req, res){
     res.render('admin/login', { layout: null });
 });
 
-
+//-------------------------------------------------------------
 
 //start the server
 app.listen(app.get('port'), function(){
