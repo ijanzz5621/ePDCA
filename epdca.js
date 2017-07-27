@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 
 var app = express();
@@ -6,6 +7,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.use(bodyParser.json());
+
+//session
+app.use(session({
+    secret: 'ch@rm1n9'
+    , resave : true
+    , saveUninitialized: true
+}));
 
 //set up handlebars view engine
 var handlebars = require('express-handlebars')
@@ -37,18 +45,67 @@ app.use(function(req, res, next){
     next();
 });
 
-//default page
-app.get('/', function(req, res){
-    res.render('home');
-})
+//Authentication and authorization middleware
+var auth = function(req, res, next){
+    //if (req.session && req.session.user === 'admin' && req.session.admin)
+   if (req.session && req.session.user)
+        return next();
+    else
+        //return res.sendStatus(401);
+        return res.redirect('/login');
+};
 
+var authAdmin = function(req, res, next){
+    if (req.session && req.session.user === 'admin' && req.session.admin)   
+        return next();
+    else
+        //return res.sendStatus(401);
+        return res.redirect('admin/login');
+};
+
+//Login endpoint
+/*app.get('/login', function(req ,res){
+    if (!req.query.username || req.query.password){
+        res.send('login failed');
+    } else if (req.query.username === 'admin' && req.query.password === 'ch@rm1n9'){
+        req.session.user = "admin";
+        req.session.admin = true;
+        res.send('login success!');
+    }
+});*/
+
+//logout endpoint
+app.get('/logout', function(req, res){
+    req.session.destroy();
+    res.send("logout success");
+});
+
+//get content endpoint
+app.get('/content', auth, function(req, res){
+    res.send('You can only see this after you login');
+});
+
+//default page
+app.get('/', auth, function(req, res){
+    res.render('home');
+});
 //login page
 app.get('/login', function(req, res){
     res.render('login', {layout: null});
 });
 
 
+//Admin site
+app.get('/admin', authAdmin, function(req, res){
+    res.render('admin/home', { layout: "admin" });
+});
+app.get('/admin/login', function(req, res){
+    res.render('admin/login', { layout: null });
+});
 
+
+
+//start the server
 app.listen(app.get('port'), function(){
     console.log("ePDCA running at port " + app.get('port') + "....");
 });
