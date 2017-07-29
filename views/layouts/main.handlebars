@@ -36,12 +36,12 @@
 
         <div class="row-offcanvas row-offcanvas-left">
         <div id="sidebar" class="sidebar-offcanvas">
-            <div class="col-md-12" style="padding-top:30px;">
+            <div id="nav" class="col-md-12" style="padding-top:30px;">
                 <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Plan</a></li>
-                <li><a href="#">Do</a></li>
-                <li><a href="#">Create</a></li>
-                <li><a href="#">Action</a></li>
+                <li><a href="/user/plan">Plan</a></li>
+                <li><a href="/user/do">Do</a></li>
+                <li><a href="/user/create">Create</a></li>
+                <li><a href="/user/action">Action</a></li>
                 </ul>
             </div>
         </div>
@@ -61,6 +61,24 @@
                     $('.row-offcanvas').toggleClass('active');
                 });
             });
+
+            $(function () {
+                    
+
+                    //var pgurl = window.location.href.substr(window.location.href
+                    //    .lastIndexOf("/") + 1);
+                    var pgurl = window.location.href.substr(window.location.href
+                        .lastIndexOf("/")-1);
+                    $("#nav ul li a").each(function () {
+                        if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
+                            //$(this).addClass("active");
+                            $(this).parent().addClass("active");
+                        //alert(pgurl);
+
+                        //alert($(this).attr("href") + " - " + pgurl);
+                    })
+                });
+
         </script>
 
 

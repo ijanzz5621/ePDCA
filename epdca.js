@@ -93,6 +93,19 @@ app.get('/', auth, function(req, res){
 app.get('/login', function(req, res){
     res.render('login', {layout: null});
 });
+app.post('/login', function(req, res){
+
+    var username = req.body.txtUsername;
+    var password = req.body.txtPassword;
+
+    //Check from database if the user is a valid user
+
+    req.session.user = username;
+    req.session.user = true;
+
+    console.log('username: ' + username + ', password: ' + password);
+    res.redirect('/');
+});
 
 
 //Admin site
@@ -102,6 +115,22 @@ app.get('/admin', authAdmin, function(req, res){
 app.get('/admin/login', function(req, res){
     res.render('admin/login', { layout: null });
 });
+
+//user site
+app.get('/user/plan', auth, function(req, res){
+    res.render('user/plan');
+})
+app.get('/user/do', auth, function(req, res){
+    res.render('user/do');
+})
+app.get('/user/create', auth, function(req, res){
+    res.render('user/create');
+})
+app.get('/user/action', auth, function(req, res){
+    res.render('user/action');
+})
+
+
 
 //-------------------------------------------------------------
 
