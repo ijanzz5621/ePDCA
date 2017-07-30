@@ -1,11 +1,13 @@
 body{
     background: #e0e0e0;
-    margin-top:40px;
+    margin-top:35px;
 }
 
 body,html,.row-offcanvas {
   height:100%;
 }
+
+
 
 #sidebar {
   width: inherit;

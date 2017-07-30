@@ -2,6 +2,20 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
+//database
+var db = require('./lib/db');
+
+//controllers
+var planController = require('./controllers/plan/plan');
+
+//testing
+var testscript = require('./controllers/test/testscript');
+
+//*********
+//variables
+//********* 
+var pageTitle = "";
+
 var app = express();
 app.use(bodyParser.urlencoded({
     extended: false
@@ -45,7 +59,9 @@ app.use(function(req, res, next){
     next();
 });
 
+//***************************************** */
 //Authentication and authorization middleware
+//***************************************** */
 var auth = function(req, res, next){
     //if (req.session && req.session.user === 'admin' && req.session.admin)
    if (req.session && req.session.user)
@@ -63,6 +79,17 @@ var authAdmin = function(req, res, next){
         return res.redirect('admin/login');
 };
 
+//middleware to pass data to page
+app.use(function(req, res, next){
+
+    res.locals.username = req.session.user;
+
+    next();
+})
+
+//********************* */
+// ROUTING
+//********************* */
 //Login endpoint
 /*app.get('/login', function(req ,res){
     if (!req.query.username || req.query.password){
@@ -87,10 +114,13 @@ app.get('/content', auth, function(req, res){
 
 //default page
 app.get('/', auth, function(req, res){
+    pageTitle = "Home / Dashboard";
+    //testscript.testInsert();   
     res.render('home');
 });
 //login page
 app.get('/login', function(req, res){
+    req.session.destroy(); //destroy session if user navigate to login page
     res.render('login', {layout: null});
 });
 app.post('/login', function(req, res){
@@ -101,7 +131,11 @@ app.post('/login', function(req, res){
     //Check from database if the user is a valid user
 
     req.session.user = username;
-    req.session.user = true;
+    req.session.useraccess = true;
+
+    //save to req locals
+    //req.app.locals.username = req.session.user;
+    //res.locals.username = req.session.user;
 
     console.log('username: ' + username + ', password: ' + password);
     res.redirect('/');
@@ -118,6 +152,15 @@ app.get('/admin/login', function(req, res){
 
 //user site
 app.get('/user/plan', auth, function(req, res){
+    pageTitle = "Plan";
+
+    var result = planController.getAll(function(err, rows){
+        if (err)
+            console.log(err);
+        else
+            console.log(rows);
+    });
+
     res.render('user/plan');
 })
 app.get('/user/do', auth, function(req, res){
@@ -132,10 +175,22 @@ app.get('/user/action', auth, function(req, res){
 
 
 
-//-------------------------------------------------------------
+//******************* */
+//INIT and START server
+//******************* */
 
-//start the server
-app.listen(app.get('port'), function(){
-    console.log("ePDCA running at port " + app.get('port') + "....");
-});
+// Connect to MySQL on start
+db.connect(db.MODE_PRODUCTION, function(err) {
+  if (err) {
+    console.log('Unable to connect to MySQL.')
+    process.exit(1)
+  } else {
+    //start the server
+    app.listen(app.get('port'), function(){
+        console.log("ePDCA running at port " + app.get('port') + "....");
+    });
+  }
+})
+
+
 
