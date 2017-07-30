@@ -164,7 +164,8 @@ app.get('/user/plan', auth, function(req, res){
     res.render('user/plan');
 })
 app.get('/user/do', auth, function(req, res){
-    res.render('user/do');
+
+    res.render('user/do', {result: "Record save successfully!"});
 })
 app.get('/user/create', auth, function(req, res){
     res.render('user/create');
