@@ -18,8 +18,10 @@
   "homepage": "https://github.com/ijanzz5621/ePDCA#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cluster": "^0.7.7",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "express-mysql-session": "^1.2.1",
     "express-session": "^1.15.4",
     "handlebars": "^4.0.10",
     "mysql": "^2.14.0"

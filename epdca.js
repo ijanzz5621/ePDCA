@@ -5,12 +5,6 @@ var bodyParser = require('body-parser');
 //database
 var db = require('./lib/db');
 
-//controllers
-var planController = require('./controllers/plan/plan');
-
-//testing
-var testscript = require('./controllers/test/testscript');
-
 //*********
 //variables
 //********* 
@@ -22,12 +16,44 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 
-//session
+//session store
+var MySQLStore = require('express-mysql-session')(session); 
+var options = {
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: 'ch@rm1n9',
+    database: 'session_epdca',
+    schema: {
+        tableName: 'sessions',
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    },
+    checkExpirationInterval: 900000,// How frequently expired sessions will be cleared; milliseconds. 
+    expiration: 86400000,// The maximum age of a valid session; milliseconds. 
+    createDatabaseTable: true,// Whether or not to create the sessions database table, if one does not already exist. 
+    connectionLimit: 1,// Number of connections when creating a connection pool 
+};
+ 
+var sessionStore = new MySQLStore(options);
+ 
 app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+
+//session
+/*app.use(session({
     secret: 'ch@rm1n9'
     , resave : true
     , saveUninitialized: true
-}));
+}));*/
 
 //set up handlebars view engine
 var handlebars = require('express-handlebars')
@@ -62,17 +88,16 @@ app.use(function(req, res, next){
 //***************************************** */
 //Authentication and authorization middleware
 //***************************************** */
-var auth = function(req, res, next){
+var auth = function (req, res, next) {
     //if (req.session && req.session.user === 'admin' && req.session.admin)
-   if (req.session && req.session.user)
+    if (req.session && req.session.user)
         return next();
     else
         //return res.sendStatus(401);
         return res.redirect('/login');
 };
-
-var authAdmin = function(req, res, next){
-    if (req.session && req.session.user === 'admin' && req.session.admin)   
+var authAdmin = function (req, res, next) {
+    if (req.session && req.session.user === 'admin' && req.session.admin)
         return next();
     else
         //return res.sendStatus(401);
@@ -81,117 +106,45 @@ var authAdmin = function(req, res, next){
 
 //middleware to pass data to page
 app.use(function(req, res, next){
-
     res.locals.username = req.session.user;
-
     next();
 })
 
 //********************* */
 // ROUTING
 //********************* */
-//Login endpoint
-/*app.get('/login', function(req ,res){
-    if (!req.query.username || req.query.password){
-        res.send('login failed');
-    } else if (req.query.username === 'admin' && req.query.password === 'ch@rm1n9'){
-        req.session.user = "admin";
-        req.session.admin = true;
-        res.send('login success!');
-    }
-});*/
-
-//logout endpoint
-app.get('/logout', function(req, res){
-    req.session.destroy();
-    res.send("logout success");
-});
-
-//get content endpoint
-app.get('/content', auth, function(req, res){
-    res.send('You can only see this after you login');
-});
-
-//default page
-app.get('/', auth, function(req, res){
-    pageTitle = "Home / Dashboard";
-    //testscript.testInsert();   
-    res.render('home');
-});
-//login page
-app.get('/login', function(req, res){
-    req.session.destroy(); //destroy session if user navigate to login page
-    res.render('login', {layout: null});
-});
-app.post('/login', function(req, res){
-
-    var username = req.body.txtUsername;
-    var password = req.body.txtPassword;
-
-    //Check from database if the user is a valid user
-
-    req.session.user = username;
-    req.session.useraccess = true;
-
-    //save to req locals
-    //req.app.locals.username = req.session.user;
-    //res.locals.username = req.session.user;
-
-    console.log('username: ' + username + ', password: ' + password);
-    res.redirect('/');
-});
-
-
-//Admin site
-app.get('/admin', authAdmin, function(req, res){
-    res.render('admin/home', { layout: "admin" });
-});
-app.get('/admin/login', function(req, res){
-    res.render('admin/login', { layout: null });
-});
-
-//user site
-app.get('/user/plan', auth, function(req, res){
-    pageTitle = "Plan";
-
-    var result = planController.getAll(function(err, rows){
-        if (err)
-            console.log(err);
-        else
-            console.log(rows);
-    });
-
-    res.render('user/plan');
-})
-app.get('/user/do', auth, function(req, res){
-
-    res.render('user/do', {result: "Record save successfully!"});
-})
-app.get('/user/create', auth, function(req, res){
-    res.render('user/create');
-})
-app.get('/user/action', auth, function(req, res){
-    res.render('user/action');
-})
-
-
+//import main routes
+require('./routes/main')(app, auth);
+//import user routes
+require('./routes/user')(app, auth);
+//import admin routes
+require('./routes/admin')(app, authAdmin);
 
 //******************* */
 //INIT and START server
 //******************* */
 
-// Connect to MySQL on start
-db.connect(db.MODE_PRODUCTION, function(err) {
-  if (err) {
-    console.log('Unable to connect to MySQL.')
-    process.exit(1)
-  } else {
-    //start the server
-    app.listen(app.get('port'), function(){
-        console.log("ePDCA running at port " + app.get('port') + "....");
-    });
-  }
-})
+function startServer() {
+    // Connect to MySQL on start
+    db.connect(db.MODE_PRODUCTION, function (err) {
+        if (err) {
+            console.log('Unable to connect to MySQL.')
+            process.exit(1)
+        } else {
+            //start the server
+            app.listen(app.get('port'), function () {
+                console.log("ePDCA running at port " + app.get('port') + "....");
+            });
+        }
+    })
+}
+
+if (require.main === module){
+    startServer();
+} else 
+{
+    module.exports = startServer;
+}
 
 
 
