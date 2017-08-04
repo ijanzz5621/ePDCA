@@ -34,21 +34,27 @@ module.exports = function (app, auth) {
         res.render('login', { layout: null });
     });
     app.post('/login', function (req, res) {
-
+        
         var username = req.body.txtUsername;
         var password = req.body.txtPassword;
 
         //Check from database if the user is a valid user
+        if(true){
 
-        req.session.user = username;
-        req.session.useraccess = true;
+            //destroy prev session
+            //req.session.destroy();
+            req.session.admin = null;
 
-        //save to req locals
-        //req.app.locals.username = req.session.user;
-        //res.locals.username = req.session.user;
+            req.session.user = username;
+            req.session.isAuthenticated = true;
 
-        console.log('username: ' + username + ', password: ' + password);
-        res.redirect('/');
+            console.log('username: ' + username + ', password: ' + password);
+            res.redirect('/');
+
+        } else {
+
+        }
+        
     });
 
 

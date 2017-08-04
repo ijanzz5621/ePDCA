@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 //database
 var db = require('./lib/db');
 
+//credentials
+var credentials = require('./credentials');
+
 //*********
 //variables
 //********* 
@@ -19,13 +22,13 @@ app.use(bodyParser.json());
 //session store
 var MySQLStore = require('express-mysql-session')(session); 
 var options = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'ch@rm1n9',
-    database: 'session_epdca',
+    host: credentials.mysql.host,
+    port: credentials.mysql.port,
+    user: credentials.mysql.username,
+    password: credentials.mysql.password,
+    database: credentials.mysql.sessionDatabase,
     schema: {
-        tableName: 'sessions',
+        tableName: credentials.mysql.sessionTableName,
         columnNames: {
             session_id: 'session_id',
             expires: 'expires',
@@ -41,19 +44,12 @@ var options = {
 var sessionStore = new MySQLStore(options);
  
 app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
+    key: credentials.sessionCookieName,
+    secret: credentials.sessioncookieSecret,
     store: sessionStore,
     resave: false,
     saveUninitialized: false
 }));
-
-//session
-/*app.use(session({
-    secret: 'ch@rm1n9'
-    , resave : true
-    , saveUninitialized: true
-}));*/
 
 //set up handlebars view engine
 var handlebars = require('express-handlebars')
@@ -90,14 +86,14 @@ app.use(function(req, res, next){
 //***************************************** */
 var auth = function (req, res, next) {
     //if (req.session && req.session.user === 'admin' && req.session.admin)
-    if (req.session && req.session.user)
+    if (req.session && req.session.user && req.session.isAuthenticated)
         return next();
     else
         //return res.sendStatus(401);
         return res.redirect('/login');
 };
 var authAdmin = function (req, res, next) {
-    if (req.session && req.session.user === 'admin' && req.session.admin)
+    if (req.session && req.session.admin === 'admin' && req.session.isAuthenticated)
         return next();
     else
         //return res.sendStatus(401);
