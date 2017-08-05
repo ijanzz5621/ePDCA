@@ -31,9 +31,9 @@
                 <!--<li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>-->
-                <li class="nav-item pull-xs-right" style="color:#fff; float:right;">
+                <!--<li class="nav-item pull-xs-right" style="color:#fff; float:right;">
                     Welcome {{username}}
-                </li>
+                </li>-->
             </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.navbar -->
@@ -43,7 +43,7 @@
                 <div id="nav" class="col-md-12" style="padding-top:25px;">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="/">Home / Dashboard</a></li>
-                        <li><a href="/user/plan">Plan</a></li>
+                        <li><a href="/user/plan-add">Plan</a></li>
                         <li><a href="/user/do">Do</a></li>
                         <li><a href="/user/create">Create</a></li>
                         <li><a href="/user/action">Action</a></li>
@@ -62,6 +62,27 @@
 
         <script>
             $(document).ready(function() {
+
+                var pgurl = window.location.pathname;
+                $("#nav ul li a").each(function () {
+
+                    //alert("pgurl: " + pgurl + ", link: " + $(this).attr("href"));
+                    
+                    //alert(pgurl);
+                    //if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
+                    if (pgurl === '/' && $(this).attr("href") === '/')
+                        $(this).parent().addClass("active");
+                    else if (pgurl.indexOf($(this).attr("href")) >= 0 && $(this).attr("href") !== '/')
+                        //$(this).addClass("active");
+                        $(this).parent().addClass("active");
+                    else 
+                        $(this).parent().removeClass("active");
+
+                        //alert(pgurl.indexOf($(this).attr("href")));
+
+                    //alert($(this).attr("href") + " - " + pgurl);
+                });
+
                 $('[data-toggle=offcanvas]').click(function() {
                     $('.row-offcanvas').toggleClass('active');
                 });
@@ -75,15 +96,7 @@
 
                     //var pgurl = window.location.href.substr(window.location.href
                     //    .lastIndexOf("/") + 1);
-                    var pgurl = window.location.pathname;
-                    $("#nav ul li a").each(function () {
-                        if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
-                            //$(this).addClass("active");
-                            $(this).parent().addClass("active");
-                        //alert(pgurl);
-
-                        //alert($(this).attr("href") + " - " + pgurl);
-                    })
+                    
                 });
 
         </script>

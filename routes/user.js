@@ -16,10 +16,16 @@ module.exports = function (app, auth) {
 
         res.render('user/plan');
     })
-    app.get('/user/do', auth, function (req, res) {
 
+    //Do
+    app.get('/user/do', auth, function (req, res) {
         res.render('user/do', { result: "Record save successfully!" });
     })
+
+    app.get('/user/plan-add', auth, function (req, res) {
+        res.render('user/plan-add');
+    })
+
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create');
     })
