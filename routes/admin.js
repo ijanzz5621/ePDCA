@@ -11,6 +11,14 @@ module.exports = function (app, authAdmin) {
         res.render('admin/login', { layout: null });
     });
 
+    app.get('/admin/logout', function (req, res) {
+
+        //destroy the session
+        req.session.destroy();
+
+        res.redirect('/admin/login');
+    });
+
     app.post('/admin/login', function (req, res) {
 
         var username = 'admin';

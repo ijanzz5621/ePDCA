@@ -102,7 +102,7 @@ var authAdmin = function (req, res, next) {
 
 //middleware to pass data to page
 app.use(function(req, res, next){
-    res.locals.username = req.session.user;
+    res.locals.username = req.session.user || req.session.admin;
     next();
 })
 

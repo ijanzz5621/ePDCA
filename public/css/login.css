@@ -118,6 +118,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.adminBody{
+  background: #ccc url('/img/admin-login-bg.png');
+  background-size: cover;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body:before {
   content: "";
   position: fixed;
@@ -148,6 +157,7 @@ body:before {
   background: rgba(255,255,255,0.8) ;
   position: fixed;
   bottom: 0;
+  left:0;
   text-align: center;
   padding-top: 15px;
   z-index: 1000;
