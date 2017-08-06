@@ -47,7 +47,8 @@
               var cells = this.getElementsByTagName('td');
               //alert(cells[0].innerHTML);
               //call popup
-              
+              callModal();
+
             });
           }
         });
@@ -61,6 +62,11 @@
           };*/
       });
 
-
+      function callModal(){
+        
+        $('#popupModal').modal();
+      }
 
 </script>
+
+{{> admin/user-add}}

@@ -81,7 +81,26 @@ a {
 }
 
 input[type=search]{
-  border:1px solid #e0e0e0;
+  border:1px solid rgb(166, 166, 166);
+  border-radius: 5px;
+  background: rgb(248, 248, 248);
+}
+
+.modal-header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #3e92cc;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #fff;
 }
 
 /* End of bootstrap override */
+
+h3{
+  margin-top: 30px;
+}

@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ePDCA</a>
+            <a class="navbar-brand" href="#">ePDCA Administration</a>
             </div>
             <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -37,12 +37,13 @@
 
         <div class="row-offcanvas row-offcanvas-left">
         <div id="sidebar" class="sidebar-offcanvas">
-            <div class="col-md-12" style="padding-top:30px;">
+            <div id="nav" class="col-md-12" style="padding-top:30px;">
                 <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Company</a></li>
+                <li><a href="/admin/company">Company</a></li>
+                <li><a href="/admin/department">Department</a></li>
                 <li><a href="/admin/user">User</a></li>
-                <li><a href="#">License</a></li>
-                <li><a href="#">Package</a></li>
+                <li><a href="/admin/license">License</a></li>
+                <li><a href="/admin/packages">Package</a></li>
                 </ul>
             </div>
         </div>
@@ -58,6 +59,25 @@
 
         <script>
             $(document).ready(function() {
+
+                var pgurl = window.location.pathname;
+                $("#nav ul li a").each(function () {
+                    
+                    //alert(pgurl);
+                    //if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
+                    if (pgurl === '/' && $(this).attr("href") === '/')
+                        $(this).parent().addClass("active");
+                    else if (pgurl.indexOf($(this).attr("href")) >= 0 && $(this).attr("href") !== '/')
+                        //$(this).addClass("active");
+                        $(this).parent().addClass("active");
+                    else 
+                        $(this).parent().removeClass("active");
+
+                        //alert(pgurl.indexOf($(this).attr("href")));
+
+                    //alert($(this).attr("href") + " - " + pgurl);
+                });
+
                 $('[data-toggle=offcanvas]').click(function() {
                     $('.row-offcanvas').toggleClass('active');
                 });
