@@ -1,0 +1,66 @@
+<h3>User</h3>
+
+<table id="userList" class="table table-bordered table-responsive table-striped">
+  <thead>
+    <tr>
+      <th data-dynatable-column="UserCode">Employee ID</th>
+      <th data-dynatable-column="Username">Name</th>
+      <th data-dynatable-column="Email">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--<tr>
+      <td>Fred</td>
+      <td>Roller Skating</td>
+      <td>Disco</td>
+    </tr>
+    <tr>
+      <td>Helen</td>
+      <td>Rock Climbing</td>
+      <td>Alternative</td>
+    </tr>
+    <tr>
+      <td>Glen</td>
+      <td>Traveling</td>
+      <td>Classical</td>
+    </tr>-->
+  </tbody>
+</table>
+
+<script type="text/javascript">
+
+      $(document).ready(function () {
+
+        //alert('test load');
+
+        //$('#userList').dynatable();
+        $.ajax({
+          url: "/api/users", success: function (result) {
+            //$("#div1").html(result);
+            //alert(result);
+            $('#userList').dynatable({
+              dataset: {
+                records: result
+              }
+            }).on('dblclick', 'tr', function(){
+              //alert(this.Email);
+              var cells = this.getElementsByTagName('td');
+              //alert(cells[0].innerHTML);
+              //call popup
+              
+            });
+          }
+        });
+
+        /*$('#userList').dynatable({
+          dataset: {
+            ajax: true,
+            ajaxUrl: '/api/users',
+            ajaxOnLoad: true,
+            records: []
+          };*/
+      });
+
+
+
+</script>

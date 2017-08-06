@@ -50,4 +50,8 @@ module.exports = function (app, authAdmin) {
         }        
     });
 
+    app.get('/admin/user', authAdmin, function(req, res){ 
+        res.render('admin/user', { layout: "admin" });
+    });
+
 }

@@ -116,6 +116,11 @@ require('./routes/user')(app, auth);
 //import admin routes
 require('./routes/admin')(app, authAdmin);
 
+//********************* */
+// API
+//********************* */
+require('./apis/admin/user')(app);
+
 //******************* */
 //INIT and START server
 //******************* */
