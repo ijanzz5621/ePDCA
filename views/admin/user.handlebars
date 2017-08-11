@@ -1,5 +1,9 @@
 <h3>User</h3>
 
+<div id="icon-list">
+  <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);"/>
+</div>
+
 <table id="userList" class="table table-bordered table-responsive table-striped">
   <thead>
     <tr>
@@ -9,21 +13,6 @@
     </tr>
   </thead>
   <tbody>
-    <!--<tr>
-      <td>Fred</td>
-      <td>Roller Skating</td>
-      <td>Disco</td>
-    </tr>
-    <tr>
-      <td>Helen</td>
-      <td>Rock Climbing</td>
-      <td>Alternative</td>
-    </tr>
-    <tr>
-      <td>Glen</td>
-      <td>Traveling</td>
-      <td>Classical</td>
-    </tr>-->
   </tbody>
 </table>
 
@@ -47,7 +36,7 @@
               var cells = this.getElementsByTagName('td');
               //alert(cells[0].innerHTML);
               //call popup
-              callModal();
+              callModal(cells[0].innerHTML);
 
             });
           }
@@ -60,11 +49,26 @@
             ajaxOnLoad: true,
             records: []
           };*/
+
+
+
       });
 
-      function callModal(){
+      function iconTrigger(obj){
+          //alert($(obj).attr('id'));
+          var selectedIcon = $(obj).attr('id');
+          if (selectedIcon === "icon-add-user"){
+            $('#modal-add-user').modal();
+          }
+      }
+
+      function callModal(id){
         
-        $('#popupModal').modal();
+        //use ajax to retrieve info from id
+
+        //populate the details into the popup form
+
+        $('#modal-add-user').modal();
       }
 
 </script>
