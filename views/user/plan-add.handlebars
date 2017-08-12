@@ -41,7 +41,7 @@
 
 	#teamLead {
 		/*float: right;*/
-		width: 100%;
+		width: 105px;
 		height: 9em;
 		padding: 1%;
 		background: #fbfbfb;
@@ -95,7 +95,7 @@
 <h3>Create new plan</h3>
 
 <!-- multistep form -->
-<form id="msform">
+<form id="msform" method="post" action="/user/plan-add">
 	<!-- progressbar -->
 	<ul id="progressbar">
 		<li class="active">Problem Statement</li>
@@ -112,7 +112,7 @@
 		<input type="password" name="pass" placeholder="Password" />
 		<input type="password" name="cpass" placeholder="Confirm Password" />-->
 
-        <textarea rows="5" cols="200" id="txtProblemStatement"></textarea>
+        <textarea rows="5" cols="200" id="txtProblemStatement" name="txtProblemStatement"></textarea>
 
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
@@ -128,74 +128,20 @@
 
 						<ul id="userList" class="userList ui-helper-reset ui-helper-clearfix drop-target">
 							<h4 class="ui-widget-header"><span class="ui-icon ui-icon-userList">userList</span> Employee List</h4>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Azhar</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Diana</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="i/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Sharizan</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Zainab</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Roslan</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
+							<li class="ui-widget-content ui-corner-tr" value="00001-azhar">
 								<h5 class="ui-widget-header">Kassim</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="i/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Suzanna</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
 								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
 								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
 							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Liong</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Amber</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Aishah</h5>
+							<li class="ui-widget-content ui-corner-tr" value="00002-diana">
+								<h5 class="ui-widget-header">Abu</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
 								<a href="i/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
 								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
 							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Umairah</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
-							</li>
-							<li class="ui-widget-content ui-corner-tr">
-								<h5 class="ui-widget-header">Roslee</h5>
+							<li class="ui-widget-content ui-corner-tr" value="00003-sharizan">
+								<h5 class="ui-widget-header">Aminah</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
 								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
 								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
@@ -230,15 +176,15 @@
 		
 		<div class="funkyradio">
 			<div class="funkyradio-success">
-				<input type="radio" name="radio" id="risk-level-low" />
+				<input type="radio" name="radioRiskLevel" value="low" id="risk-level-low" />
 				<label for="risk-level-low">Low</label>
 			</div>
 			<div class="funkyradio-success">
-				<input type="radio" name="radio" id="risk-level-medium" />
+				<input type="radio" name="radioRiskLevel" value="medium" id="risk-level-medium" />
 				<label for="risk-level-medium">Medium</label>
 			</div>
 			<div class="funkyradio-success">
-				<input type="radio" name="radio" id="risk-level-high" />
+				<input type="radio" name="radioRiskLevel" value="high" id="risk-level-high" />
 				<label for="risk-level-high">High</label>
 			</div>			
 		</div>
@@ -266,26 +212,32 @@
 		<textarea name="address" placeholder="Address"></textarea>-->      
 		<div class="funkyradio">
 			<div class="funkyradio-success">
-				<input type="radio" name="radio" id="follow-std-yes" />
+				<input type="radio" name="radioFollowStandard" value="Yes" id="follow-std-yes" />
 				<label for="follow-std-yes">Yes</label>
 			</div>
 			<div class="funkyradio-success">
-				<input type="radio" name="radio" id="follow-std-no" />
+				<input type="radio" name="radioFollowStandard" value="No" id="follow-std-no" />
 				<label for="follow-std-no">No</label>
 			</div>		
 		</div>
 
+		<input type="hidden" id="hidTeamLead" name="hidTeamLead" />
+		<input type="hidden" id="hidTeamMembers" name="hidTeamMembers" />
+		
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
-		<input type="submit" name="submit" class="submit action-button" value="Submit" />
+		<input id="submit" type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
 </form>
 
 <!-- jQuery easing plugin -->
-<script src="http://thecodeplayer.com/uploads/js/jquery.easing.min.js" type="text/javascript"></script>
+<script src="/js/jquery.easing.min.js" type="text/javascript"></script>
 <script src="/js/multi-step-form.js" type="text/javascript"></script>
+<script src="/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
 
 <script>
 	$(function () {
+
+		var sourceDragElement;
 
 		// There's the userList and the teamLead
 		var $userList = $("#userList"),
@@ -296,6 +248,23 @@
 		$("li", $userList).draggable({
 			cancel: "a.ui-icon", // clicking an icon won't initiate dragging
 			revert: "invalid", // when not dropped, the item will revert back to its initial position
+			/*revert: function(dropped){
+				//only allow 1 team lead
+				if ($('#teamLead ul li').length > 1){
+					alert('Only 1 team lead allow');
+					return true;
+				}
+				return false;
+			},*/
+			start: function (event, ui) {
+				//alert()
+				sourceDragElement = $userList.attr('id');
+				if ($('#teamLead ul li').length === 0){
+					$teamLead.droppable( "option", "disabled", false );
+				} else {
+					$teamLead.droppable( "option", "disabled", true );
+				}
+			},
 			containment: "document",
 			helper: "clone",
 			cursor: "move",
@@ -310,9 +279,17 @@
 			},
 			drop: function (event, ui) {
 				deleteImage(ui.draggable, $teamLead);
-			}
+				ui.draggable.position({
+						my: "center",
+						at: "center",
+						/*of: $this,
+						using: function (pos) {
+							$(this).animate(pos, 200, "linear");
+						}*/
+					});
+			},
+			zIndex: 99999
 		});
-		// Let the teamLead be droppable, accepting the userList items
 		$teamMember.droppable({
 			accept: ".drop-target > li",
 			classes: {
@@ -320,7 +297,8 @@
 			},
 			drop: function (event, ui) {
 				deleteImage(ui.draggable, $teamMember);
-			}
+			},
+			zIndex: 99999
 		});
 
 		// Let the userList be droppable as well, accepting items from the teamLead
@@ -342,15 +320,15 @@
 					$("ul", $target) :
 					$("<ul class='userList ui-helper-reset'/>").appendTo($target);
 
-				$item.find("a.ui-icon-teamLead").remove();
+				//$item.find("a.ui-icon-teamLead").remove();
 				$item.append(recycle_icon).appendTo($list).fadeIn(function () {
 					$item
-						//.animate({ width: "48px" })
-						//.find("img")
-						//.animate({ height: "36px" });
-				});
+					//.animate({ width: "48px" })
+					//.find("img")
+					//.animate({ height: "36px" });
+				});			
 			});
-		}
+		};
 
 		// Image recycle function
 		var teamLead_icon = "<a href='link/to/teamLead/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-teamLead'>Delete image</a>";
@@ -368,7 +346,7 @@
 					.appendTo($userList)
 					.fadeIn();
 			});
-		}
+		};
 
 		// Image preview function, demonstrating the ui.dialog used as a modal window
 		function viewLargerImage($link) {
@@ -389,7 +367,7 @@
 					});
 				}, 1);
 			}
-		}
+		};
 
 		// Resolve the icons behavior with event delegation
 		$("ul.userList > li").on("click", function (event) {
@@ -406,5 +384,27 @@
 
 			return false;
 		});
+
+		$('#submit').on('click', function (e) {
+			//e.preventDefault();
+			//set team lead
+			var teamLead = { id: '12345', name: 'sharizan' }
+			$('#hidTeamLead').val(JSON.stringify(teamLead));
+
+			//set team members
+			var teamMembers = [];
+			//teamMembers.push({id: '23456', name: 'azhar'});
+			//teamMembers.push({id: '34567', name: 'diana'});
+			$('#teamMember ul li').each(function(index){
+				//alert('No: ' + index + ', name/id: ' + $(this).attr('value'));
+				var splitVal = $(this).attr('value').split("-");
+				teamMembers.push({id: splitVal[0], name: splitVal[1]});
+			})
+			$('#hidTeamMembers').val(JSON.stringify(teamMembers));
+
+			//proceed with submission
+			$('#msform').submit();
+		});
 	});
+
 </script>

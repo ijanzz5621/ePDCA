@@ -25,6 +25,20 @@ module.exports = function (app, auth) {
     app.get('/user/plan-add', auth, function (req, res) {
         res.render('user/plan-add');
     })
+    //post
+    app.post('/user/plan-add', function(req, res, next){
+
+        console.log("data posted: " + JSON.stringify(req.body));
+
+        var teams = JSON.parse(req.body.hidTeamMembers);
+        /*for (var name in teams){
+            console.log(name);
+        };*/
+        console.log(JSON.stringify(teams));
+
+        res.redirect('/user/plan');
+        //next();
+    });
 
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create');
