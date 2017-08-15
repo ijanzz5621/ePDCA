@@ -22,3 +22,10 @@ exports.getAllByUser = function(userId, done){
         done(null, rows);
     });
 };
+
+exports.getSerialNumber = function(code, done){
+    db.get().query("call sp_GenerateSerialNumber(?)", code, function(err, rows){
+        if (err) return done(err);
+        done(null, rows);
+    });
+}

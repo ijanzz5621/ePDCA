@@ -1,14 +1,16 @@
 body{
     background: #fff;
     margin-top:35px;
-    font-size: 14px !important;
+    font-size: 12px !important;
 }
 
 body,html,.row-offcanvas {
   height:100%;
 }
 
-
+table{
+  font-size: 12px !important;
+}
 
 #sidebar {
   width: inherit;

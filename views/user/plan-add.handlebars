@@ -42,7 +42,7 @@
 	#teamLead {
 		/*float: right;*/
 		width: 105px;
-		height: 9em;
+		height: 11em;
 		padding: 1%;
 		background: #fbfbfb;
 		border: 1px dashed #000;
@@ -122,7 +122,7 @@
 	
 			<div class="ui-widget ui-helper-clearfix">
 
-				<div class="row">
+				<div class="row" style="margin-bottom:15px;">
 
 					<div class="col-md-5">
 
@@ -131,20 +131,16 @@
 							<li class="ui-widget-content ui-corner-tr" value="00001-azhar">
 								<h5 class="ui-widget-header">Kassim</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
+								<!--<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
+								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>-->
 							</li>
 							<li class="ui-widget-content ui-corner-tr" value="00002-diana">
 								<h5 class="ui-widget-header">Abu</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="i/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
 							</li>
 							<li class="ui-widget-content ui-corner-tr" value="00003-sharizan">
 								<h5 class="ui-widget-header">Aminah</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>
 							</li>		
 						</ul>
 
@@ -163,6 +159,7 @@
 						</div>
 
 					</div>
+
 				</div>
 
 			</div>
@@ -279,14 +276,14 @@
 			},
 			drop: function (event, ui) {
 				deleteImage(ui.draggable, $teamLead);
-				ui.draggable.position({
+				/*ui.draggable.position({
 						my: "center",
 						at: "center",
-						/*of: $this,
+						of: $this,
 						using: function (pos) {
 							$(this).animate(pos, 200, "linear");
-						}*/
-					});
+						}
+					});*/
 			},
 			zIndex: 99999
 		});
@@ -321,12 +318,14 @@
 					$("<ul class='userList ui-helper-reset'/>").appendTo($target);
 
 				//$item.find("a.ui-icon-teamLead").remove();
-				$item.append(recycle_icon).appendTo($list).fadeIn(function () {
-					$item
-					//.animate({ width: "48px" })
-					//.find("img")
-					//.animate({ height: "36px" });
-				});			
+				$item
+				//.append(recycle_icon)
+				.appendTo($list).fadeIn(function () {
+					/*$item
+					.animate({ width: "48px" })
+					.find("img")
+					.animate({ height: "36px" });*/
+				});		
 			});
 		};
 
@@ -335,14 +334,14 @@
 		function recycleImage($item) {
 			$item.fadeOut(function () {
 				$item
-					.find("a.ui-icon-refresh")
-					.remove()
-					.end()
-					.css("width", "96px")
-					.append(teamLead_icon)
-					.find("img")
-					.css("height", "72px")
-					.end()
+					//.find("a.ui-icon-refresh")
+					//.remove()
+					//.end()
+					//.css("width", "96px")
+					//.append(teamLead_icon)
+					//.find("img")
+					//.css("height", "72px")
+					//.end()
 					.appendTo($userList)
 					.fadeIn();
 			});
@@ -350,7 +349,7 @@
 
 		// Image preview function, demonstrating the ui.dialog used as a modal window
 		function viewLargerImage($link) {
-			var src = $link.attr("href"),
+			/*var src = $link.attr("href"),
 				title = $link.siblings("img").attr("alt"),
 				$modal = $("img[src$='" + src + "']");
 
@@ -366,7 +365,7 @@
 						modal: true
 					});
 				}, 1);
-			}
+			}*/
 		};
 
 		// Resolve the icons behavior with event delegation
