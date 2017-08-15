@@ -4,7 +4,7 @@ var planController = require('../controllers/plan/plan');
 var blPlan = require('../business-logic/user/plan');
 var lib_mysql = require('../lib/lib_mysql');
 
-module.exports = function (app, auth, db) {
+module.exports = function (app, auth) {
 
     //user site
     app.get('/user/plan', auth, function (req, res) {
@@ -40,7 +40,7 @@ module.exports = function (app, auth, db) {
         console.log(JSON.stringify(teams));
 
         //call controller to save plan
-        blPlan.saveNewPlan(req.body, db);
+        blPlan.saveNewPlan(req.body);
         /*var connection = db.connect(db.MODE_PRODUCTION, function(err){
             if (!!err) console.error(err);
 

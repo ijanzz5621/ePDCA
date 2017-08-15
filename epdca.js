@@ -84,7 +84,7 @@ app.use(function(req, res, next){
 //import main routes
 require('./routes/main')(app, auth);
 //import user routes
-require('./routes/user')(app, auth, db);
+require('./routes/user')(app, auth);
 //import admin routes
 require('./routes/admin')(app, authAdmin);
 

@@ -5,7 +5,7 @@ var uuid = require("uuid");
 var commonFunc = require('../../business-logic/general/common');
 var planController = require('../../controllers/plan/plan');
 
-function saveNewPlan(data, db){
+function saveNewPlan(data){
 
     var sql = "";
     var deferred = q.defer();
@@ -19,16 +19,51 @@ function saveNewPlan(data, db){
             var planRecGuid = uuid.v4();
             console.log('random id: ' + planRecGuid);
 
-            // Generate Serial number
-            db.connection.query('call sp_GenerateSerialNumber(\'PDCASerialNumber\')', function(err, rows,fields){
-                if (err) return console.log('Error: ' + err);
-                
-                serialNumber = rows[0][0].SerialNumber;
-                saveNewPlan = function(){
-                    
-                };
-                
-            })
+            connection.beginTransaction(function(err){
+
+                // Generate Serial number
+                sql = 'call sp_GenerateSerialNumber(\'PDCASerialNumber\')';
+                connection.query(sql, function (err, rows, fields) {
+                    if (err) {
+                        connection.rollback(function(){
+                            throw err;
+                        })
+                        return console.log('Error: ' + err);
+                    }
+
+                    serialNumber = rows[0][0].SerialNumber;
+                    console.log('serialNumber: ' + serialNumber);
+
+                    //save to plan master
+                    sql = 'select * from user_plan_master';
+                    connection.query(sql, function (err, rows, fields) {
+                        if (err) {
+                            connection.rollback(function(){
+                                //throw err;
+                            })
+                            return console.log('Error: ' + err);
+                        }
+
+                        //proceed with next query
+                        console.log(rows);
+
+                        connection.commit(function(err) {
+                            if (err) { 
+                              connection.rollback(function() {
+                                //throw err;
+                              });
+                              return console.log('Error: ' + err);
+                            }
+                            console.log('Transaction Complete.');
+                            connection.end();
+                          });
+
+                    });
+                })
+
+            });
+
+            
             
 
             // Save to user_plan_master
@@ -38,11 +73,8 @@ function saveNewPlan(data, db){
 
         })
 
-}
+};
 
-function saveNewPlan(){
-
-}
 
 module.exports = {
     saveNewPlan: saveNewPlan
