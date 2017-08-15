@@ -40,7 +40,7 @@ module.exports = function (app, auth, db) {
         console.log(JSON.stringify(teams));
 
         //call controller to save plan
-        blPlan.saveNewPlan(req.body);
+        blPlan.saveNewPlan(req.body, db);
         /*var connection = db.connect(db.MODE_PRODUCTION, function(err){
             if (!!err) console.error(err);
 
