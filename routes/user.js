@@ -30,30 +30,9 @@ module.exports = function (app, auth) {
     })
     //post
     app.post('/user/plan-add', function(req, res, next){
-
-        console.log("data posted: " + JSON.stringify(req.body));
-
-        var teams = JSON.parse(req.body.hidTeamMembers);
-        /*for (var name in teams){
-            console.log(name);
-        };*/
-        console.log(JSON.stringify(teams));
-
         //call controller to save plan
-        blPlan.saveNewPlan(req.body);
-        /*var connection = db.connect(db.MODE_PRODUCTION, function(err){
-            if (!!err) console.error(err);
-
-        });*/
-        /*var connection = lib_mysql.connection;
-        connection.query("call sp_GenerateSerialNumber('PDCASerialNumber')", function(error, rows, fields){
-            if (!!error) console.error(error);
-            console.log(rows);
-            console.log(rows[0][0].SerialNumber);
-        });*/
-        
+        blPlan.saveNewPlan(req.session.user, req.body);
         res.redirect('/user/plan');
-        //next();
     });
 
     app.get('/user/create', auth, function (req, res) {

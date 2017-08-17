@@ -48,7 +48,6 @@ module.exports = function (app, auth) {
             req.session.user = username;
             req.session.isAuthenticated = true;
 
-            console.log('username: ' + username + ', password: ' + password);
             res.redirect('/');
 
         } else {
