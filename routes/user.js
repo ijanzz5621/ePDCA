@@ -17,6 +17,7 @@ module.exports = function (app, auth) {
                 console.log(rows);
         });*/
 
+        //render plan-submitted page
         res.render('user/plan');
     })
 
@@ -32,7 +33,7 @@ module.exports = function (app, auth) {
     app.post('/user/plan-add', function(req, res, next){
         //call controller to save plan
         blPlan.saveNewPlan(req.session.user, req.body);
-        res.redirect('/user/plan');
+        res.render('user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
     });
 
     app.get('/user/create', auth, function (req, res) {
