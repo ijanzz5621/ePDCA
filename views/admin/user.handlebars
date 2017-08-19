@@ -4,12 +4,14 @@
   <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);"/>
 </div>
 
-<table id="userList" class="table table-bordered table-responsive table-striped">
+<table id="userList" class="table table-bordered table-responsive table-striped dynatable">
   <thead>
     <tr>
-      <th data-dynatable-column="UserCode">Employee ID</th>
-      <th data-dynatable-column="Username">Name</th>
+      <th data-dynatable-column="Company">Company</th>
+      <th data-dynatable-column="Department">Department</th>
       <th data-dynatable-column="Email">Email</th>
+      <th data-dynatable-column="UserCode">Employee ID</th>
+      <th data-dynatable-column="Username">Name</th>  
     </tr>
   </thead>
   <tbody>
@@ -17,59 +19,80 @@
 </table>
 
 <script type="text/javascript">
+  var table = $('#userList')
+    .dynatable()
+    .on('dblclick', 'tr', function (e) {
+      var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex-1];
+      console.log(selectedData);
+      callModal(selectedData);
+    })
+    .data('dynatable');
 
-      $(document).ready(function () {
+  /*//$("#div1").html(result);
+      //alert(result);
+      table.dynatable({
+        dataset: {
+          records: data
+        }
+      }).on('dblclick', 'tr', function (e) {
+        //alert(this.Email);
+        var cells = this.getElementsByTagName('td');
+        //var data = table.row(this).data();
+        //alert(cells[0].innerHTML);
+        //alert(e);
+        //console.log(table.dynatable().dataset);
+        //call popup
+        callModal(cells[0].innerHTML);
 
-        //alert('test load');
+      });*/
 
-        //$('#userList').dynatable();
-        $.ajax({
-          url: "/api/users", success: function (result) {
-            //$("#div1").html(result);
-            //alert(result);
-            $('#userList').dynatable({
-              dataset: {
-                records: result
-              }
-            }).on('dblclick', 'tr', function(){
-              //alert(this.Email);
-              var cells = this.getElementsByTagName('td');
-              //alert(cells[0].innerHTML);
-              //call popup
-              callModal(cells[0].innerHTML);
+  $(document).ready(function () {
 
-            });
-          }
-        });
+    //alert('test load');
 
-        /*$('#userList').dynatable({
-          dataset: {
-            ajax: true,
-            ajaxUrl: '/api/users',
-            ajaxOnLoad: true,
-            records: []
-          };*/
-
-
-
-      });
-
-      function iconTrigger(obj){
-          //alert($(obj).attr('id'));
-          var selectedIcon = $(obj).attr('id');
-          if (selectedIcon === "icon-add-user"){
-            $('#modal-add-user').modal();
-          }
+    //$('#userList').dynatable();
+    $.ajax({
+      url: "/api/users", success: function (result) {
+        bindDataTable(result);
       }
+    });
 
-      function callModal(id){
-        
-        //use ajax to retrieve info from id
+    /*$('#userList').dynatable({
+      dataset: {
+        ajax: true,
+        ajaxUrl: '/api/users',
+        ajaxOnLoad: true,
+        records: []
+      };*/
 
-        //populate the details into the popup form
 
-        $('#modal-add-user').modal();
-      }
+
+  });
+
+    function bindDataTable(data) {
+      //alert(JSON.stringify(data));
+      table.settings.dataset.originalRecords = data;
+      table.process();
+
+    };
+
+  function iconTrigger(obj) {
+    //alert($(obj).attr('id'));
+    var selectedIcon = $(obj).attr('id');
+    if (selectedIcon === "icon-add-user") {
+      $('#modal-add-user').modal();
+    }
+  }
+
+  function callModal(data) {
+
+    //populate the details into the popup form
+    $('#txtUserCode').val(data.UserCode);
+    $('#txtUsername').val(data.Username);
+    $('#txtEmail').val(data.Email);
+
+    $('#modal-add-user').modal();
+  }
 
 </script>
 

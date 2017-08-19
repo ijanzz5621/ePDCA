@@ -74,4 +74,8 @@ th a:hover {
   color: #999;
 }
 
+.dynatable tbody tr:hover{
+  background: #f0f0f0;
+}
+
 

@@ -7,15 +7,14 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" href="/css/jquery-ui.css"/>
+        <link rel="stylesheet" href="/css/multi-step-form.css"/>
         <link rel="stylesheet" href="/css/site.css"/>
 
         <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>  
         <script src="/js/jquery-ui.js"></script>
-
-        <script src="/js/bootstrap.min.js"></script>
-        
-        <script src="/js/notify.min.js"></script>
-        
+  
+        <script src="/js/notify.min.js"></script>      
         <script src="/js/site.js"></script>
 
     </head>
@@ -47,7 +46,7 @@
             <div id="sidebar" class="sidebar-offcanvas">
                 <div id="nav" class="col-md-12" style="padding-top:25px;">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="/">Home / Dashboard</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/user/plan">Plan</a></li>
                         <li><a href="/user/do">Do</a></li>
                         <li><a href="/user/create">Create</a></li>
@@ -66,13 +65,13 @@
         </div><!--/row-offcanvas -->
 
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
 
                 var pgurl = window.location.pathname;
                 $("#nav ul li a").each(function () {
 
                     //alert("pgurl: " + pgurl + ", link: " + $(this).attr("href"));
-                    
+
                     //alert(pgurl);
                     //if ($(this).attr("href") == pgurl || $(this).attr("href") == '')
                     if (pgurl === '/' && $(this).attr("href") === '/')
@@ -80,30 +79,44 @@
                     else if (pgurl.indexOf($(this).attr("href")) >= 0 && $(this).attr("href") !== '/')
                         //$(this).addClass("active");
                         $(this).parent().addClass("active");
-                    else 
+                    else
                         $(this).parent().removeClass("active");
 
-                        //alert(pgurl.indexOf($(this).attr("href")));
+                    //alert(pgurl.indexOf($(this).attr("href")));
 
                     //alert($(this).attr("href") + " - " + pgurl);
                 });
 
-                $('[data-toggle=offcanvas]').click(function() {
+                $('[data-toggle=offcanvas]').click(function () {
                     $('.row-offcanvas').toggleClass('active');
                 });
 
-                $.notify("{{result}}", {position: "bottom-center", className:"error"});
+                $.notify("{{result}}", { position: "bottom-center", className: "error" });
 
             });
 
             $(function () {
-                    
 
-                    //var pgurl = window.location.href.substr(window.location.href
-                    //    .lastIndexOf("/") + 1);
-                    
+
+                //var pgurl = window.location.href.substr(window.location.href
+                //    .lastIndexOf("/") + 1);
+
+                $(document).tooltip({
+                    position: {
+                        my: "center bottom-20",
+                        at: "center top",
+                        using: function (position, feedback) {
+                            $(this).css(position);
+                            $("<div>")
+                                .addClass("arrow")
+                                .addClass(feedback.vertical)
+                                .addClass(feedback.horizontal)
+                                .appendTo(this);
+                        }
+                    }
                 });
 
+            });
         </script>
 
 
