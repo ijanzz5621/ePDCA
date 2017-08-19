@@ -16,7 +16,6 @@ module.exports = function (app, authAdmin) {
 
         //destroy the session
         req.session.destroy();
-
         res.redirect('/admin/login');
     });
 
