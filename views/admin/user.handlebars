@@ -1,7 +1,7 @@
 <h3>User</h3>
 
 <div id="icon-list">
-  <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);"/>
+  <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);" />
 </div>
 
 <table id="userList" class="table table-bordered table-responsive table-striped dynatable">
@@ -11,7 +11,7 @@
       <th data-dynatable-column="Department">Department</th>
       <th data-dynatable-column="Email">Email</th>
       <th data-dynatable-column="UserCode">Employee ID</th>
-      <th data-dynatable-column="Username">Name</th>  
+      <th data-dynatable-column="Username">Name</th>
     </tr>
   </thead>
   <tbody>
@@ -22,62 +22,28 @@
   var table = $('#userList')
     .dynatable()
     .on('dblclick', 'tr', function (e) {
-      var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex-1];
-      console.log(selectedData);
+      var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex - 1];
       callModal(selectedData);
     })
     .data('dynatable');
 
-  /*//$("#div1").html(result);
-      //alert(result);
-      table.dynatable({
-        dataset: {
-          records: data
-        }
-      }).on('dblclick', 'tr', function (e) {
-        //alert(this.Email);
-        var cells = this.getElementsByTagName('td');
-        //var data = table.row(this).data();
-        //alert(cells[0].innerHTML);
-        //alert(e);
-        //console.log(table.dynatable().dataset);
-        //call popup
-        callModal(cells[0].innerHTML);
-
-      });*/
-
   $(document).ready(function () {
 
-    //alert('test load');
-
-    //$('#userList').dynatable();
     $.ajax({
       url: "/api/users", success: function (result) {
         bindDataTable(result);
       }
     });
 
-    /*$('#userList').dynatable({
-      dataset: {
-        ajax: true,
-        ajaxUrl: '/api/users',
-        ajaxOnLoad: true,
-        records: []
-      };*/
-
-
-
   });
 
-    function bindDataTable(data) {
-      //alert(JSON.stringify(data));
-      table.settings.dataset.originalRecords = data;
-      table.process();
+  function bindDataTable(data) {
+    table.settings.dataset.originalRecords = data;
+    table.process();
 
-    };
+  };
 
   function iconTrigger(obj) {
-    //alert($(obj).attr('id'));
     var selectedIcon = $(obj).attr('id');
     if (selectedIcon === "icon-add-user") {
       $('#modal-add-user').modal();

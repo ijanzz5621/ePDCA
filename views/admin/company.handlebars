@@ -1,1 +1,66 @@
 <h3>Company</h3>
+
+<div id="icon-list">
+  <img src="/img/add-icon.png" id="icon-add-company" width="32px" class="icon-maint" onclick="iconTrigger(this);" title="Add new company" />
+</div>
+
+<table id="companyList" class="table table-bordered table-responsive table-striped dynatable">
+  <thead>
+    <tr>
+      <th data-dynatable-column="CompanyCode">Company Code</th>
+      <th data-dynatable-column="CompanyName">Company Name</th>
+      <th data-dynatable-column="Status">Status</th>
+      <th data-dynatable-column="DateLicenseStart">License Start</th>
+      <th data-dynatable-column="DateLicenseEnd">License End</th>
+      <th data-dynatable-column="CreatedOn">Created On</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  var table = $('#companyList')
+    .dynatable()
+    .on('dblclick', 'tr', function (e) {
+      var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex - 1];
+      callModal(selectedData);
+    })
+    .data('dynatable');
+
+  $(document).ready(function () {
+
+    $.ajax({
+      url: "/api/companies", success: function (result) {
+        bindDataTable(result);
+      }
+    });
+
+  });
+
+  function bindDataTable(data) {
+    table.settings.dataset.originalRecords = data;
+    table.process();
+
+  };
+
+  function iconTrigger(obj) {
+    var selectedIcon = $(obj).attr('id');
+    if (selectedIcon === "icon-add-company") {
+      $('#modal-add-company').modal();
+    }
+  }
+
+  function callModal(data) {
+
+    //populate the details into the popup form
+    $('#txtCompanyCode').val(data.UserCode);
+    $('#txtCompanyName').val(data.Username);
+    $('#txtStatus').val(data.Email);
+
+    $('#modal-add-company').modal();
+  }
+
+</script>
+
+{{> admin/company-add}}
