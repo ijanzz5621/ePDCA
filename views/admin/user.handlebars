@@ -1,17 +1,20 @@
 <h3>User</h3>
 
 <div id="icon-list">
-  <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);" />
+  <img src="/img/add-icon.png" id="icon-add-user" width="32px" class="icon-maint" onclick="iconTrigger(this);" title="Add new user" />
 </div>
 
 <table id="userList" class="table table-bordered table-responsive table-striped dynatable">
   <thead>
     <tr>
-      <th data-dynatable-column="Company">Company</th>
-      <th data-dynatable-column="Department">Department</th>
       <th data-dynatable-column="Email">Email</th>
-      <th data-dynatable-column="UserCode">Employee ID</th>
+      <th data-dynatable-column="UserCode">Employee Code</th>
       <th data-dynatable-column="Username">Name</th>
+      <th data-dynatable-column="Gender">Gender</th>
+      <th data-dynatable-column="SupervisorId">Supervisor</th>
+      <th data-dynatable-column="CompanyCode">Company</th>
+      <th data-dynatable-column="DepartmentCode">Department</th>
+
     </tr>
   </thead>
   <tbody>
@@ -35,7 +38,114 @@
       }
     });
 
+    //load company list
+    loadCompanyList();
+
+    //load department list
+
+    //on change
+    $('#ddlCompany').on('change', function (e) {
+      //alert($('#ddlCompany').val() + ' has been selected!');
+      loadDepartmentByCompany($('#ddlCompany').val());
+    });
+    $('#ddlDepartment').on('change', function (e) {
+      loadUsersByDepartmentAndCompany($('#ddlCompany').val(), $('#ddlDepartment').val());
+    });
+
   });
+
+  $(document).on('change', "input[name='rbGender']:radio", function () {
+    //alert($(this).val());
+    $('#lblGenderM')
+      .removeClass('active')
+      .removeClass('btn-success')
+      .addClass('btn-default');
+    $('#lblGenderF')
+      .removeClass('active')
+      .removeClass('btn-success')
+      .addClass('btn-default');
+
+    $(this).closest('label').removeClass('btn-default').addClass('btn-success').addClass('active');
+  });
+
+  function resetForm() {
+    $('#txtEmail').removeAttr("readonly");
+    $('#txtEmail').val("");
+    $('#txtUserCode').val("");
+    $('#txtUsername').val("");
+    $('#lblGenderM')
+      .removeClass('active')
+      .removeClass('btn-success')
+      .addClass('btn-default');
+    $('#lblGenderF')
+      .removeClass('active')
+      .removeClass('btn-success')
+      .addClass('btn-default');
+
+    $('#ddlCompany').val("");
+    $('#ddlDepartment').val("");
+    $('#ddlSupervisor').val("");
+  }
+
+  function loadUsersByDepartmentAndCompany(companyCode, departmentCode, dataSupervisor) {
+    if ($('#ddlSupervisor option').length > 1) {
+      $('#ddlSupervisor > option').slice(1, $('#ddlSupervisor option').length).remove();
+    }
+
+    $.ajax({
+      url: "/api/usersByCompanyAndDepartment/?companyCode=" + companyCode + "&departmentCode=" + departmentCode, success: function (result) {
+        $.each(result, function (idx, val) {
+          $('#ddlSupervisor').append('<option value=\'' + val.Email + '\'>' + val.Username + '</option>');
+        });
+
+        if (dataSupervisor != null) {
+          $('#ddlSupervisor').val(dataSupervisor);
+        }
+
+      }
+    });
+  }
+
+  function loadCompanyList() {
+
+    //alert($('#ddlCompany option').length);
+    //alert($('#ddlCompany').text());
+
+    if ($('#ddlCompany option').length > 1) {
+      $('#ddlCompany > option').slice(1, $('#ddlCompany option').length).remove();
+    }
+
+    $.ajax({
+      url: "/api/companies", success: function (result) {
+
+        $.each(result, function (idx, val) {
+          $('#ddlCompany').append('<option value=\'' + val.CompanyCode + '\'>' + val.CompanyName + '</option>');
+        })
+      }
+    });
+  }
+
+  function loadDepartmentByCompany(companyCode, dataDepartmentCode) {
+
+    if ($('#ddlDepartment option').length > 1) {
+      $('#ddlDepartment > option').slice(1, $('#ddlDepartment option').length).remove();
+    }
+
+    $.ajax({
+      url: "/api/departmentsByCompany/" + companyCode, success: function (result) {
+
+        $.each(result, function (idx, val) {
+          $('#ddlDepartment').append('<option value=\'' + val.DepartmentCode + '\'>' + val.DepartmentName + '</option>');
+        })
+
+        if (dataDepartmentCode != null) {
+          $('#ddlDepartment').val(dataDepartmentCode);
+        }
+
+      }
+    });
+
+  }
 
   function bindDataTable(data) {
     table.settings.dataset.originalRecords = data;
@@ -46,19 +156,53 @@
   function iconTrigger(obj) {
     var selectedIcon = $(obj).attr('id');
     if (selectedIcon === "icon-add-user") {
+      resetForm();
       $('#modal-add-user').modal();
     }
   }
 
   function callModal(data) {
 
+    $('#txtEmail').val(data.Email);
+    $('#txtEmail').attr("readonly", "readonly");
     //populate the details into the popup form
+    $('#ddlCompany').val(data.CompanyCode);
+    loadDepartmentByCompany(data.CompanyCode, data.DepartmentCode);
+    loadUsersByDepartmentAndCompany(data.CompanyCode, data.DepartmentCode, data.SupervisorId);
     $('#txtUserCode').val(data.UserCode);
     $('#txtUsername').val(data.Username);
-    $('#txtEmail').val(data.Email);
+
+    $("input[name=rbGender][value=" + data.Gender + "]").prop("checked", true);
+    $('#lblGender' + data.Gender).removeClass('btn-default').addClass('btn-success').addClass('active');
+
 
     $('#modal-add-user').modal();
   }
+
+  function validateForm() {
+
+    if (!$("input[name='rbGender']:checked").val()) {
+      alert("Please select Gender!");
+      return false;
+    }
+
+    return true;
+
+  }
+
+  $('#btnSubmit').on('click', function (e) {
+    e.preventDefault();
+    alert('submit');
+    
+    //return false;
+    if (validateForm()) {
+      //alert("form validation successful!");
+      //$('#formUser').submit();
+    } else {
+      //alert("form validation failed!");
+    }
+
+  });
 
 </script>
 

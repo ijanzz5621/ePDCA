@@ -1,5 +1,5 @@
 var credentials = require('../credentials');
-
+var encryptor = require('../lib/lib_encryptor');
 
 module.exports = function (app, authAdmin) {
 
@@ -38,14 +38,14 @@ module.exports = function (app, authAdmin) {
             //req.app.locals.username = req.session.user;
             //res.locals.username = req.session.user;
 
-            console.log('username: ' + username + ', password: ' + password);
+            //console.log('username: ' + username + ', password: ' + password);
             res.redirect('/admin');
 
         } else {
 
             var msg = "Invalid password!";
             res.render('admin/login', { layout: null, message: msg });
-            console.log(msg);
+            //console.log(msg);
 
         }
     });
@@ -94,7 +94,7 @@ module.exports = function (app, authAdmin) {
     app.post('/admin/department/add-edit-department', function (req, res) {
         var blDepartment = require('../business-logic/admin/department');
 
-        blDepartment.getDepartmentByCode(req.body.ddlCompany, req.body.txtCompanyCode).then(function (results) {
+        blDepartment.getDepartmentByCode(req.body.ddlCompany, req.body.txtDepartmentCode).then(function (results) {
             //console.log("List of users: " + results);
             //console.log('Department status: ' + req.body.rbStatus);
 
@@ -133,21 +133,37 @@ module.exports = function (app, authAdmin) {
 
         //gen sql
         var blUser = require('../business-logic/admin/user');
-        blUser.getUserByCode(req.body.txtUserCode).then(function (results) {
-            //console.log("List of users: " + results);
-            console.log('User found: ' + results);
+        blUser.getUserByCode(req.body.txtEmail).then(function (results) {
+
+            //Create random password
+            var passwordOri = Math.random()                        // Generate random number, eg: 0.123456
+            .toString(36)                                           // Convert  to base-36 : "0.4fzyo82mvyr"
+            .slice(-8);                                         // Cut off last 8 characters : "yo82mvyr"
+            var passwordHash = encryptor.generateHashCode(passwordOri);                                 
+
+            //encrypt before save to database
 
             var sql = "";
             //Check if user already exists, construct update statement, else construct insert statement
-            if (results.length > 0)
+            if (results.length > 0){
                 //console.log('UPDATE');
-                sql = "UPDATE admin_user SET Email = '" + req.body.txtEmail + "' WHERE UserCode = '" + req.body.txtUserCode + "';";
-            else
-                //console.log('INSERT');
-                sql = "";
-
+                sql = "UPDATE admin_user SET CompanyCode='" + req.body.ddlCompany + "', DepartmentCode='" + req.body.ddlDepartment + "', ";
+                sql = sql + "UserCode = '" + req.body.txtUserCode + "', Username='" + req.body.txtUsername + "', " +
+                "Gender='" + req.body.rbGender + "', SupervisorId= '" + req.body.ddlSupervisor + "', Password='" + passwordHash + "' " +
+                "WHERE Email = '" + req.body.txtEmail + "';";
+            }
+            else{
+                sql = "INSERT INTO admin_user (RecGuid, CompanyCode, DepartmentCode, UserCode, Username, Password, Email, Gender, SupervisorId, CreatedOn) ";
+                sql = sql + "VALUES (uuid(), '" + req.body.ddlCompany + "', '" + req.body.ddlDepartment + "', '" + req.body.txtUserCode + "', '" + req.body.txtUsername + "', '" + password + "', '" + req.body.txtEmail + "', '" + req.body.rbGender + "', '" + req.body.ddlSupervisor + "', now())";
+            }
+                
             blUser.saveUser(sql).then(function (results) {
                 //console.log('Save user result: ' + JSON.stringify(results));
+                //if success, send email
+                var email = require('../lib/lib_email');
+                email.setMailOptions(req.body.txtEmail, 'ePDCA - Account created', 'Please use password ' + passwordOri + ' to login.', '');
+                email.sendMail();
+                
             }).catch((err) => setImmediate(() => { throw err; }));
 
         }).catch((err) => setImmediate(() => { throw err; }));

@@ -14,8 +14,16 @@ module.exports = {
         , sessionTableName: 'sessions'
     },
 
-    adminPassword: '123qweASDF'
+    adminPassword: '123qweASDF',
 
-
+    email: {
+        host: "smtp.gmail.com"
+        , port: 465
+        , secure: true
+        , auth: {
+            user: 'ijglobaltech.email@gmail.com',
+            pass: 'ijanPHT6420'
+        } 
+    }
 
 }

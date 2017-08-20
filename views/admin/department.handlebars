@@ -82,7 +82,7 @@
   }
 
   function resetForm() {
-        $('#ddlCompany').removeAttr("readonly");
+        $('#ddlCompany').prop("readonly", false);
         $('#txtDepartmentCode').removeAttr("readonly");
         $('#txtDepartmentCode').val("");
         $('#txtDepartmentName').val("");
@@ -101,7 +101,7 @@
 
     //populate the details into the popup form
     $('#ddlCompany').val(data.CompanyCode);
-    $('#ddlCompany').attr("readonly", "readonly");
+    $('#ddlCompany').prop("readonly", true);
     $('#txtDepartmentCode').val(data.DepartmentCode);
     $('#txtDepartmentCode').attr("readonly", "readonly");
     $('#txtDepartmentName').val(data.DepartmentName);

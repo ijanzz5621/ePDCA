@@ -43,6 +43,27 @@ function getDepartmentByCode(companyCode, departmentCode){
     return deferred.promise;
 }
 
+function getDepartmentsByCompany(companyCode){
+    var deferred = q.defer();
+
+    connectionManager.getConnection()
+        .then(function(connection){
+            connection.query('select * from admin_department where CompanyCode = \'' + companyCode + '\'', function(err, results){
+                if (err){
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function(err){
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 function saveDepartment(sql){
     var deferred = q.defer();
 
@@ -67,5 +88,6 @@ function saveDepartment(sql){
 module.exports = {
     getDepartments: getDepartments
     , getDepartmentByCode: getDepartmentByCode
+    , getDepartmentsByCompany : getDepartmentsByCompany
     , saveDepartment: saveDepartment
 }

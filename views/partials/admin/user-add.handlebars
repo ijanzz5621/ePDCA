@@ -1,4 +1,4 @@
-<form method="post" action="/admin/user/add-edit-user">
+<form id="formUser" method="post" action="/admin/user/add-edit-user">
 
     <div id="modal-add-user" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -10,14 +10,30 @@
                 <div class="modal-body row">
 
                     <div class="form-group col-md-6">
+                        <label for="txtEmail">Email address</label>
+                        <input type="email" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email" required="required">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="txtUserCode">User Code</label>
+                        <input type="text" class="form-control" name="txtUserCode" id="txtUserCode" placeholder="User Code">
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="txtUsername">Username</label>
+                        <input type="text" class="form-control" name="txtUsername" id="txtUsername" placeholder="Username" required="required">
+                    </div>
+
+                    <div class="form-group col-md-6">
                         <label for="ddlCompany">Company</label>
-                        <select class="form-control" aria-placeholder="Company" id="ddlCompany" name="ddlCompany">
+                        <select class="form-control" data-attr="dropdown" aria-placeholder="Company" id="ddlCompany" name="ddlCompany" required="required">
                             <option value="">-- Please Select --</option>
+                            <option value="">-- Please Select 2 --</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="ddlDepartment">Department</label>
-                        <select class="form-control" aria-placeholder="Company" id="ddlDepartment" name="ddlDepartment">
+                        <select class="form-control" aria-placeholder="Company" id="ddlDepartment" name="ddlDepartment" required="required">
                             <option value="">-- Please Select --</option>
                         </select>
                     </div>
@@ -30,27 +46,13 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="txtUserCode">User Code</label>
-                        <input type="text" class="form-control" name="txtUserCode" id="txtUserCode" placeholder="User Code">
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="txtUsername">Username</label>
-                        <input type="text" class="form-control" name="txtUsername" id="txtUsername" placeholder="Username">
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="txtEmail">Email address</label>
-                        <input type="email" class="form-control" name="txtEmail" id="txtEmail" placeholder="Email">
-                    </div>
-                    <div class="form-group col-md-6">
                         <label for="radioGender">Gender</label>
                         <br/>
                         <div id="radioGender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default checked">
+                            <label id="lblGenderM" class="btn btn-default checked">
                                     <input type="radio" name="rbGender" id="rbGenderMale" value="M"  /> Male
                                 </label>
-                            <label class="btn btn-default">
+                            <label id="lblGenderF" class="btn btn-default">
                                     <input type="radio" name="rbGender" id="rbGenderFemale" value="F" /> Female
                                 </label>
                         </div>
@@ -59,7 +61,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                    <input type="submit" id="btnSubmit" class="btn btn-primary" value="Save Changes" />
                 </div>
             </div>
 
