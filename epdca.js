@@ -92,6 +92,7 @@ require('./routes/admin')(app, authAdmin);
 // API
 //********************* */
 require('./apis/admin/company')(app);
+require('./apis/admin/department')(app);
 require('./apis/admin/user')(app);
 
 //******************* */

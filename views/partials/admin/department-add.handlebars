@@ -1,32 +1,32 @@
-<form id="formCompany" method="post" action="/admin/company/add-edit-company">
+<form id="formDepartment" method="post" action="/admin/department/add-edit-department">
 
-    <div id="modal-add-company" class="modal fade" tabindex="-1" role="dialog">
+    <div id="modal-add-department" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add / Edit Company</h4>
+                    <h4 class="modal-title">Add / Edit Department</h4>
                 </div>
                 <div class="modal-body row">
 
                     <div class="form-group col-md-6">
-                        <label for="txtCompanyCode">Company Code</label>
-                        <input type="text" class="form-control" name="txtCompanyCode" id="txtCompanyCode" placeholder="Company Code">
+                        <label for="ddlCompany">Company</label>
+                        <select id="ddlCompany" class="form-control" name="ddlCompany">
+                        <option value="">-- Please Select --</option>
+                        {{#each companyList}}
+                            <option value="{{CompanyCode}}">{{ CompanyName }}</option>
+                        {{/each}}
+                        </select>
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="txtCompanyName">Company Name</label>
-                        <input type="text" class="form-control" name="txtCompanyName" id="txtCompanyName" placeholder="Company Name">
+                        <label for="txtDepartmentCode">Department Code</label>
+                        <input type="text" class="form-control" name="txtDepartmentCode" id="txtDepartmentCode" placeholder="Department Code">
                     </div>
 
                     <div class="form-group col-md-6">
-                        <label for="txtDateLicenseStart">License Start Date</label>
-                        <input type="text" class="form-control" name="txtDateLicenseStart" id="txtDateLicenseStart" placeholder="License Start Date">
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="txtDateLicenseEnd">License End Date</label>
-                        <input type="text" class="form-control" name="txtDateLicenseEnd" id="txtDateLicenseEnd" placeholder="License End Date">
+                        <label for="txtDepartmentName">Department Name</label>
+                        <input type="text" class="form-control" name="txtDepartmentName" id="txtDepartmentName" placeholder="Department Name">
                     </div>
 
                     <div class="form-group col-md-6">

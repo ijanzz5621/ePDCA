@@ -1,1 +1,128 @@
 <h3>Department</h3>
+
+<div id="icon-list">
+  <img src="/img/add-icon.png" id="icon-add-department" width="32px" class="icon-maint" onclick="iconTrigger(this);" title="Add new department" />
+</div>
+
+<table id="departmentList" class="table table-bordered table-responsive table-striped dynatable">
+  <thead>
+    <tr>
+      <th data-dynatable-column="CompanyCode">Company Code</th>
+      <th data-dynatable-column="DepartmentCode">Department Code</th>
+      <th data-dynatable-column="DepartmentName">Department Name</th>
+      <th data-dynatable-column="Status">Status</th>
+      <th data-dynatable-column="CreatedOn">Created On</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  var table = $('#departmentList')
+    .dynatable()
+    .on('dblclick', 'tr', function (e) {
+      var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex - 1];
+      resetForm();
+      callModal(selectedData);
+    })
+    .data('dynatable');
+
+  $(document).ready(function () {
+
+    //alert('test');
+
+    $.ajax({
+      url: "/api/departments", success: function (result) {
+        
+        bindDataTable(result);
+      }
+    });
+
+    $('#btnSubmit').on('click', function(e){
+      e.preventDefault();
+      //return false;
+      if (validateForm()){
+        //alert("form validation successful!");
+        $('#formDepartment').submit();
+      } else {
+        //alert("form validation failed!");
+      }
+
+    });
+
+    $(document).on('change', "input[name='rbStatus']:radio", function () {
+        //alert($(this).val());
+        $('#lblStatusActive')
+          .removeClass('active')
+          .removeClass('btn-success')
+          .addClass('btn-default');
+        $('#lblStatusNotActive')
+          .removeClass('active')
+          .removeClass('btn-success')
+          .addClass('btn-default');
+
+          $(this).closest('label').removeClass('btn-default').addClass('btn-success').addClass('active');
+      });
+  
+  });
+
+  function bindDataTable(data) {
+    table.settings.dataset.originalRecords = data;
+    table.process();
+
+  };
+
+  function iconTrigger(obj) {
+    var selectedIcon = $(obj).attr('id');
+    if (selectedIcon === "icon-add-department") {
+      resetForm();
+      $('#modal-add-department').modal();
+    }
+  }
+
+  function resetForm() {
+        $('#ddlCompany').removeAttr("readonly");
+        $('#txtDepartmentCode').removeAttr("readonly");
+        $('#txtDepartmentCode').val("");
+        $('#txtDepartmentName').val("");
+        $('#lblStatusActive')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+        $('#lblStatusNotActive')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+        //$("input[name='rbStatus']").trigger('click');
+    }
+
+  function callModal(data) {
+
+    //populate the details into the popup form
+    $('#ddlCompany').val(data.CompanyCode);
+    $('#ddlCompany').attr("readonly", "readonly");
+    $('#txtDepartmentCode').val(data.DepartmentCode);
+    $('#txtDepartmentCode').attr("readonly", "readonly");
+    $('#txtDepartmentName').val(data.DepartmentName);
+    //alert($("input[name=rbStatus]").val() + ", data status: " + data.Status);
+    $("input[name=rbStatus][value=" + data.Status + "]").prop( "checked", true );
+    $('#lblStatus' + data.Status).removeClass('btn-default').addClass('btn-success').addClass('active');
+
+    $('#modal-add-department').modal();
+  }
+
+  function validateForm(){
+
+    if (!$("input[name='rbStatus']:checked").val()){
+      alert("Please select status!");
+      return false;
+    }
+
+    return true;
+
+  }
+
+</script>
+
+{{> admin/department-add}}

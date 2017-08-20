@@ -6,7 +6,7 @@ module.exports = function (app) {
         var blCompany = require('../../business-logic/admin/company');
         var data = blCompany.getCompanies().then(function(results){
         
-            console.log("List of companies: " + results);
+            //console.log("List of companies: " + results);
             res.json(results);
         
         }).catch((err) => setImmediate(() => { throw err; }));
