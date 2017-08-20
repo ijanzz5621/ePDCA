@@ -21,7 +21,7 @@ module.exports = {
         , port: 465
         , secure: true
         , auth: {
-            user: 'ijglobaltech.email@gmail.com',
+            user: 'ijglobaltech.mail@gmail.com',
             pass: 'ijanPHT6420'
         } 
     }
