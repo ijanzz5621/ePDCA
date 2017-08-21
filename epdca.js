@@ -81,6 +81,8 @@ app.use(function(req, res, next){
 //********************* */
 // ROUTING
 //********************* */
+//import account routes
+require('./routes/account')(app);
 //import main routes
 require('./routes/main')(app, auth);
 //import user routes

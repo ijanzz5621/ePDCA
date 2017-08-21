@@ -128,6 +128,9 @@ module.exports = function (app, authAdmin) {
     app.get('/admin/user', authAdmin, function (req, res) {
         res.render('admin/user', { layout: "admin" });
     });
+    app.get('/admin/user-details', authAdmin, function (req, res) {
+        res.render('admin/user-details', { layout: "admin" });
+    });
 
     app.post('/admin/user/add-edit-user', function (req, res) {
 

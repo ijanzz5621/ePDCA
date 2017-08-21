@@ -23,7 +23,13 @@
 
 <script type="text/javascript">
   var table = $('#userList')
-    .dynatable()
+    .dynatable({
+      writers: {
+        'Email': function(record){
+          return "<a href='/admin/user-details?userGuid=" + record.RecGuid + "'>" + record.Email + "</a>";
+        }
+      } 
+    })
     .on('dblclick', 'tr', function (e) {
       var selectedData = table.settings.dataset.originalRecords[e.currentTarget.rowIndex - 1];
       callModal(selectedData);

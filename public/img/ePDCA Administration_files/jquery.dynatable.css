@@ -78,10 +78,8 @@ th a:hover {
   background: #f0f0f0;
 }
 
-.dynatable tbody tr td a{
+.dynatable a{
   color:#d8315b !important;
-  text-decoration: underline !important;
-  font-weight: bold;
 }
 
 
