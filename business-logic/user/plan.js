@@ -75,7 +75,7 @@ function saveNewPlan(loginUser, data){
                                   });
                                   return console.log('Error: ' + err);
                                 }
-                                console.log('Transaction Complete.');
+                                //console.log('Transaction Complete.');
                                 connection.end();
                               }); // end commit
 
