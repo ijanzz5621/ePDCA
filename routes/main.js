@@ -1,3 +1,6 @@
+var encryptor = require('../lib/lib_encryptor');
+var commonController = require('../lib/dbCommand');
+
 module.exports = function (app, auth) {
 
     //Login endpoint
@@ -45,10 +48,26 @@ module.exports = function (app, auth) {
             //req.session.destroy();
             req.session.admin = null;
 
-            req.session.user = username;
-            req.session.isAuthenticated = true;
+            //convert inserted password to hash and compare with database
+            var passwordHash = encryptor.generateHashCode(password);
 
-            res.redirect('/');
+            //Get info from database
+            commonController.executeQuery("select * from admin_user where Email = '" + username + "' and Password = '" + passwordHash + "'")
+                .then(function(result){
+                    if (result.length > 0){
+
+                        req.session.user = username;
+                        req.session.isAuthenticated = true;
+            
+                        res.redirect('/');
+
+                    } 
+                    else {
+                        res.render('login', { layout: null, returnMessage: "Invalid username or password!" });
+                    }
+                });
+
+            
 
         } else {
 
