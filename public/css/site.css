@@ -32,7 +32,7 @@ table{
 
 .action-button {
 	width: 100px;
-	background: #d8315b;
+	background: #337ab7;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
@@ -86,13 +86,13 @@ table{
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: #fff !important;
-    background-color: #d8315b !important;
+    background-color: #337ab7 !important;
 }
 
-a {
+/*a {
     color: #1e1b18 !important;
     text-decoration: none !important;
-}
+}*/
 
 input[type=search]{
   border:1px solid rgb(166, 166, 166);
@@ -113,10 +113,10 @@ input[type=search]{
   color: #fff;
 }
 
-.nav>li>a {
+/*.nav>li>a {
   margin: 5px;
   border-bottom: 1px solid #e0e0e0;
-}
+}*/
 
 /* End of bootstrap override */
 
@@ -176,3 +176,13 @@ h3{
 }
 
 /* End of JQuery UI tooltip */ 
+
+.nav-stacked a{
+
+  color:#1e1b18 !important;
+}
+
+.nav-stacked a:hover{
+  
+  background:#e0e0e0 !important;
+  }

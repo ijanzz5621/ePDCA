@@ -54,7 +54,7 @@ html {
 /*buttons*/
 #msform .action-button {
 	width: 100px;
-	background: #d8315b;
+	background: #337ab7;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
@@ -187,7 +187,7 @@ html {
     background-color: #ccc;
 }
 .funkyradio input[type="radio"]:checked ~ label, .funkyradio input[type="checkbox"]:checked ~ label {
-    color: #d8315b;
+    color: #337ab7;
     font-weight: bold;
 }
 .funkyradio input[type="radio"]:focus ~ label:before, .funkyradio input[type="checkbox"]:focus ~ label:before {

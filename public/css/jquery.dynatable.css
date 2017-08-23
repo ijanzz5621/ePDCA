@@ -61,7 +61,7 @@ th a:hover {
 }
 
 .dynatable-active-page {
-  background: #d8315b;
+  background: #337ab7;
   border-radius: 5px;
   color: #fff !important;
 }
@@ -79,7 +79,7 @@ th a:hover {
 }
 
 .dynatable tbody tr td a{
-  color:#d8315b !important;
+  color:#337ab7 !important;
   text-decoration: underline !important;
   font-weight: bold;
 }

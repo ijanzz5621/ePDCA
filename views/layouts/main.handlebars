@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" href="/css/jquery-ui.css"/>
+        <link rel="stylesheet" href="/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="/css/multi-step-form.css"/>
         <link rel="stylesheet" href="/css/site.css"/>
 
@@ -31,26 +32,23 @@
             <a class="navbar-brand" href="#">ePDCA</a>
             </div>
             <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <!--<li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>-->
-                <!--<li class="nav-item pull-xs-right" style="color:#fff; float:right;">
-                    Welcome {{username}}
-                </li>-->
-            </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right:5px;">
+                    <li><a href="#about">Settings</a></li>
+                    <li><a href="#about">Account Info</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.navbar -->
 
         <div class="row-offcanvas row-offcanvas-left">
             <div id="sidebar" class="sidebar-offcanvas">
                 <div id="nav" class="col-md-12" style="padding-top:25px;">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/user/plan">Plan</a></li>
-                        <li><a href="/user/do">Do</a></li>
-                        <li><a href="/user/create">Create</a></li>
-                        <li><a href="/user/action">Action</a></li>
+                    <ul class="nav nav-pills nav-stacked" style="vertical-align:middle;">
+                        <li><a href="/"><span class="fa fa-home fa-2x"></span>&nbsp;&nbsp;Home</a></li>
+                        <li><a href="/user/plan"><span class="fa fa-calendar fa-2x"></span>&nbsp;&nbsp;Plan</a></li>
+                        <li><a href="/user/do"><span class="fa fa-check fa-2x"></span>&nbsp;&nbsp;Do</a></li>
+                        <li><a href="/user/create"><span class="fa fa-send fa-2x"></span>&nbsp;&nbsp;Create</a></li>
+                        <li><a href="/user/action"><span class="fa fa-edit fa-2x"></span>&nbsp;&nbsp;Action</a></li>
                     </ul>
                 </div>
             </div>

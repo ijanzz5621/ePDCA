@@ -32,7 +32,7 @@ table{
 
 .action-button {
 	width: 100px;
-	background: #d8315b;
+	background: #337ab7;
 	font-weight: bold;
 	color: white;
 	border: 0 none;
@@ -86,7 +86,7 @@ table{
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
     color: #fff !important;
-    background-color: #d8315b !important;
+    background-color: #337ab7 !important;
 }
 
 a {

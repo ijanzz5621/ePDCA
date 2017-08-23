@@ -17,7 +17,8 @@ module.exports = function (app, auth) {
     //logout endpoint
     app.get('/logout', function (req, res) {
         req.session.destroy();
-        res.send("logout success");
+        //res.send("logout success");
+        res.redirect('/login');
     });
 
     //get content endpoint
@@ -58,8 +59,19 @@ module.exports = function (app, auth) {
 
                         req.session.user = username;
                         req.session.isAuthenticated = true;
-            
-                        res.redirect('/');
+
+                        //if last login is null, then redirect to change password page
+                        if (result[0].LastLogin == null)
+                            res.redirect('/accounts/change-password');
+                        else {
+                            commonController
+                            .executeQuery("update admin_user set LastLogin = now() where Email='" + username + "';")
+                            .then(function(result){
+
+                                res.redirect('/');
+
+                            });
+                        }
 
                     } 
                     else {

@@ -82,7 +82,7 @@ app.use(function(req, res, next){
 // ROUTING
 //********************* */
 //import account routes
-require('./routes/account')(app);
+require('./routes/account')(app, auth);
 //import main routes
 require('./routes/main')(app, auth);
 //import user routes

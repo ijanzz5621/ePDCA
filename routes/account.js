@@ -1,7 +1,7 @@
 var encryptor = require('../lib/lib_encryptor');
 var commonController = require('../lib/dbCommand');
 
-module.exports = function (app) {
+module.exports = function (app, auth) {
 
     app.get('/accounts/forgot-password', function (req, res) {
         res.render('accounts/forgot-password', { layout: "anonymous" });
@@ -65,6 +65,53 @@ module.exports = function (app) {
 
     app.get('/accounts/reset-password', function (req, res) {
         res.render('accounts/reset-password', { layout: "anonymous" });
+    });
+
+    app.get('/accounts/change-password', auth, function (req, res) {
+        res.render('accounts/change-password', {  });
+    });
+    app.post('/accounts/change-password', function (req, res) {
+
+        var txtCurrentPassword = req.body.txtCurrentPassword;
+        var txtNewPassword = req.body.txtNewPassword;
+        var txtNewPassword2 = req.body.txtNewPassword2;
+        var messageType = "success";
+
+        //convert password to hash before compare with database
+        var passwordHash = encryptor.generateHashCode(txtCurrentPassword);
+        var isSuccess = "False";
+
+        commonController
+            .executeQuery("select * from admin_user where Email = '" + req.session.user + "' and password = '" + passwordHash + "'")
+            .then(function (result) {
+                //console.log(result);
+
+                if (result.length > 0){
+                    //match
+                    //Update database with the new password
+                    var passwordHashNew = encryptor.generateHashCode(txtNewPassword);
+                    commonController
+                        .executeQuery("update admin_user set Password = '" + passwordHashNew + "', LastLogin = now() where Email = '" + req.session.user + "';")
+                        .then(function(result){
+                            res.render('accounts/change-password', {  
+                                isSuccess: "True",
+                                messageType: messageType,
+                                returnMessage: "Congratulations! Your password has been changed." 
+                            });
+                        });
+                } else {
+                    messageType = "error";
+                    //not match
+                    res.render('accounts/change-password', {  
+                        isSuccess: "False",
+                        messageType: messageType,
+                        returnMessage: "Current password incorrect. Please try again." 
+                    });
+                }
+
+            });
+
+        
     });
 
 }

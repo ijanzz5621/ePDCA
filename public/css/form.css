@@ -16,7 +16,7 @@
 
 }
 .form .thumbnail {
-  /*background: #d8315b;*/
+  /*background: #337ab7;*/
   width: 250px;
   height: 250px;
   margin: 0 auto 0px;
@@ -33,7 +33,7 @@
 }
 .form input {
   outline: 0;
-  background: #f2f2f2;
+  background: #fff !important;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
@@ -45,9 +45,17 @@
   box-sizing: border-box;
   font-size: 14px;
 }
+
+input:-webkit-autofill {
+  background-color: #fff !important;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
 .form button {
   outline: 0;
-  background: #d8315b;
+  background: #337ab7;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -67,7 +75,7 @@
   font-size: 12px;
 }
 .form .message a {
-  color: #d8315b;
+  color: #337ab7;
   text-decoration: none;
 }
 .form .register-form {
@@ -107,25 +115,14 @@
   text-decoration: none;
 }
 .container .info span .fa {
-  color: #d8315b;
+  color: #337ab7;
 }
 
 /* END Form */
 /* Demo Purposes */
-body {
-  background: #ccc url('/img/login-back.png');
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-.adminBody{
-  background: #ccc url('/img/admin-login-bg.png');
-  background-size: cover;
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+
+
 
 body:before {
   content: "";
