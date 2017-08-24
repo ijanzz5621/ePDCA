@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ijanzz5621/ePDCA#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
     "cluster": "^0.7.7",
     "connect": "^3.6.3",
     "express": "^4.15.3",

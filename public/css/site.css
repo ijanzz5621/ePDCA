@@ -8,8 +8,17 @@ body,html,.row-offcanvas {
   height:100%;
 }
 
+hr{
+  border: .1em solid #f0f0f0;
+}
+
 table{
   font-size: 12px !important;
+}
+
+.navbar-inverse {
+  background-color: #464646 !important;
+  border-color: #080808;
 }
 
 #sidebar {
