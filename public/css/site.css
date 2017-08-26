@@ -9,7 +9,8 @@ body,html,.row-offcanvas {
 }
 
 hr{
-  border: .1em solid #f0f0f0;
+  border: 1px dashed #e0e0e0;
+  margin: 0;
 }
 
 table{

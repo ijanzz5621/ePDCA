@@ -1,11 +1,126 @@
+<style>
+
+#ulLead, #divColleague {
+    position: relative;
+}
+
+#ulLead li, #divColleague li{
+    list-style: none;
+    width: 200px;
+    
+    background: #f5f5f5;
+    border: 1px solid #c3c1c1;
+    padding: 15px;
+
+    border-radius: 6px;
+    box-shadow: 3px 3px 1px #e0e0e0;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.liLogo, .liDetails{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.liDetails span {
+    padding-left:15px;
+    display: table;
+}
+
+.title-align{
+    display: inline-block;
+}
+
+.dashboard-status-icon{
+    color:#d8315b !important;
+}
+
+</style>
+
 <h3>My Team</h3>
+<hr/>
+<h5>Your Lead</h5>
+<div id="divLead">
+    <ul id="ulLead"></ul>
+</div>
+<br/>
+<hr/>
+<h5>Your Colleague</h5>
+<div id="divColleague">
+    <ul id="ulLead"></ul>
+</div>
 <br/>
 
-<h5>Your Lead</h5>
 <hr/>
+<div>
+    <div class="title-align"><h5>Your Subordinates</h5></div>
+    <div class="title-align"><a id="icon-invite" href="#"><img src="/img/add-icon.png" width="35px" style="cursor:pointer"/></a></div>
+</div>
 
-<h5>Your Colleague</h5>
-<hr/>
 
-<h5>Your Subordinates</h5>
-<hr/>
+
+<input type="hidden" id="teamData" value="{{teamData}}"/>
+
+
+<script>
+    $(document).ready(function(){
+        //alert($('#teamData').val());
+        populateUserList($('#teamData').val())
+
+        $('#icon-invite').on('click', function(){
+            $('#modal-invite-user').modal();
+        });
+
+    });
+
+    function populateUserList(data){
+        var lead = $.grep(JSON.parse(data), function(n, i){
+            return n.GroupName === "LEAD";
+        });
+        var colleague = $.grep(JSON.parse(data), function(n, i){
+            return n.GroupName === "COLLEAGUE";
+        });
+
+        //$('#ulLead').append("");
+        $.each(lead, function(idx, val){
+
+            var li = "<li>" +
+                "<div class='liLogo'>" +
+                "<span class='dashboard-status-icon fa fa-user-circle-o fa-5x'></span> " +
+                "</div>" +
+                "<div class='liDetails'>" +
+                "<span>" + val.Username + "</span>" +
+                "<span>" + val.UserCode + "</span>" +
+                "<span>" + val.Email + "</span>" +
+                "</div>" +
+                "</li>";
+
+            $('#ulLead').append(li);
+        });
+
+        //populate colleague
+        $.each(colleague, function(idx, val){
+
+            var li = "<li>" +
+                "<div class='liLogo'>" +
+                "<span class='dashboard-status-icon fa fa-user-circle-o fa-5x'></span> " +
+                "</div>" +
+                "<div class='liDetails'>" +
+                "<span>" + val.Username + "</span>" +
+                "<span>" + val.UserCode + "</span>" +
+                "<span>" + val.Email + "</span>" +
+                "</div>" +
+                "</li>";
+
+            $('#divColleague').append(li);
+        });
+
+        //populate subordinates
+
+
+    }
+
+</script>
+
+{{> user/invite}}

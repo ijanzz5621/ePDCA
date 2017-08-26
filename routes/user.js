@@ -1,8 +1,8 @@
 //import controller
 var planController = require('../controllers/plan/plan');
-
 var blPlan = require('../business-logic/user/plan');
 var lib_mysql = require('../lib/lib_mysql');
+var teamController = require('../business-logic/user/team');
 
 module.exports = function (app, auth) {
 
@@ -45,7 +45,31 @@ module.exports = function (app, auth) {
 
     //team routers
     app.get('/user/team', auth, function(req, res){
-        res.render('user/team');
+        var personList = [];
+
+        teamController.getTeamMembers(req.session.user)
+            .then(function(rows){
+                //console.log(result[0].Email);
+                
+                for (var i = 0; i < rows.length; i++) {
+                    var person = {
+                        'Username':rows[i].Username,
+                        'Gender':rows[i].Gender,
+                        'Email':rows[i].Email,
+                        'UserCode':rows[i].UserCode,
+                        'GroupName': rows[i].GroupName
+                    }
+                    // Add object into array
+                    personList.push(person);
+                }
+                //console.log(personList);
+
+                res.render('user/team', {teamData: JSON.stringify(personList)});
+            })
+            .catch(function(err){
+                res.render('500', {err: err});
+            });
+
     });
 
 }
