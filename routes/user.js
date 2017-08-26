@@ -38,9 +38,14 @@ module.exports = function (app, auth) {
 
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create');
-    })
+    });
     app.get('/user/action', auth, function (req, res) {
         res.render('user/action');
-    })
+    });
+
+    //team routers
+    app.get('/user/team', auth, function(req, res){
+        res.render('user/team');
+    });
 
 }
