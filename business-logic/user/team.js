@@ -3,7 +3,6 @@ var q = require('q');
 
 var commonController = require('../../lib/dbCommand');
 
-
 function getTeamMembers(userEmailId) {
 
     var deferred = q.defer();

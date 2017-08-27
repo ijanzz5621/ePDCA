@@ -1,4 +1,3 @@
-
 <style>
 	#userList {
 		float: left;
@@ -15,7 +14,6 @@
 
 	.userList li {
 		float: left;
-		width: 96px;
 		padding: 0.4em;
 		margin: 0 0.4em 0.4em 0;
 		text-align: center;
@@ -41,7 +39,7 @@
 
 	#teamLead {
 		/*float: right;*/
-		width: 105px;
+		width: 96px;
 		height: 11em;
 		padding: 1%;
 		background: #fbfbfb;
@@ -70,7 +68,7 @@
 		padding: 1%;
 		background: #fbfbfb;
 		border: 1px dashed #000;
-		width:100%;
+		width: 100%;
 		overflow: scroll;
 	}
 
@@ -87,8 +85,8 @@
 		/*display: none;*/
 	}
 
-	h4{
-		margin-top:0 !important;
+	h4 {
+		margin-top: 0 !important;
 	}
 </style>
 
@@ -101,8 +99,8 @@
 		<li class="active">Problem Statement</li>
 		<li>Team</li>
 		<li>Risk Level</li>
-        <li>Financial Impact</li>
-        <li>Standard</li>
+		<li>Financial Impact</li>
+		<li>Standard</li>
 	</ul>
 	<!-- fieldsets -->
 	<fieldset>
@@ -112,27 +110,25 @@
 		<input type="password" name="pass" placeholder="Password" />
 		<input type="password" name="cpass" placeholder="Confirm Password" />-->
 
-        <textarea rows="5" cols="200" id="txtProblemStatement" name="txtProblemStatement"></textarea>
+		<textarea rows="5" cols="200" id="txtProblemStatement" name="txtProblemStatement"></textarea>
 
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
 	<fieldset>
 		<h2 class="fs-title">Team</h2>
 		<h3 class="fs-subtitle">Configure your team lead and team members</h3>
-	
-			<div class="ui-widget ui-helper-clearfix">
 
-				<div class="row" style="margin-bottom:15px;">
+		<div class="ui-widget ui-helper-clearfix">
 
-					<div class="col-md-5">
+			<div class="row" style="margin-bottom:15px;">
 
-						<ul id="userList" class="userList ui-helper-reset ui-helper-clearfix drop-target">
-							<h4 class="ui-widget-header"><span class="ui-icon ui-icon-userList">userList</span> Employee List</h4>
-							<li class="ui-widget-content ui-corner-tr" value="00001-azhar">
+				<div class="col-md-5">
+
+					<ul id="userList" class="userList ui-helper-reset ui-helper-clearfix drop-target">
+						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-userList">userList</span> Employee List</h4>
+						<!--<li class="ui-widget-content ui-corner-tr" value="00001-azhar">
 								<h5 class="ui-widget-header">Kassim</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-								<!--<a href="/img/user-icon-256.png" title="large user image" class="ui-icon ui-icon-zoomin">View larger</a>
-								<a href="link/to/teamLead/script/when/we/have/js/off" title="Delete this image" class="ui-icon ui-icon-teamLead">Delete image</a>-->
 							</li>
 							<li class="ui-widget-content ui-corner-tr" value="00002-diana">
 								<h5 class="ui-widget-header">Abu</h5>
@@ -141,36 +137,36 @@
 							<li class="ui-widget-content ui-corner-tr" value="00003-sharizan">
 								<h5 class="ui-widget-header">Aminah</h5>
 								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-							</li>		
-						</ul>
+							</li>-->
+					</ul>
 
+				</div>
+				<div class="col-md-2">
+
+					<div id="teamLead" class="ui-widget-content ui-state-default drop-target">
+						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamLead">teamLead</span> Team Lead</h4>
 					</div>
-					<div class="col-md-2">
 
-						<div id="teamLead" class="ui-widget-content ui-state-default drop-target">
-							<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamLead">teamLead</span> Team Lead</h4>
-						</div>
+				</div>
+				<div class="col-md-5">
 
-					</div>
-					<div class="col-md-5">
-
-						<div id="teamMember" class="ui-widget-content ui-state-default drop-target">
-							<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamMember">teamLead</span> Team Members</h4>
-						</div>
-
+					<div id="teamMember" class="ui-widget-content ui-state-default drop-target">
+						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamMember">teamLead</span> Team Members</h4>
 					</div>
 
 				</div>
 
 			</div>
 
+		</div>
+
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
-    <fieldset>
+	<fieldset>
 		<h2 class="fs-title">Risk Level</h2>
 		<h3 class="fs-subtitle">What do you think of the risk level of the problem?</h3>
-		
+
 		<div class="funkyradio">
 			<div class="funkyradio-success">
 				<input type="radio" name="radioRiskLevel" value="low" id="risk-level-low" />
@@ -183,20 +179,20 @@
 			<div class="funkyradio-success">
 				<input type="radio" name="radioRiskLevel" value="high" id="risk-level-high" />
 				<label for="risk-level-high">High</label>
-			</div>			
+			</div>
 		</div>
-		     
+
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
-    <fieldset>
+	<fieldset>
 		<h2 class="fs-title">Financial Impact</h2>
 		<h3 class="fs-subtitle">Please enter estimated amount for the impact</h3>
-		
 
-        <input type="text" name="txtFinancialImpact" placeholder="Amount (RM)" style="width:210px;" />
-        <br/>
-        
+
+		<input type="text" name="txtFinancialImpact" placeholder="Amount (RM)" style="width:210px;" />
+		<br/>
+
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input type="button" name="next" class="next action-button" value="Next" />
 	</fieldset>
@@ -206,7 +202,7 @@
 		<!--<input type="text" name="fname" placeholder="First Name" />
 		<input type="text" name="lname" placeholder="Last Name" />
 		<input type="text" name="phone" placeholder="Phone" />
-		<textarea name="address" placeholder="Address"></textarea>-->      
+		<textarea name="address" placeholder="Address"></textarea>-->
 		<div class="funkyradio">
 			<div class="funkyradio-success">
 				<input type="radio" name="radioFollowStandard" value="Yes" id="follow-std-yes" />
@@ -215,12 +211,12 @@
 			<div class="funkyradio-success">
 				<input type="radio" name="radioFollowStandard" value="No" id="follow-std-no" />
 				<label for="follow-std-no">No</label>
-			</div>		
+			</div>
 		</div>
 
 		<input type="hidden" id="hidTeamLead" name="hidTeamLead" />
 		<input type="hidden" id="hidTeamMembers" name="hidTeamMembers" />
-		
+
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 		<input id="submit" type="submit" name="submit" class="submit action-button" value="Submit" />
 	</fieldset>
@@ -232,6 +228,30 @@
 <script src="/js/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
 
 <script>
+	$(document).ready(function () {
+
+		var data = {};
+		//data.loginID = "123456@123.com";
+		//data.name = "";
+		
+		//get employee list 
+		var result = callAjax('/api/team-get-user', data);
+		if (result.length > 0) {
+			$.each(result, function (i, val) {
+
+				var iconName = "user-icon-man-256.png";
+				if (val.Gender === 'F')
+					iconName = "user-icon-lady-256.png";
+
+				var li = "<li class='ui-widget-content ui-corner-tr' value='" + val.Email + "-" + val.Username + "'>" +
+					"<img src='/img/" + iconName + "' alt='user image' style='width:64px;'>" +
+					"<h5 class='ui-widget-header'>" + val.Username + "</h5>" +
+					"</li>";
+				$('#userList').append(li);
+			});
+		}
+	});
+
 	$(function () {
 
 		var sourceDragElement;
@@ -256,10 +276,10 @@
 			start: function (event, ui) {
 				//alert()
 				sourceDragElement = $userList.attr('id');
-				if ($('#teamLead ul li').length === 0){
-					$teamLead.droppable( "option", "disabled", false );
+				if ($('#teamLead ul li').length === 0) {
+					$teamLead.droppable("option", "disabled", false);
 				} else {
-					$teamLead.droppable( "option", "disabled", true );
+					$teamLead.droppable("option", "disabled", true);
 				}
 			},
 			containment: "document",
@@ -319,13 +339,13 @@
 
 				//$item.find("a.ui-icon-teamLead").remove();
 				$item
-				//.append(recycle_icon)
-				.appendTo($list).fadeIn(function () {
-					/*$item
-					.animate({ width: "48px" })
-					.find("img")
-					.animate({ height: "36px" });*/
-				});		
+					//.append(recycle_icon)
+					.appendTo($list).fadeIn(function () {
+						/*$item
+						.animate({ width: "48px" })
+						.find("img")
+						.animate({ height: "36px" });*/
+					});
 			});
 		};
 
@@ -385,20 +405,23 @@
 		});
 
 		$('#submit').on('click', function (e) {
-			//e.preventDefault();
-			//set team lead
-			var teamLead = { id: '12345', name: 'sharizan' }
+
+			var teamLead = [];
+			$('#teamLead ul li').each(function (index) {
+				var splitVal = $(this).attr('value').split("-");
+				teamLead.push({ id: splitVal[0], name: splitVal[1] });
+			});
 			$('#hidTeamLead').val(JSON.stringify(teamLead));
 
 			//set team members
 			var teamMembers = [];
 			//teamMembers.push({id: '23456', name: 'azhar'});
 			//teamMembers.push({id: '34567', name: 'diana'});
-			$('#teamMember ul li').each(function(index){
+			$('#teamMember ul li').each(function (index) {
 				//alert('No: ' + index + ', name/id: ' + $(this).attr('value'));
 				var splitVal = $(this).attr('value').split("-");
-				teamMembers.push({id: splitVal[0], name: splitVal[1]});
-			})
+				teamMembers.push({ id: splitVal[0], name: splitVal[1] });
+			});
 			$('#hidTeamMembers').val(JSON.stringify(teamMembers));
 
 			//proceed with submission

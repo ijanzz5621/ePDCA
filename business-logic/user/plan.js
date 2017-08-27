@@ -5,7 +5,7 @@ var uuid = require("uuid");
 var commonFunc = require('../../business-logic/general/common');
 var planController = require('../../controllers/plan/plan');
 
-function saveNewPlan(loginUser, data){
+function saveNewPlan(loginUser, data) {
 
     var sql = "";
     var deferred = q.defer();
@@ -17,17 +17,17 @@ function saveNewPlan(loginUser, data){
     var _isFollowStandard = (data.radioFollowStandard === "Yes") ? 1 : 0;
 
     connectionManager.getConnection()
-        .then(function(connection){
+        .then(function (connection) {
 
             // Create plan master rec guid
             var planRecGuid = uuid.v4();
-            connection.beginTransaction(function(err){
+            connection.beginTransaction(function (err) {
 
                 // Generate Serial number
                 sql = 'call sp_GenerateSerialNumber(\'PDCASerialNumber\')';
                 connection.query(sql, function (err, rows, fields) {
                     if (err) {
-                        connection.rollback(function(){
+                        connection.rollback(function () {
                             throw err;
                         })
                         return console.log('Error: ' + err);
@@ -37,47 +37,85 @@ function saveNewPlan(loginUser, data){
 
                     //save to plan master
                     sql = "insert into user_plan_master " +
-                    "(RecGuid, ProbStatement, CurrentStatus, RiskLevel, FinancialImpact, IsStandardFollowed, SerialNumber, CreatedBy, CreatedOn) " +
-                    "values ('" + planRecGuid + "', '" + _probStatement + "', 'NEW', '" + _riskLevel + "', '" + _financialImpact + "', " +
-                    "'" + _isFollowStandard + "', '" + serialNumber + "', '" + loginUser + "', now())";
+                        "(RecGuid, ProbStatement, CurrentStatus, RiskLevel, FinancialImpact, IsStandardFollowed, SerialNumber, CreatedBy, CreatedOn) " +
+                        "values ('" + planRecGuid + "', '" + _probStatement + "', 'NEW', '" + _riskLevel + "', '" + _financialImpact + "', " +
+                        "'" + _isFollowStandard + "', '" + serialNumber + "', '" + loginUser + "', now())";
                     connection.query(sql, function (err, rows, fields) {
                         if (err) {
-                            connection.rollback(function(){
+                            connection.rollback(function () {
                                 //throw err;
                             })
                             return console.log('Error: ' + err);
                         }
 
                         //save plan teams
-                        sql = "insert into user_plan_team (RecGuid, ParentGuid, UserRecGuid, UserType, CreatedBy, CreatedOn) VALUES ";
+                        sql = "insert into user_plan_team (RecGuid, ParentGuid, UserId, UserType, CreatedBy, CreatedOn) VALUES ";
                         var teams = JSON.parse(data.hidTeamMembers);
-                        teams.forEach(function(entry) {          
+                        teams.forEach(function (entry) {
                             var teamRecGuid = uuid.v4();
                             sql = sql + "('" + teamRecGuid + "', '" + planRecGuid + "', '" + entry.id + "', 'TM', '" + loginUser + "', now()),";
                         });
-                        
                         //remove last comma
                         sql = sql.replace(/,\s*$/, "");
-                        
+
                         connection.query(sql, function (err, rows, fields) {
                             if (err) {
-                                connection.rollback(function(){
+                                connection.rollback(function () {
                                     //throw err;
                                 })
                                 return console.log('Error: ' + err);
                             }
 
-                            //commit
-                            connection.commit(function(err) {
-                                if (err) { 
-                                  connection.rollback(function() {
-                                    //throw err;
-                                  });
-                                  return console.log('Error: ' + err);
+                            //insert one record in team for login user
+                            var teamRecGuid = uuid.v4();
+                            sql = "insert into user_plan_team (RecGuid, ParentGuid, UserId, UserType, CreatedBy, CreatedOn) VALUES ";
+                            sql = sql + "('" + teamRecGuid + "', '" + planRecGuid + "', '" + loginUser + "', 'TM', '" + loginUser + "', now())";
+
+                            connection.query(sql, function (err, rows, fields) {
+                                if (err) {
+                                    connection.rollback(function () {
+                                        //throw err;
+                                    })
+                                    return console.log('Error: ' + err);
                                 }
-                                //console.log('Transaction Complete.');
-                                connection.end();
-                              }); // end commit
+
+                                //save team lead
+                                sql = "insert into user_plan_team (RecGuid, ParentGuid, UserId, UserType, CreatedBy, CreatedOn) VALUES ";
+                                var teams = JSON.parse(data.hidTeamLead);
+                                teams.forEach(function (entry) {
+                                    var recGuid = uuid.v4();
+                                    sql = sql + "('" + recGuid + "', '" + planRecGuid + "', '" + entry.id + "', 'TL', '" + loginUser + "', now()),";
+                                });
+                                //remove last comma
+                                sql = sql.replace(/,\s*$/, "");
+
+                                connection.query(sql, function (err, rows, fields) {
+                                    if (err) {
+                                        connection.rollback(function () {
+                                            //throw err;
+                                        })
+                                        return console.log('Error: ' + err);
+                                    }
+
+                                    //commit
+                                    connection.commit(function (err) {
+                                        if (err) {
+                                            connection.rollback(function () {
+                                                //throw err;
+                                            });
+                                            return console.log('Error: ' + err);
+                                        }
+                                        //console.log('Transaction Complete.');
+                                        connection.end();
+                                    }); // end commit
+
+                                });
+
+
+
+                            });
+
+
 
                         }); // end insert team
 

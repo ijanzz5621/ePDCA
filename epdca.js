@@ -96,6 +96,7 @@ require('./routes/admin')(app, authAdmin);
 require('./apis/admin/company')(app);
 require('./apis/admin/department')(app);
 require('./apis/admin/user')(app);
+require('./apis/user/team')(app);
 
 //******************* */
 //INIT and START server

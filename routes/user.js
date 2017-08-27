@@ -38,6 +38,7 @@ module.exports = function (app, auth) {
         //call controller to save plan
         blPlan.saveNewPlan(req.session.user, req.body);
         res.render('user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
+        //res.redirect('/user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
     });
 
     app.get('/user/create', auth, function (req, res) {
