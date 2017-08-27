@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/dashboard.css"/>
+<link rel="stylesheet" href="/css/dashboard.css" />
 <script src="/js/Chart.js"></script>
 
 <h3>My Dashboard</h3>
@@ -9,7 +9,7 @@
 
         <ul class="dashboard-status">
             <li>
-                <span class="dashboard-status-icon fa fa-user-circle-o fa-2x"></span>  
+                <span class="dashboard-status-icon fa fa-user-circle-o fa-2x"></span>
                 <span class="dashboard-status-title">My Team</span>
                 <div class="dashboard-status-content">
                     <span class="dashboard-status-content-myteam">5 people(s)</span>
@@ -35,7 +35,7 @@
                 <div class="dashboard-status-content">
                     <span class="dashboard-status-content-create">0</span>
                 </div>
-                </li>
+            </li>
             <li>
                 <span class="dashboard-status-icon fa fa-edit fa-2x"></span>
                 <span class="dashboard-status-title">Action</span>
@@ -51,47 +51,144 @@
 
 <hr/>
 
-<div style="width:400px; height:250px;">
-    <canvas id="myChart" width="200px"></canvas>
+<div class="row">
+
+    <div class="col-md-4" >
+        <canvas id="myChart" width="200px"></canvas>
+    </div>
+    <div class="col-md-4" >
+        <canvas id="myChart2" width="200px"></canvas>
+    </div>
+    <div class="col-md-4" >
+        <canvas id="myChart3" width="200px"></canvas>
+    </div>
+    <div class="col-md-4" >
+        <canvas id="myChart4" width="200px"></canvas>
+    </div>
+    <div class="col-md-4" >
+        <canvas id="myChart5" width="200px"></canvas>
+    </div>
+
 </div>
 
 
+
+
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["User1", "User2", "User3", "User4", "User5", "User6"],
-        datasets: [{
-            label: "# of Completed Do's",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["User1", "User2", "User3", "User4", "User5", "User6"],
+            datasets: [{
+                label: "# of Completed Do's",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
         }
-    }
-});
+    });
+
+    //chart 2
+    var ctx2 = document.getElementById("myChart2").getContext('2d');
+    var myChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ["User1", "User2", "User3", "User4", "User5", "User6"],
+            datasets: [{
+                label: "# of Completed Do's",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    //chart 3
+    var ctx3 = document.getElementById("myChart3").getContext('2d');
+    var myChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ["User1", "User2", "User3", "User4", "User5", "User6"],
+            datasets: [{
+                label: "# of Completed Do's",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
 </script>
