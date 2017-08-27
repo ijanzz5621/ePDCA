@@ -10,9 +10,9 @@ function getTeamMembers(userEmailId) {
     var sql = "select *, 'LEAD' as GroupName from admin_user where Email = ( " +
         "select SupervisorId from admin_user where Email = '" + userEmailId + "') " +
         "union all " +
-        "select *, 'COLLEAGUE' as GroupName from admin_user where DepartmentCode =  " +
-        "(select DepartmentCode from admin_user where Email = '" + userEmailId + "') " +
-        "and Email <> 'sharizan_81@yahoo.com' " +
+        "select *, 'COLLEAGUE' as GroupName from admin_user where SupervisorId =  " +
+        "(select SupervisorId from admin_user where Email = '" + userEmailId + "') " +
+        "and Email <> '" + userEmailId + "' and SupervisorId <> '" + userEmailId + "' " +
         "and Email <> ( " +
         "select SupervisorId from admin_user where Email = '" + userEmailId + "') " +
         "union all " +

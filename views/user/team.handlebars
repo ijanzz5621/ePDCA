@@ -1,41 +1,45 @@
 <style>
+    #ulLead,
+    #divColleague,
+    #divSubordinates {
+        position: relative;
+    }
 
-#ulLead, #divColleague {
-    position: relative;
-}
+    #ulLead li,
+    #divColleague li,
+    #divSubordinates li
+    {
+        list-style: none;
+        width: 300px;
 
-#ulLead li, #divColleague li{
-    list-style: none;
-    width: 200px;
-    
-    background: #f5f5f5;
-    border: 1px solid #c3c1c1;
-    padding: 15px;
+        background: #f5f5f5;
+        border: 1px solid #c3c1c1;
+        padding: 15px;
 
-    border-radius: 6px;
-    box-shadow: 3px 3px 1px #e0e0e0;
-    display: inline-block;
-    margin-right: 15px;
-}
+        border-radius: 6px;
+        box-shadow: 3px 3px 1px #e0e0e0;
+        display: inline-block;
+        margin-right: 15px;
+    }
 
-.liLogo, .liDetails{
-    display: inline-block;
-    vertical-align: middle;
-}
+    .liLogo,
+    .liDetails {
+        display: inline-block;
+        vertical-align: middle;
+    }
 
-.liDetails span {
-    padding-left:15px;
-    display: table;
-}
+    .liDetails span {
+        padding-left: 15px;
+        display: table;
+    }
 
-.title-align{
-    display: inline-block;
-}
+    .title-align {
+        display: inline-block;
+    }
 
-.dashboard-status-icon{
-    color:#d8315b !important;
-}
-
+    .dashboard-status-icon {
+        color: #d8315b !important;
+    }
 </style>
 
 <h3>My Team</h3>
@@ -54,36 +58,95 @@
 
 <hr/>
 <div>
-    <div class="title-align"><h5>Your Subordinates</h5></div>
+    <div class="title-align">
+        <h5>Your Subordinates</h5>
+    </div>
     <div class="title-align"><a id="icon-invite" href="#"><img src="/img/add-icon.png" width="35px" style="cursor:pointer"/></a></div>
+</div>
+<div id="divSubordinates">
+    <ul id="ulSubordinates"></ul>
 </div>
 
 
 
-<input type="hidden" id="teamData" value="{{teamData}}"/>
+<input type="hidden" id="teamData" value="{{teamData}}" />
 
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         //alert($('#teamData').val());
         populateUserList($('#teamData').val())
 
-        $('#icon-invite').on('click', function(){
+        $('#icon-invite').on('click', function () {
+            resetForm();
             $('#modal-invite-user').modal();
+        });
+
+        $('#formInvite-btnSubmit').on('click', function (e) {
+            e.preventDefault();
+            //return false;
+            if(validateForm()){
+                $('#modal-invite-user').modal('toggle');
+                $('#formInvite').submit();
+            } 
+
         });
 
     });
 
-    function populateUserList(data){
-        var lead = $.grep(JSON.parse(data), function(n, i){
+    $(document).on('change', "input[name='rbGender']:radio", function () {
+        //alert($(this).val());
+        $('#lblGenderM')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+        $('#lblGenderF')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+
+        $(this).closest('label').removeClass('btn-default').addClass('btn-success').addClass('active');
+    });
+
+    function validateForm() {
+
+        if ($("#txtEmail").val() === "") {
+            alert("Please enter Email Address!");
+            $("#txtEmail").focus();
+            return false;
+        } 
+        else if ($("#txtUserCode").val() === "") {
+            alert("Please enter User/Employee ID!");
+            $("#txtUserCode").focus();
+            return false;
+        }
+        else if ($("#txtUsername").val() === "") {
+            alert("Please enter Username!");
+            $("#txtUsername").focus();
+            return false;
+        }
+        else if (!$("input[name='rbGender']:checked").val()) {
+            alert("Please select Gender!");
+            return false;
+        }
+
+        return true;
+
+    }
+
+    function populateUserList(data) {
+        var lead = $.grep(JSON.parse(data), function (n, i) {
             return n.GroupName === "LEAD";
         });
-        var colleague = $.grep(JSON.parse(data), function(n, i){
+        var colleague = $.grep(JSON.parse(data), function (n, i) {
             return n.GroupName === "COLLEAGUE";
+        });
+        var subordinates = $.grep(JSON.parse(data), function (n, i) {
+            return n.GroupName === "SUBORDINATES";
         });
 
         //$('#ulLead').append("");
-        $.each(lead, function(idx, val){
+        $.each(lead, function (idx, val) {
 
             var li = "<li>" +
                 "<div class='liLogo'>" +
@@ -100,7 +163,7 @@
         });
 
         //populate colleague
-        $.each(colleague, function(idx, val){
+        $.each(colleague, function (idx, val) {
 
             var li = "<li>" +
                 "<div class='liLogo'>" +
@@ -117,8 +180,37 @@
         });
 
         //populate subordinates
+        $.each(subordinates, function (idx, val) {
 
+            var li = "<li>" +
+                "<div class='liLogo'>" +
+                "<span class='dashboard-status-icon fa fa-user-circle-o fa-5x'></span> " +
+                "</div>" +
+                "<div class='liDetails'>" +
+                "<span>" + val.Username + "</span>" +
+                "<span>" + val.UserCode + "</span>" +
+                "<span>" + val.Email + "</span>" +
+                "</div>" +
+                "</li>";
 
+            $('#divSubordinates').append(li);
+        });
+
+    }
+
+    function resetForm() {
+        $('#txtEmail').removeAttr("readonly");
+        $('#txtEmail').val("");
+        $('#txtUserCode').val("");
+        $('#txtUsername').val("");
+        $('#lblGenderM')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
+        $('#lblGenderF')
+            .removeClass('active')
+            .removeClass('btn-success')
+            .addClass('btn-default');
     }
 
 </script>

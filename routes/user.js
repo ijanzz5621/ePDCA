@@ -3,6 +3,10 @@ var planController = require('../controllers/plan/plan');
 var blPlan = require('../business-logic/user/plan');
 var lib_mysql = require('../lib/lib_mysql');
 var teamController = require('../business-logic/user/team');
+var commonController = require('../lib/dbCommand');
+var encryptor = require('../lib/lib_encryptor');
+
+var credentials = require('../credentials');
 
 module.exports = function (app, auth) {
 
@@ -68,6 +72,51 @@ module.exports = function (app, auth) {
             })
             .catch(function(err){
                 res.render('500', {err: err});
+            });
+
+    });
+
+    app.post('/user/invite-user', function(req, res){
+        var emailTo = req.body.txtEmail;
+        var username = req.body.txtUsername;
+        var usercode = req.body.txtUserCode;
+        var gender = req.body.rbGender;
+        //console.log('Gender: ' + gender);
+
+        var sql = "";
+
+        commonController.executeQuery("select * from admin_user where Email='" + req.session.user + "'")
+            .then(function(result){
+
+                if (result.length > 0){
+
+                    var passwordOri = Math.random()                        // Generate random number, eg: 0.123456
+                    .toString(36)                                           // Convert  to base-36 : "0.4fzyo82mvyr"
+                    .slice(-8);
+
+                    var passwordHash = encryptor.generateHashCode(passwordOri);
+
+                    sql = "insert into admin_user (Email, RecGuid, CompanyCode, DepartmentCode, UserCode, Username, Password, Gender, SupervisorId, Status, CreatedOn) " +
+                    "values ('" + emailTo + "', uuid(), '" + result[0].CompanyCode + "', '" + result[0].DepartmentCode + "', '" + usercode + "', '" + username + "', '" + passwordHash + "', '" + gender + "', '" + req.session.user + "', 'A', now())";
+                    commonController.executeQuery(sql)
+                        .then(function(result2){
+
+                            //send email to newly created user
+                            var email = require('../lib/lib_email');
+                            var content = "Congratulations! <br/> You have been invited from your supervisor (" + req.session.user + ") to join ePDCA system. <br/> " +
+                            "Please use password <strong style='font-size:24px;'>" + passwordOri + "</strong> to login. " +
+                            "<br/><br/> Click <a href='" + credentials.domainPath + "login'>here</a>";
+                            email.setMailOptions(emailTo, 'ePDCA - Invitation', '', content);
+                            email.sendMail();
+
+                            res.redirect('/user/team');
+
+                        });
+                }
+                else {
+                    res.render('/user/team', { errorMessage: "No record found for login user" });
+                }
+
             });
 
     });
