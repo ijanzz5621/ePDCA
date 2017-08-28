@@ -1,7 +1,6 @@
 <style>
-
-    #ulItemList li{
-        height: 200px;
+    #ulItemList>li {
+        min-height: 200px;
         background: #fcfcfc;
         list-style: none;
         margin: 0;
@@ -9,50 +8,65 @@
         border: 1px solid #e0e0e0;
         border-radius: 6px;
         box-shadow: 3px 3px 1px #f0f0f0;
-        position: relative;
-        margin-bottom:15px;
+        margin-bottom: 15px;
     }
 
-    #ulItemList li:hover{
-        cursor: pointer;
+    #ulItemList>li:hover {
         background: #f5f5f5;
     }
 
-    #divContentHeader{
-        position:fixed; 
-        top:50px; 
-        background:#fff; 
-        width:100%; 
-        z-index:2;
-
+    #divContentHeader {
+        position: fixed;
+        top: 50px;
+        background: #fff;
+        width: 100%;
+        z-index: 2;
     }
 
-    .liHeader{
-        overflow:hidden; position:relative; 
+    .liHeader {
     }
 
-    .liHeader-icon{
-        display:inline-block;overflow:hidden;
+    .liHeader-icon {
+        display: inline-block;
     }
 
     .liHeader-creator {
-        display:inline-block; 
-        vertical-align:middle; 
-        position:absolute; 
-        top:30%;
+        display: inline-block;
+        vertical-align: middle;
+        top: 30%;
         margin-left: 5px;
     }
 
-    .liContent{
+    .liContent {
         margin-left: 5px;
     }
 
-    .li-prob-statement{
+    .li-prob-statement {
         font-size: 20px;
     }
 
-    li-created-on{
+    li-created-on {
         font-size: 18px;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+        z-index: 999;
+    }
+
+    #btnLiMenu{
+        border: 0;
+        background: transparent;
+        box-shadow:0 !important;
+        -webkit-box-shadow: 0 !important;
+        width: 35px;
+        height: 35px;
     }
 
 </style>
@@ -74,16 +88,34 @@
 
 
     <div id="divContent" style="margin-top:80px; margin-right:250px; width:45vw;z-index:0;">
-        
+
         <ul id="ulItemList">
+
+            <!-- test item 1 -->
             <li>
                 <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
+                    <div style="float:left;position:relative;">
+                        <div class="liHeader-icon" style="display:inline-block">
+                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;" />
+                        </div>
+                        <div class="liHeader-creator" style="display:inline-block">Sharizan</div>
                     </div>
-                    <div class="liHeader-creator">Sharizan</div>
+                    <div style="float:right">
+                        <div class="dropdown">
+                            <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">Execute Plan</a></li>
+                                <li><a tabindex="-1" href="#">Chat</a></li>
+                                <li><a tabindex="-1" href="#">View Details</a></li>
+                                <li><a tabindex="-1" href="#">Edit</a></li>
+                                <li><a tabindex="-1" href="#">Remove</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="liContent">
+                <div class="liContent" style="clear:both;">
                     <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
                     <br/>
                     <span class="li-created-on">2017-08-26 09:00</span>
@@ -91,59 +123,31 @@
                 <div class="liFooter"></div>
             </li>
 
+            <!-- test item 2 -->
             <li>
                 <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
+                    <div style="float:left;position:relative;">
+                        <div class="liHeader-icon" style="display:inline-block">
+                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;" />
+                        </div>
+                        <div class="liHeader-creator" style="display:inline-block">Sharizan</div>
                     </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Machine ABC always down</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
-
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
+                    <div style="float:right">
+                        <div class="dropdown">
+                            <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="#">Execute Plan</a></li>
+                                <li><a tabindex="-1" href="#">Chat</a></li>
+                                <li><a tabindex="-1" href="#">View Details</a></li>
+                                <li><a tabindex="-1" href="#">Edit</a></li>
+                                <li><a tabindex="-1" href="#">Remove</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="liHeader-creator">Sharizan</div>
                 </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Too many rubbish thrown in canteen...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
-
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Pantry misused by workers...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
-
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
+                <div class="liContent" style="clear:both;">
                     <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
                     <br/>
                     <span class="li-created-on">2017-08-26 09:00</span>
@@ -151,73 +155,20 @@
                 <div class="liFooter"></div>
             </li>
 
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
 
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
 
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
 
-            <li>
-                <div class="liHeader">
-                    <div class="liHeader-icon">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;"/>
-                    </div>
-                    <div class="liHeader-creator">Sharizan</div>
-                </div>
-                <div class="liContent">
-                    <span class="li-prob-statement">Low yield for product A. This has happened few weeks ago due to...</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
+
         </ul>
 
     </div>
 
 
     <div id="divDetail" style="height:100vh; width:30vw; background:#fff; position:fixed; top:0; right:0;z-index:3; margin-top:65px;">
-       
-        <div><h3 style="margin:0 !important; padding:0 !important;">Details</h3></div>
+
+        <div>
+            <h3 style="margin:0 !important; padding:0 !important;">Details</h3>
+        </div>
 
         <div class="div-detail-plan-master" style="margin-top:15px; margin-right:15px;">
             <span id="div-details-probstat-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
@@ -259,6 +210,11 @@
         });
 
         //$('#divDetail').hide('slow');
+        $('.dropdown-submenu a.test').on("click", function(e){
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
 
     })
 
