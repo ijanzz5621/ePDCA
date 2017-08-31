@@ -9,6 +9,7 @@
         border-radius: 6px;
         box-shadow: 3px 3px 1px #f0f0f0;
         margin-bottom: 15px;
+        position: relative;
     }
 
     #ulItemList>li:hover {
@@ -73,6 +74,17 @@
         margin: 15px;
     }
 
+    .liFooter{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 10px 10px 0;
+    }
+
+        .liFooter li {
+            list-style: none;
+        }
+
 </style>
 
 <div class="">
@@ -124,45 +136,14 @@
                     <br/>
                     <span class="li-created-on">2017-08-26 09:00</span>
                 </div>
-                <div class="liFooter"></div>
+                <div class="liFooter">
+                    <ul>
+                        <li><input type="button" value="Root Cause" class="btn btn-default" /></li>
+                    </ul>
+                </div>
             </li>
 
-            <!-- test item 2 -->
-            <li>
-                <div class="liHeader">
-                    <div style="float:left;position:relative;">
-                        <div class="liHeader-icon" style="display:inline-block">
-                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;" />
-                        </div>
-                        <div class="liHeader-creator" style="display:inline-block">Sharizan</div>
-                    </div>
-                    <div style="float:right">
-                        <div class="dropdown">
-                            <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="#">Execute Plan</a></li>
-                                <li><a tabindex="-1" href="#">Conversation</a></li>
-                                <li><a tabindex="-1" href="#">View Details</a></li>
-                                <li><a tabindex="-1" href="#">Edit</a></li>
-                                <li><a tabindex="-1" href="#">Remove</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="liContent" style="clear:both;">
-                    <span class="li-prob-statement">Machine ABC always down. Need actions!</span>
-                    <br/>
-                    <span class="li-created-on">2017-08-26 09:00</span>
-                </div>
-                <div class="liFooter"></div>
-            </li>
-
-
-
-
-
+            
         </ul>
 
     </div>
