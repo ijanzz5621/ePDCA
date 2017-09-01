@@ -41,6 +41,11 @@ module.exports = function (app, auth) {
         //res.redirect('/user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
     });
 
+    //plan root cause
+    app.get('/user/plan-root-cause/:planGuid', function(req, res){
+
+    });
+
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create');
     });

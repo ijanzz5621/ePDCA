@@ -1,6 +1,6 @@
 <style>
     #ulItemList>li {
-        min-height: 200px;
+        min-height: 150px;
         background: #fcfcfc;
         list-style: none;
         margin: 0;
@@ -35,6 +35,7 @@
         vertical-align: middle;
         top: 30%;
         margin-left: 5px;
+        font-size: 18px;
     }
 
     .liContent {
@@ -74,18 +75,28 @@
         margin: 15px;
     }
 
-    .liFooter{
+    #footer-item-right{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: 10px 10px 10px 10px;
+    }
+
+    #footer-item-left{
         position: absolute;
         right: 0;
         bottom: 0;
         margin: 0 10px 10px 0;
     }
 
-        .liFooter li {
+        #footer-item-left li, #footer-item-right li {
             list-style: none;
+            display: inline-block;
         }
 
 </style>
+
+<script src="/js/plan/li-builder.js"></script>
 
 <div class="">
 
@@ -108,7 +119,7 @@
         <ul id="ulItemList">
 
             <!-- test item 1 -->
-            <li>
+            <!--<li>
                 <div class="liHeader">
                     <div style="float:left;position:relative;">
                         <div class="liHeader-icon" style="display:inline-block">
@@ -122,9 +133,6 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="#">Execute Plan</a></li>
-                                <li><a tabindex="-1" href="#">Chat</a></li>
-                                <li><a tabindex="-1" href="#">View Details</a></li>
                                 <li><a tabindex="-1" href="#">Edit</a></li>
                                 <li><a tabindex="-1" href="#">Remove</a></li>
                             </ul>
@@ -137,11 +145,21 @@
                     <span class="li-created-on">2017-08-26 09:00</span>
                 </div>
                 <div class="liFooter">
-                    <ul>
+                    <ul id="footer-item-right">
+                        <li id="liFooter-right-isnew"><img src="/img/new-icon.png" style="width:60px; height:30px;"></li>
+                    </ul>
+
+                    <ul id="footer-item-left">
                         <li><input type="button" value="Root Cause" class="btn btn-default" /></li>
+                        <li><input type="button" value="View Details" class="btn btn-default" /></li>
+                        <li><input type="button" value="Conversation" class="btn btn-default" /></li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
+
+
+
+            
 
             
         </ul>
@@ -254,13 +272,30 @@
             location.href = "/user/plan-add";
         });
 
-        //$('#divDetail').hide('slow');
-        $('.dropdown-submenu a.test').on("click", function (e) {
-            $(this).next('ul').toggle();
-            e.stopPropagation();
-            e.preventDefault();
-        });
+        loadPlanlist();
 
-    })
+    });
+
+    function loadPlanlist(){
+
+        //Call ajax and get all plan list
+
+        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-4', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-5', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-6', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-7', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-8', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-9', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-10', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-11', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+
+    };
+
+    function fnViewRootCause(planGuid){
+        alert('View root cause for ' + planGuid);
+    }
 
 </script>
