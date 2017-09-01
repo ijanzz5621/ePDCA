@@ -24,3 +24,12 @@ function callAjax(url, data){
 $(document).ready(function(){   
 });
 
+$(document).ajaxStart(function(){
+    $('#img-ajax-loading').show('slow');
+});
+
+$(document).ajaxStop(function(){
+    $('#img-ajax-loading').hide('slow');
+});
+
+
