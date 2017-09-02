@@ -9,7 +9,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
 
     var liIsNew = "";
     if (isNew === "Y")
-        liIsNew = "<li id=\"liFooter-right-isnew\"><img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\"></li>";
+        liIsNew = "<img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\">";
 
     return `<li>
         <div class="liHeader">
@@ -18,6 +18,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
                     <img src="` + imagePath + `" style="width:48px; padding:5px;" />
                 </div>
                 <div class="liHeader-creator" style="display:inline-block">` + username + `</div>
+                <!--<div>` + liIsNew + `</div>-->
             </div>
             <div style="float:right">
                 <div class="dropdown">
@@ -33,15 +34,16 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
         </div>
         <div class="liContent" style="clear:both;">
             <span class="li-prob-statement">` + problemStatement + `</span>
-            <br/>
+            <br/><br/>
             <span class="li-created-on">` + createdDate + `</span>
         </div>
         <div class="liFooter">
-            <ul id="footer-item-right">
-                ` + liIsNew + `
+            <ul id="footer-item-left">
+                <li>Root Cause: 10</li>
+                <li>Why: 20</li>
             </ul>
 
-            <ul id="footer-item-left">
+            <ul id="footer-item-right">
                 <li><input type="button" value="Root Cause" class="btn btn-default" onclick="fnViewRootCause('` + planGuid + `')" /></li>
                 <li><input type="button" value="View Details" class="btn btn-default" onclick="fnViewDetails('` + planGuid + `')" /></li>
                 <li><input type="button" value="Conversation" class="btn btn-default" onclick="fnViewConversation('` + planGuid + `')" /></li>

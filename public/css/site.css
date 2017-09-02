@@ -228,3 +228,8 @@ h3{
 .modal-body-fullscreen{
   padding: 15px !important;
 }
+
+textarea{
+  border:1px solid #c3c1c1 !important;
+  padding: 5px;
+}
