@@ -15,13 +15,13 @@ html {
 }
 
 /*form styles*/
-#msform {
+.msform {
 	/*width: 400px;*/
 	margin: 50px auto;
 	text-align: center;
 	position: relative;
 }
-#msform fieldset {
+.msform fieldset {
 	background: #f0f0f0;
 	border: 0 none;
 	border-radius: 3px;
@@ -36,11 +36,11 @@ html {
 	position: absolute;
 }
 /*Hide all except first fieldset*/
-#msform fieldset:not(:first-of-type) {
+.msform fieldset:not(:first-of-type) {
 	display: none;
 }
 /*inputs*/
-#msform input, #msform textarea {
+.msform input, #msform textarea {
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
@@ -52,7 +52,7 @@ html {
 	font-size: 13px;
 }
 /*buttons*/
-#msform .action-button {
+.msform .action-button {
 	width: 100px;
 	background: #337ab7;
 	font-weight: bold;
@@ -63,7 +63,7 @@ html {
 	padding: 10px 5px;
 	margin: 10px 5px;
 }
-#msform .action-button:hover, #msform .action-button:focus {
+.msform .action-button:hover, #msform .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/
@@ -80,13 +80,13 @@ html {
 	margin-bottom: 20px;
 }
 /*progressbar*/
-#progressbar {
+.progressbar {
 	margin-bottom: 30px;
 	overflow: hidden;
 	/*CSS counters to number the steps*/
 	counter-reset: step;
 }
-#progressbar li {
+.progressbar li {
 	list-style-type: none;
 	color: #000;
 	text-transform: uppercase;
@@ -97,7 +97,7 @@ html {
 	z-index: 10 !important;
 	
 }
-#progressbar li:before {
+.progressbar li:before {
 	content: counter(step);
 	counter-increment: step;
 	width: 20px;
@@ -111,7 +111,7 @@ html {
 
 }
 /*progressbar connectors*/
-#progressbar li:after {
+.progressbar li:after {
 	content: '';
 	width: 100%;
 	height: 3px;
@@ -122,13 +122,13 @@ html {
 	z-index: -1;
 	
 }
-#progressbar li:first-child:after {
+.progressbar li:first-child:after {
 	/*connector not needed before the first step*/
 	content: none; 
 }
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
+.progressbar li.active:before,  #progressbar li.active:after{
 	background: #3e92cc;
 	color: white;
 }
