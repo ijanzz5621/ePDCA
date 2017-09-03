@@ -98,17 +98,33 @@ li-created-on {
     margin-bottom:5px;
 }
 
-#modal-plan-rootcause-list{
+#modal-plan-rootcause-list, #modal-plan-rootcause-whylist{
     list-style: none;
+    border: 0;
 }
 
-#modal-plan-rootcause-list li{
+#modal-plan-rootcause-list > li {
+    border: 0;
+    
+}
+
+#modal-plan-rootcause-list > li > div, #modal-plan-rootcause-whylist > li > div {
     display: inline-block;
     height: 60px;
-    width: 400px;
+    
     background: #f5f5f5;
     border-radius: 6px;
     border: 1px solid #c3c1c1;
+    margin:5px;
+    width:100%;
     padding: 5px;
-    margin: 5px;
+    cursor: pointer;
+}
+
+#modal-plan-rootcause-back:hover{
+    color: #337ab7;
+}
+
+.modal-plan-rootcause-licontent{
+
 }

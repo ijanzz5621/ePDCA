@@ -124,6 +124,9 @@
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
+    $('#modal-plan-rootcause-back').hide();
+    $('#modal-plan-rootcause-backwhy').hide();
+    $('#modal-plan-rootcause-divwhylist').hide();
     $(document).ready(function () {
 
         $('#imgAdd').on('click', function (e) {
@@ -131,16 +134,50 @@
         });
 
         //add potential root cause
-        $(document).on('click', '#modal-plan-root-cause-add', function () {
+        $(document).on('click', '#modal-plan-root-cause-add', function (e) {
             $('#modal-plan-root-cause-divnew').show('slow');
             $(this).hide('slow');
         });
-        $(document).on('click', '#modal-plan-root-cause-btnAdd', function () {
+        $(document).on('click', '#modal-plan-root-cause-btnAdd', function (e) {
             $('#modal-plan-root-cause-divnew').toggle('slow');
             $('#modal-plan-root-cause-add').toggle('slow');
 
             //clear
             $('#modal-plan-root-cause-new').val("");
+        });
+        //add why
+        $(document).on('click', '#modal-plan-root-cause-addwhy', function (e) {
+            $('#modal-plan-root-cause-divnewwhy').show('slow');
+            $(this).hide('slow');
+        });
+        $(document).on('click', '#modal-plan-root-cause-btnAddWhy', function (e) {
+            $('#modal-plan-root-cause-divnewwhy').toggle('slow');
+            $('#modal-plan-root-cause-addwhy').toggle('slow');
+
+            //clear
+            $('#modal-plan-root-cause-newwhy').val("");
+        });
+
+        $(document).on('click', '#modal-plan-rootcause-list > li', function(e){
+            //alert($(this).html());
+            $(this).siblings().hide('slow');
+            $('#modal-plan-rootcause-back').show();
+            $('#modal-plan-rootcause-divwhylist').show('slow');
+        });
+        $(document).on('click', '#modal-plan-rootcause-whylist > li', function(e){
+            //alert($(this).html());
+            $(this).siblings().hide('slow');
+            $('#modal-plan-rootcause-backwhy').show();
+        });
+        $(document).on('click', '#modal-plan-rootcause-back', function(e){
+            $('#modal-plan-rootcause-list li').show('slow');
+            $('#modal-plan-rootcause-whylist li').show('slow');
+            $('#modal-plan-rootcause-divwhylist').hide('slow');
+            $(this).hide();
+        });
+        $(document).on('click', '#modal-plan-rootcause-backwhy', function(e){
+            $('#modal-plan-rootcause-whylist li').show('slow');
+            $(this).hide();
         });
 
         loadPlanlist();
@@ -154,15 +191,6 @@
         $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
         $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
         $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
-        $('#ulItemList').append(liPlanList('12345-4', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
-        $('#ulItemList').append(liPlanList('12345-5', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
-        $('#ulItemList').append(liPlanList('12345-6', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-7', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-8', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-9', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-10', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-11', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
-
     };
 
     function fnViewRootCause(planGuid) {
@@ -177,5 +205,7 @@
         setTimeout(function () { ('#modal-plan-root-cause-new').focus(); }, 3000);
 
     }
+
+
 
 </script>

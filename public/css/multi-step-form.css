@@ -63,6 +63,17 @@ html {
 	padding: 10px 5px;
 	margin: 10px 5px;
 }
+.msform .action-button-cancel {
+	width: 100px;
+	background: #e0e0e0;
+	font-weight: bold;
+	color: black;
+	border: 0 none;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 10px 5px;
+	margin: 10px 5px;
+}
 .msform .action-button:hover, #msform .action-button:focus {
 	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
