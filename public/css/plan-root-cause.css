@@ -96,6 +96,8 @@ li-created-on {
     list-style: none;
     min-height: 120px;
     margin-bottom:5px;
+
+    padding: 0;
 }
 
 #modal-plan-rootcause-list, #modal-plan-rootcause-whylist{
@@ -105,7 +107,14 @@ li-created-on {
 
 #modal-plan-rootcause-list > li {
     border: 0;
-    
+    margin: 5px !important;
+    display: inline-block;
+}
+
+#modal-plan-rootcause-whylist > li {
+    border: 0;
+    margin: 5px !important;
+    display: inline-block;
 }
 
 #modal-plan-rootcause-list > li > div, #modal-plan-rootcause-whylist > li > div {
@@ -115,16 +124,22 @@ li-created-on {
     background: #f5f5f5;
     border-radius: 6px;
     border: 1px solid #c3c1c1;
-    margin:5px;
+    
     width:100%;
     padding: 5px;
     cursor: pointer;
+    width: 350px;
 }
 
 #modal-plan-rootcause-back:hover{
     color: #337ab7;
 }
 
-.modal-plan-rootcause-licontent{
-
+#modal-plan-rootcause-details{
+    padding:5px; 
+    /*border:3px dashed #c3c1c1; */
+    border-radius:6px; 
+    margin-top:5px; 
+    margin-bottom:5px;
+    min-height: 60px;
 }

@@ -162,21 +162,34 @@
             //alert($(this).html());
             $(this).siblings().hide('slow');
             $('#modal-plan-rootcause-back').show();
+            
+            //$('#modal-plan-rootcause-list').toggleClass("col-md-12", "col-md-4");
+            $('#modal-plan-rootcause-details').show('slow');
+
             $('#modal-plan-rootcause-divwhylist').show('slow');
         });
         $(document).on('click', '#modal-plan-rootcause-whylist > li', function(e){
             //alert($(this).html());
             $(this).siblings().hide('slow');
             $('#modal-plan-rootcause-backwhy').show();
+            $('#modal-plan-rootcause-whydetails').show('slow');
+
+            $('#modal-plan-rootcause-divlist').hide('slow');
         });
         $(document).on('click', '#modal-plan-rootcause-back', function(e){
             $('#modal-plan-rootcause-list li').show('slow');
             $('#modal-plan-rootcause-whylist li').show('slow');
+
+            $('#modal-plan-rootcause-details').hide('slow');
             $('#modal-plan-rootcause-divwhylist').hide('slow');
+            $('#modal-plan-rootcause-whydetails').hide('slow');
             $(this).hide();
         });
         $(document).on('click', '#modal-plan-rootcause-backwhy', function(e){
             $('#modal-plan-rootcause-whylist li').show('slow');
+            $('#modal-plan-rootcause-whydetails').hide('slow');
+
+            $('#modal-plan-rootcause-divlist').show('slow');
             $(this).hide();
         });
 
@@ -188,6 +201,18 @@
 
         //Call ajax and get all plan list
 
+        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
+        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
+        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
         $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
         $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'Y'));
         $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Problem 12345', '2017-09-01 14:00:00', 'N'));
