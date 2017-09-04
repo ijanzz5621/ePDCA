@@ -100,6 +100,15 @@ li-created-on {
     padding: 0;
 }
 
+#modal-plan-root-cause-whylist li{
+    background: #e0e0e0;
+    list-style: none;
+    min-height: 120px;
+    margin-bottom:5px;
+
+    padding: 0;
+}
+
 #modal-plan-rootcause-list, #modal-plan-rootcause-whylist{
     list-style: none;
     border: 0;
