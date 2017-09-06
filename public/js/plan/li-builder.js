@@ -38,12 +38,12 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
             <span class="li-created-on">` + createdDate + `</span>
         </div>
         <div class="liFooter">
-            <ul id="footer-item-left">
+            <ul class="footer-item-left">
                 <li>Root Cause: 10</li>
                 <li>Why: 20</li>
             </ul>
 
-            <ul id="footer-item-right">
+            <ul class="footer-item-right">
                 <li><input type="button" value="Root Cause" class="btn btn-default" onclick="fnViewRootCause('` + planGuid + `')" /></li>
                 <li><input type="button" value="View Details" class="btn btn-default" onclick="fnViewDetails('` + planGuid + `')" /></li>
                 <li><input type="button" value="Conversation" class="btn btn-default" onclick="fnViewConversation('` + planGuid + `')" /></li>
