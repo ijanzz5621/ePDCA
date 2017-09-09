@@ -120,6 +120,7 @@
 </div>
 
 {{> plan/plan-root-cause}}
+{{> plan/plan-new-rootcause}}
 
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
@@ -135,8 +136,9 @@
 
         //add potential root cause
         $(document).on('click', '#modal-plan-root-cause-add', function (e) {
-            $('#modal-plan-root-cause-divnew').show('slow');
-            $(this).hide('slow');
+            //$('#modal-plan-root-cause-divnew').show('slow');
+            //$(this).hide('slow');
+            $('#modal-plan-new-rootcause').modal();
         });
         $(document).on('click', '#modal-plan-root-cause-btnAdd', function (e) {
             $('#modal-plan-root-cause-divnew').toggle('slow');
@@ -190,22 +192,20 @@
     });
 
     function loadPlanlist() {
-
         //Call ajax and get all plan list
+        var data = {};
+        var result = callAjax('/api/plan-get-list', data);
 
-        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Low yield for product A', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Machine ABC always down', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-3', 'Azhar', 'M', 'Low demand and low cost for product C', '2017-09-01 14:00:00', 'N'));
-        $('#ulItemList').append(liPlanList('12345-1', 'Diana', 'F', 'Gold wire missing', '2017-09-01 14:00:00', 'Y'));
-        $('#ulItemList').append(liPlanList('12345-2', 'Sharizan', 'M', 'Operator not enough to cover shift', '2017-09-01 14:00:00', 'Y'));
-
+        $.each(result, function(key, val){
+            console.log(val);
+            $('#ulItemList').append(liPlanList(val.RecGuid, val.CreatedBy, val.Gender, val.ProbStatement, val.CreatedOn, val.CurrentStatus));
+        });
     };
 
     function fnViewRootCause(planGuid) {
         //alert('View root cause for ' + planGuid);
         var data = {};
         var result = callAjax('/api/team-get-user', data);
-        //alert(result);
 
         //var modalContent = callmodalPlanRouteCause();
         //$('#main').append(modalContent);

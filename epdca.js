@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(bodyParser.json());
-//app.use(require('connect').bodyParser());
 
 //session store
 require('./lib/session-store')(app, session);
@@ -48,8 +47,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(function(req, res, next){
     if (!res.locals.partials)
         res.locals.partials = {};
-    //Add all partial view here
-    //res.locals.partials.weather = weather.getWeatherData();
     next();
 });
 
@@ -57,18 +54,15 @@ app.use(function(req, res, next){
 //Authentication and authorization middleware
 //***************************************** */
 var auth = function (req, res, next) {
-    //if (req.session && req.session.user === 'admin' && req.session.admin)
     if (req.session && req.session.user && req.session.isAuthenticated)
         return next();
     else
-        //return res.sendStatus(401);
         return res.redirect('/login');
 };
 var authAdmin = function (req, res, next) {
     if (req.session && req.session.admin === 'admin' && req.session.isAuthenticated)
         return next();
     else
-        //return res.sendStatus(401);
         return res.redirect('admin/login');
 };
 
@@ -81,13 +75,9 @@ app.use(function(req, res, next){
 //********************* */
 // ROUTING
 //********************* */
-//import account routes
 require('./routes/account')(app, auth);
-//import main routes
 require('./routes/main')(app, auth);
-//import user routes
 require('./routes/user')(app, auth);
-//import admin routes
 require('./routes/admin')(app, authAdmin);
 
 //********************* */
@@ -97,6 +87,7 @@ require('./apis/admin/company')(app);
 require('./apis/admin/department')(app);
 require('./apis/admin/user')(app);
 require('./apis/user/team')(app);
+require('./apis/user/plan')(app);
 
 //******************* */
 //INIT and START server

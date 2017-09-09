@@ -22,22 +22,22 @@ module.exports = function (app, auth) {
         });*/
 
         //render plan-submitted page
-        res.render('user/plan');
+        res.render('user/plan/plan');
     })
 
     //Do
     app.get('/user/do', auth, function (req, res) {
-        res.render('user/do', { result: "Record save successfully!" });
+        res.render('user/do/do', { result: "Record save successfully!" });
     })
 
     app.get('/user/plan-add', auth, function (req, res) {
-        res.render('user/plan-add');
+        res.render('user/plan/plan-add');
     })
     //post
     app.post('/user/plan-add', function(req, res, next){
         //call controller to save plan
         blPlan.saveNewPlan(req.session.user, req.body);
-        res.render('user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
+        res.render('user/plan/plan-submitted', { teamleadName: "Sharizan Redzuan" });
         //res.redirect('/user/plan-submitted', { teamleadName: "Sharizan Redzuan" });
     });
 
@@ -47,10 +47,10 @@ module.exports = function (app, auth) {
     });
 
     app.get('/user/create', auth, function (req, res) {
-        res.render('user/create');
+        res.render('user/create/create');
     });
     app.get('/user/action', auth, function (req, res) {
-        res.render('user/action');
+        res.render('user/action/action');
     });
 
     //team routers
@@ -74,7 +74,7 @@ module.exports = function (app, auth) {
                 }
                 //console.log(personList);
 
-                res.render('user/team', {teamData: JSON.stringify(personList)});
+                res.render('user/team/team', {teamData: JSON.stringify(personList)});
             })
             .catch(function(err){
                 res.render('500', {err: err});

@@ -1,5 +1,7 @@
 
-function liPlanList(planGuid, username, gender, problemStatement, createdDate, isNew) {
+function liPlanList(planGuid, username, gender, problemStatement, createdDate, currentStatus) {
+
+    var displayDate = new Date(createdDate);
 
     var imagePath = "";
     if (gender === "F")
@@ -8,7 +10,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
         imagePath = "/img/user-icon-man-64.png";
 
     var liIsNew = "";
-    if (isNew === "Y")
+    if (currentStatus === "NEW")
         liIsNew = "<img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\">";
 
     return `<li>
@@ -35,7 +37,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
         <div class="liContent" style="clear:both;">
             <span class="li-prob-statement">` + problemStatement + `</span>
             <br/><br/>
-            <span class="li-created-on">` + createdDate + `</span>
+            <span class="li-created-on">` + displayDate + `</span>
         </div>
         <div class="liFooter">
             <ul class="footer-item-left">
@@ -52,3 +54,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, i
     </li>`;
 
 }; 
+
+function liPlanRootCauseList(){
+    return ``;
+};
