@@ -25,11 +25,6 @@ module.exports = function (app, auth) {
         res.render('user/plan/plan');
     })
 
-    //Do
-    app.get('/user/do', auth, function (req, res) {
-        res.render('user/do/do', { result: "Record save successfully!" });
-    })
-
     app.get('/user/plan-add', auth, function (req, res) {
         res.render('user/plan/plan-add');
     })
@@ -42,9 +37,14 @@ module.exports = function (app, auth) {
     });
 
     //plan root cause
-    app.get('/user/plan-root-cause/:planGuid', function(req, res){
+    app.get('/user/plan-rootcause', auth, function (req, res) {
+        res.render('user/plan/plan-rootcause');
+    })
 
-    });
+    //Do
+    app.get('/user/do', auth, function (req, res) {
+        res.render('user/do/do', { result: "Record save successfully!" });
+    })
 
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create/create');

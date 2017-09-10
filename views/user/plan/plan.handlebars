@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/plan-root-cause.css" />
+<link rel="stylesheet" href="/css/plan/plan.css" />
 
 <div class="">
 
@@ -125,66 +125,11 @@
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
-    $('#modal-plan-rootcause-back').hide();
-    $('#modal-plan-rootcause-backwhy').hide();
-    $('#modal-plan-rootcause-divwhylist').hide();
+    
     $(document).ready(function () {
 
         $('#imgAdd').on('click', function (e) {
             location.href = "/user/plan-add";
-        });
-
-        //add potential root cause
-        $(document).on('click', '#modal-plan-root-cause-add', function (e) {
-            //$('#modal-plan-root-cause-divnew').show('slow');
-            //$(this).hide('slow');
-            $('#modal-plan-new-rootcause').modal();
-        });
-        $(document).on('click', '#modal-plan-root-cause-btnAdd', function (e) {
-            $('#modal-plan-root-cause-divnew').toggle('slow');
-            $('#modal-plan-root-cause-add').toggle('slow');
-
-            //clear
-            $('#modal-plan-root-cause-new').val("");
-        });
-        //add why
-        $(document).on('click', '#modal-plan-root-cause-addwhy', function (e) {
-            $('#modal-plan-root-cause-divnewwhy').show('slow');
-            $(this).hide('slow');
-        });
-        $(document).on('click', '#modal-plan-root-cause-btnAddWhy', function (e) {
-            $('#modal-plan-root-cause-divnewwhy').toggle('slow');
-            $('#modal-plan-root-cause-addwhy').toggle('slow');
-
-            //clear
-            $('#modal-plan-root-cause-newwhy').val("");
-        });
-
-        $(document).on('click', '#modal-plan-rootcause-list > li', function(e){
-            $(this).siblings().hide('slow');
-            $('#modal-plan-rootcause-back').show();
-            $('#modal-plan-rootcause-details').show('slow');
-            $('#modal-plan-rootcause-divwhylist').show('slow');
-        });
-        $(document).on('click', '#modal-plan-rootcause-whylist > li', function(e){
-            $(this).siblings().hide('slow');
-            $('#modal-plan-rootcause-backwhy').show();
-            $('#modal-plan-rootcause-whydetails').show('slow');
-            $('#modal-plan-rootcause-divlist').hide('slow');
-        });
-        $(document).on('click', '#modal-plan-rootcause-back', function(e){
-            $('#modal-plan-rootcause-list li').show('slow');
-            $('#modal-plan-rootcause-whylist li').show('slow');
-            $('#modal-plan-rootcause-details').hide('slow');
-            $('#modal-plan-rootcause-divwhylist').hide('slow');
-            $('#modal-plan-rootcause-whydetails').hide('slow');
-            $(this).hide();
-        });
-        $(document).on('click', '#modal-plan-rootcause-backwhy', function(e){
-            $('#modal-plan-rootcause-whylist li').show('slow');
-            $('#modal-plan-rootcause-whydetails').hide('slow');
-            $('#modal-plan-rootcause-divlist').show('slow');
-            $(this).hide();
         });
 
         loadPlanlist();
@@ -207,10 +152,8 @@
         var data = {};
         var result = callAjax('/api/team-get-user', data);
 
-        //var modalContent = callmodalPlanRouteCause();
-        //$('#main').append(modalContent);
-        $('#modal-plan-root-cause').modal();
-        setTimeout(function () { ('#modal-plan-root-cause-new').focus(); }, 3000);
+        //$('#modal-plan-root-cause').modal();
+        location.href = "/user/plan-rootcause";
 
     }
 
