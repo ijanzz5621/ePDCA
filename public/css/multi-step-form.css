@@ -64,11 +64,11 @@ html {
 	margin: 10px 5px;
 }
 .msform .action-button-cancel {
-	width: 100px;
-	background: #e0e0e0;
+	width: 80px;
+	background: #f0f0f0;
 	font-weight: bold;
 	color: black;
-	border: 0 none;
+	border: 1px solid #c3c1c1 !important;
 	border-radius: 6px;
 	cursor: pointer;
 	padding: 10px 5px;

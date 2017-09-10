@@ -233,3 +233,13 @@ textarea{
   border:1px solid #c3c1c1 !important;
   padding: 5px;
 }
+
+.modal-body{
+  background:#f0f0f0;
+  padding: 10px !important;
+}
+
+.modal-footer{
+  background:#f0f0f0;
+  padding: 5px !important;
+}

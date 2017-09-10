@@ -28,7 +28,6 @@
     box-shadow: 3px 3px 1px #f0f0f0;
     margin-bottom: 15px;
     position: relative;
-    cursor: pointer;
 }
 
 #back:hover{
@@ -47,5 +46,13 @@
 
 .liContent-title{
     font-size: 18px;
+}
+
+.footer-item-right li{
+    cursor: pointer;
+}
+
+.li-active{
+    color: #337ab7;
 }
 

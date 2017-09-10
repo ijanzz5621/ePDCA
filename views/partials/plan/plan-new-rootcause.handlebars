@@ -7,7 +7,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">New Root Cause</h4>
                 </div>
-                <div class="modal-body" style="min-height:250px;">
+                <div class="modal-body">
 
                     <div class="row">
                         
@@ -18,10 +18,21 @@
 
                     </div>                    
 
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <label for="addrootcause-txtDesc">Description</label>
+                            <textarea rows="5" id="addrootcause-txtDesc" name="addrootcause-txtDesc" style="width:100%;"></textarea>
+                        </div>
+
+                    </div> 
 
 
 
-
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-button-cancel" data-dismiss="modal">Close</button>
+                    <input type="submit" id="addrootcause-btnSubmit" class="action-button" value="Submit" style="width:80px;" />
                 </div>
             </div>
         </div>

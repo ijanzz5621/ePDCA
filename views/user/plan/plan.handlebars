@@ -119,9 +119,6 @@
 
 </div>
 
-{{> plan/plan-root-cause}}
-{{> plan/plan-new-rootcause}}
-
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
@@ -153,7 +150,7 @@
         var result = callAjax('/api/team-get-user', data);
 
         //$('#modal-plan-root-cause').modal();
-        location.href = "/user/plan-rootcause";
+        location.href = "/user/plan-rootcause?planID="+planGuid;
 
     }
 
