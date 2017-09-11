@@ -30,7 +30,7 @@
         <div class="col-md-12" style="">
             <img id="add" src="/img/add-icon.png" width="35" title="add new root cause" style="cursor:pointer;" />        
             &nbsp;
-            <img id="back" src="/img/back.png" width="35" title="back to root cause list" style="cursor:pointer;" />
+            <img id="back" src="/img/back.png" width="35" title="back to root cause list" style="cursor:pointer;display:none;" />
         </div>
 
         <div class="col-md-12">
@@ -60,12 +60,12 @@
 
 </div>
 
-<div id="divwhylist" style="margin-top:15px;">
+<div id="divwhylist" style="margin-top:15px;display:none;">
 
     <div class="col-md-12" style="">
         <img id="addwhy" src="/img/add-icon.png" width="35" title="add new why" style="cursor:pointer;" />        
         &nbsp;
-        <img id="backwhy" src="/img/back.png" width="35" title="back to why list" style="cursor:pointer;" />
+        <img id="backwhy" src="/img/back.png" width="35" title="back to why list" style="cursor:pointer;display:none;" />
     </div>
 
     <div class="col-md-12">
@@ -155,19 +155,38 @@
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
-    $('#back').hide();
-    $('#backwhy').hide();
-    $('#divwhylist').hide();
 
     $(document).ready(function(){
 
         //load data and append list 
-        //testing
-        $('#list').append(liPlanRootCauseList("12345", "Azian", "F", "Bad practise by operator", "2017-09-10 17:00:00", "NEW", 15));
-        $('#list').append(liPlanRootCauseList("12345-2", "Sharizan", "M", "Wrong procedure", "2017-09-10 17:00:00", "UPDATED", 10));
+        var _planID = getUrlParameter("planID");
+        var data = { planID: _planID };
+        var rootCauseListResult = callAjax('/api/plan-get-rootcause', data);
 
+        $.each(rootCauseListResult, function(key, val){
+            $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, 15))
+            .delay(100)
+            .appendTo('#list')
+            .hide()
+            .slideDown('slow');
+        });
+        
         $(document).on('click', '#add', function (e) {
             $('#modal-plan-new-rootcause').modal();
+        });
+
+        //save new
+        $(document).on('click', '#modal-plan-addrootcause-btnSubmit', function(e){
+            e.preventDefault();
+            var data = { 
+                title: $('#modal-plan-addrootcause-txtTitle').val() 
+                , desc: $('#modal-plan-addrootcause-txtDesc').val()
+            };
+            //alert(JSON.stringify(data));
+            //call ajax to save
+            
+            //append the new object to list
+
         });
 
         /*

@@ -155,7 +155,33 @@ function getPlanList(loginUser, data){
     return deferred.promise;
 }
 
+function getRootcauseList(planID){
+    var deferred = q.defer();
+    var sql = `select distinct a.*, b.Gender, b.Username 
+        from user_plan_rootcause as a 
+        left join admin_user as b ON a.CreatedBy = b.Email 
+        where a.PlanGuid = '` + planID + `';`;
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     saveNewPlan: saveNewPlan
     , getPlanList: getPlanList
+    , getRootcauseList: getRootcauseList
 };

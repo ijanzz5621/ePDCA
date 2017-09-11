@@ -13,4 +13,16 @@ module.exports = function (app) {
             });
     });
 
+    app.post('/api/plan-get-rootcause', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        //console.log("data is: " + req.body);
+        var planID = req.body.planID;
+
+        blPlan.getRootcauseList(planID)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
 };
