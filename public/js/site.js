@@ -39,4 +39,33 @@ function getUrlParameter(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
 
+/*$(document).on('keypress', 'input', function(e){
+    //e.preventDefault();
+    if (e.keyCode === 13){
+        //focus to the next input
+        alert('You pressed enter!')
+        //$(this).next('textarea').focus();
+    }
+    
+});*/
+
+$('input').on("keypress", function(e) {
+    /* ENTER PRESSED*/
+    if (e.keyCode == 13) {
+        /* FOCUS ELEMENT */
+        var inputs = $(this).parents("form").eq(0).find(":input");
+        var idx = inputs.index(this);
+
+        alert(idx);
+
+        if (idx == inputs.length - 1) {
+            inputs[0].select()
+        } else {
+            inputs[idx + 1].focus(); //  handles submit buttons
+            inputs[idx + 1].select();
+        }
+        return false;
+    }
+});
+
 

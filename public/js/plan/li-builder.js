@@ -65,7 +65,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, c
 
 function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, createdDate, currentStatus, whyCount){
 
-    var displayDate = new Date(createdDate);
+    var displayDate = new Date(createdDate).toLocaleString();
     
     var imagePath = "";
     if (gender === "F")
@@ -111,7 +111,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
             <div class="liContent" style="clear:both;">
                 <span class="liContent-title">` + rootcauseTitle + `</span>
                 <br/><br/>
-                <span class="liContent-date">2017-09-06 14:20</span>
+                <span class="liContent-date">` + displayDate + `</span>
             </div>
             <div class="liFooter">
                 <ul class="footer-item-left">

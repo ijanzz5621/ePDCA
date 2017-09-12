@@ -173,19 +173,32 @@
         
         $(document).on('click', '#add', function (e) {
             $('#modal-plan-new-rootcause').modal();
+            //focus
+            setTimeout(function(){
+                $('#modal-plan-addrootcause-txtTitle').focus();
+            }, 1000);
         });
 
         //save new
         $(document).on('click', '#modal-plan-addrootcause-btnSubmit', function(e){
             e.preventDefault();
             var data = { 
-                title: $('#modal-plan-addrootcause-txtTitle').val() 
+                planID: _planID
+                , title: $('#modal-plan-addrootcause-txtTitle').val() 
                 , desc: $('#modal-plan-addrootcause-txtDesc').val()
             };
-            //alert(JSON.stringify(data));
             //call ajax to save
-            
-            //append the new object to list
+            var result = callAjax('/api/plan-add-rootcause', data);
+            $(liPlanRootCauseList(result[0][0].recGuid, result[0][0].username, result[0][0].gender, 
+                $('#modal-plan-addrootcause-txtTitle').val(), 
+                result[0][0].createdOn, "NEW", 15))
+            .delay(100)
+            .appendTo('#list')
+            .hide()
+            .slideDown('slow');
+
+            //close modal
+            $('#modal-plan-new-rootcause').modal('toggle');
 
         });
 
@@ -242,7 +255,7 @@
     });
 
     function viewWhyList(obj, rootcauseId){
-        $(this).parent().parent().parent().siblings().hide();
+        $(obj).closest('.li-rootcause').siblings().hide();
         $('.footer-item-right > li > span').removeClass("li-active");
         $(obj).addClass("li-active");
         $('#rootcauseHeader').hide('slow');

@@ -1,5 +1,6 @@
 #ulItemList>li {
     min-height: 150px;
+    min-width: 600px;
     background: #fcfcfc;
     list-style: none;
     margin: 0;
