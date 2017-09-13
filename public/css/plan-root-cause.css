@@ -1,6 +1,7 @@
 #list, #whylist{
     list-style: none;
     border: 0;
+    margin-bottom: 0 !important;
 }
 
 #list > li {
@@ -28,6 +29,38 @@
     box-shadow: 3px 3px 1px #f0f0f0;
     margin-bottom: 15px;
     position: relative;
+}
+
+.selected-rootcause > div{
+    width: 100% !important;
+    min-height: 0 !important;
+}
+
+.selected-rootcause {
+    width: 100% !important;
+    min-height: 0 !important;
+}
+
+.selected-rootcause .footer-item-left{
+    display: none;
+}
+
+/*.selected-rootcause .liContent-date{
+    padding-bottom:15px;
+}*/
+
+.selected-why > div{
+    width: 100% !important;
+    min-height: 0 !important;
+}
+
+.selected-why {
+    width: 100% !important;
+    min-height: 0 !important;
+}
+
+.selected-why .footer-item-left{
+    display: none;
 }
 
 #back:hover{

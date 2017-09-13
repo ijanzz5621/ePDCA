@@ -77,52 +77,6 @@
         <div class="col-md-12">
 
             <ul id="whylist">
-                <li class="">
-                    <div class="liContent" style="width:380px;">
-
-                        <div class="liHeader">
-                            <div style="float:left;position:relative;">
-                                <div class="liHeader-icon" style="display:inline-block">
-                                    <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px;" />
-                                </div>
-                                <div class="liHeader-creator" style="display:inline-block">Sharizan</div>
-                                <!--<div>` + liIsNew + `</div>-->
-                            </div>
-                            <div style="float:right">
-                                <div class="dropdown">
-                                    <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
-                                                        <span class="caret"></span>
-                                                        </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a tabindex="-1" href="#">Edit</a></li>
-                                        <li><a tabindex="-1" href="#">Remove</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="liContent" style="clear:both;">
-                            <span class="liContent-title">
-                                                    Why is it always down? How many times per week?
-                                                </span>
-                            <br/><br/>
-                            <span class="liContent-date">2017-09-06 14:20</span>
-                        </div>
-                        <div class="liFooter">
-                            <ul class="footer-item-left">
-                                <li>Why: 20</li>
-                            </ul>
-
-                            <ul class="footer-item-right">
-                                <li><span class="fa fa-arrow-left fa-2x" title="back"></span></li>
-                                <li><span class="fa fa-calendar fa-2x" title="schedule"></span></li>
-                                <li><span class="fa fa-flag fa-2x" title="mark"></span></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </li>
-                
-
             </ul>
 
         </div>
@@ -130,19 +84,66 @@
     </div>
 
     <div class="row">
-        <div id="whydetails" style="display:none;" class="col-md-8 col-md-push-2">
+        <div class="col-md-8 col-md-push-2">
 
-            <span style="font-size:18px;"> Any evident to support? </span>
-            <br/><br/>
-            <div class="funkyradio">
-                <div class="funkyradio-success">
-                    <input type="radio" name="radioEvidentSupport" value="Yes" id="evident-support-yes" />
-                    <label for="evident-support-yes">Yes</label>
+            <div id="divcommentlist" style="display:none; background:#fcfcfc; padding:30px; border:1px solid #c3c1c1; border-radius:6px;">
+
+                <div class="chat-line" style="text-align:right;">
+                    <div class="chat-icon" style="display:inline-block">
+                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                        <span style="display:inline-block">Sharizan</span>
+                    </div>
+                    <div class="chat-content" style="display:block">
+                        Supervisor are busy with Audit which will happened on the following week
+                    </div>
                 </div>
-                <div class="funkyradio-success">
-                    <input type="radio" name="radioEvidentSupport" value="No" id="evident-support-no" />
-                    <label for="evident-support-no">No</label>
+
+
+
+                <div class="chat-line">
+                    <div class="chat-icon" style="display:inline-block">
+                        <img src="/img/user-icon-lady-64.png" style="width:48px; padding:5px; display:inline-block" />
+                        <span style="display:inline-block">Diana</span>
+                    </div>
+                    <div class="chat-content" style="display:block">
+                        Someone must really take this seriously. If not we will loose an important customer.
+                    </div>
                 </div>
+
+                <div class="chat-line">
+                    <div class="chat-icon" style="display:inline-block">
+                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                        <span style="display:inline-block">Azhar</span>
+                    </div>
+                    <div class="chat-content" style="display:block">
+                        Agree with Diana.
+                    </div>
+                </div>
+
+                <div class="chat-line" style="text-align:right;">
+                    <div class="chat-icon" style="display:inline-block">
+                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                        <span style="display:inline-block">Sharizan</span>
+                    </div>
+                    <div class="chat-content" style="display:block">
+                        I will discuss with all team leader and supervisor as soon as possible.
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-push-2">
+
+            <div id="commentBox" style="display:none;">
+                <form class="msform" style="margin:0; margin-top:15px; padding:0;">
+                    <input type="text" id="txtComment" />
+                </form>
             </div>
 
         </div>
@@ -202,63 +203,70 @@
 
         });
 
-        /*
-        //add potential root cause
-        
-        $(document).on('click', '#btnAdd', function (e) {
-            $('#divnew').toggle('slow');
-            $('#add').toggle('slow');
-
-            //clear
-            $('#new').val("");
-        });
-        //add why
-        $(document).on('click', '#addwhy', function (e) {
-            $('#mdivnewwhy').show('slow');
-            $(this).hide('slow');
-        });
-        $(document).on('click', '#btnAddWhy', function (e) {
-            $('#divnewwhy').toggle('slow');
-            $('#addwhy').toggle('slow');
-
-            //clear
-            $('#newwhy').val("");
-        });
-
-        $(document).on('click', '#list > li', function(e){
-            //$(this).siblings().hide('slow');
-            //$('#back').show();
-            //$('#details').show('slow');
-            //$('#divwhylist').show('slow');
-        });
-        $(document).on('click', '#whylist > li', function(e){
-            $(this).siblings().hide('slow');
-            $('#backwhy').show();
-            $('#whydetails').show('slow');
-            $('#divlist').hide('slow');
-        });
-        $(document).on('click', '#back', function(e){
-            $('#list li').show('slow');
-            $('#whylist li').show('slow');
-            $('#details').hide('slow');
-            $('#divwhylist').hide('slow');
-            $('#whydetails').hide('slow');
-            $(this).hide();
-        });
-        $(document).on('click', '#backwhy', function(e){
-            $('#whylist li').show('slow');
-            $('#whydetails').hide('slow');
-            $('#divlist').show('slow');
-            $(this).hide();
-        });
-        */
     });
 
     function viewWhyList(obj, rootcauseId){
-        $(obj).closest('.li-rootcause').siblings().hide();
-        $('.footer-item-right > li > span').removeClass("li-active");
-        $(obj).addClass("li-active");
-        $('#rootcauseHeader').hide('slow');
+
+        if ($(obj).closest('.li-rootcause').hasClass("selected-rootcause")){
+
+            $('#whylist').html("");
+            $('#divcommentlist').html("");
+            $('#divcommentlist').hide('slow');
+            $('#commentBox').hide();
+
+            $(obj).closest('.li-rootcause').siblings().show('slow');
+            $('.li-rootcause .liFooter .footer-item-right > li > span').removeClass("li-active");
+            $('#rootcauseHeader').show('slow');
+
+            $(obj).closest('.li-rootcause').removeClass("selected-rootcause");
+            $('#divwhylist').hide('slow');
+        } else {
+
+            $(obj).closest('.li-rootcause').siblings().hide('slow');
+            $('.li-rootcause .liFooter .footer-item-right > li > span').removeClass("li-active");
+            $(obj).addClass("li-active");
+            $('#rootcauseHeader').hide('slow');
+
+            $(obj).closest('.li-rootcause').addClass("selected-rootcause");
+            $('#divwhylist').show('slow');
+
+            //Call ajax to load why list
+
+            //Testing
+            $(liPlanRootCauseWhyList("12345", "Azian", "F", "Why machine down?", "2017-09-13 14:00", "Updated", 25))
+            .delay(100)
+            .appendTo('#whylist')
+            .hide()
+            .slideDown('slow');
+            $(liPlanRootCauseWhyList("23456", "Irfan", "M", "Why lack of supervision?", "2017-09-13 14:00", "Updated", 25))
+            .delay(100)
+            .appendTo('#whylist')
+            .hide()
+            .slideDown('slow');
+        }
+    }
+
+    function viewCommentList(obj, whyGuid){
+        if ($(obj).closest('.li-why').hasClass("selected-why")){
+            $(obj).closest('.li-why').siblings().show('slow');
+            $('.li-why .liFooter .footer-item-right > li > span').removeClass("li-active");
+
+            $(obj).closest('.li-why').removeClass("selected-why");
+            $('#divcommentlist').html("");
+            $('#divcommentlist').hide('slow');
+            $('#commentBox').hide();
+        } else {
+
+            $(obj).closest('.li-why').siblings().hide('slow');
+            $('.li-why .liFooter .footer-item-right > li > span').removeClass("li-active");
+            $(obj).addClass("li-active");
+
+            $(obj).closest('.li-why').addClass("selected-why");
+            $('#divcommentlist').show('slow');
+            $('#commentBox').show();
+
+            //Call ajax to load comment list
+        }
     }
 
 </script>

@@ -188,7 +188,7 @@ function addRootCause(planID, username, title, desc){
         ('` + recGuid + `', '` + planID + `', '` + title + `', '` + desc + `', '` + username + `');
     `;
 
-    console.log(sql);
+    //console.log(sql);
 
     connectionManager.getConnection()
         .then(function (connection) {

@@ -128,3 +128,68 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
         </div>
     </li>`;
 };
+
+function liPlanRootCauseWhyList(whyGuid, username, gender, whyTitle, createdDate, currentStatus, commentCount){
+
+    var displayDate = new Date(createdDate).toLocaleString();
+    
+    var imagePath = "";
+    if (gender === "F")
+        imagePath = "/img/user-icon-lady-64.png";
+    else 
+        imagePath = "/img/user-icon-man-64.png";
+
+    var liIsNew = "";
+    if (currentStatus === "NEW")
+        liIsNew = "<img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\">";
+
+    return `<li class="li-why">
+        <div class="liContent" style="width:380px;">
+            <div class="liHeader">
+                <div style="float:left;position:relative;">
+                    <ul style="list-style:none;">
+                        <li style="display:inline-block;">
+                            <div class="liHeader-icon" style="display:inline-block">
+                                <img src="` + imagePath + `" style="width:48px; padding:5px;" />
+                            </div>
+                        </li>
+                        <li style="display:inline-block;">
+                            <div class="liHeader-creator" style="display:inline-block">` + username + `</div>
+                        </li>
+                        <li style="display:inline-block;">
+                            <div>` + liIsNew + `</div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="float:right">
+                    <div class="dropdown">
+                        <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="caret"></span>
+                                            </button>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="#">Edit</a></li>
+                            <li><a tabindex="-1" href="#">Remove</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="liContent" style="clear:both;">
+                <span class="liContent-title">` + whyTitle + `</span>
+                <br/><br/>
+                <span class="liContent-date">` + displayDate + `</span>
+            </div>
+            <div class="liFooter">
+                <ul class="footer-item-left">
+                    <li>Comments: <span>` + commentCount + `</span></li>
+                </ul>
+
+                <ul class="footer-item-right">
+                    <li><span class="fa fa-info-circle fa-2x" title="view why details"></span></li>
+                    <li><span class="fa fa-comments-o fa-2x" title="view comment list" onclick="viewCommentList(this, '` + whyGuid + `');"></span></li>
+                </ul>
+            </div>
+
+        </div>
+    </li>`;
+
+}
