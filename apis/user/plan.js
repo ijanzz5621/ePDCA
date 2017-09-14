@@ -36,4 +36,15 @@ module.exports = function (app) {
             });
     });
 
+    app.post('/api/plan-get-plandetails', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        var planID = req.body.planID;
+
+        blPlan.getPlanDetails(planID)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
 };

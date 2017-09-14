@@ -208,9 +208,33 @@ function addRootCause(planID, username, title, desc){
     return deferred.promise;
 }
 
+function getPlanDetails(planID){
+    var deferred = q.defer();
+    var sql = `select a.* from user_plan_master AS a 
+        where a.RecGuid = '` + planID + `';`;
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     saveNewPlan: saveNewPlan
     , getPlanList: getPlanList
     , getRootcauseList: getRootcauseList
     , addRootCause: addRootCause
+    , getPlanDetails: getPlanDetails
 };
