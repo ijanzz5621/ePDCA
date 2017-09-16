@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" >
 
         <div class="col-md-12" style="">
             <img id="add" src="/img/add-icon.png" width="35" title="add new root cause" style="cursor:pointer;" />        
@@ -85,53 +85,72 @@
     <div class="row">
         <div class="col-md-8 col-md-push-2">
 
-            <div id="divcommentlist" style="display:none; background:#fcfcfc; padding:30px; border:1px solid #c3c1c1; border-radius:6px;">
+            <ul id="divcommentlist" style="display:none; background:#fcfcfc; padding:30px; 
+            border:1px solid #c3c1c1; border-radius:6px;height:300px; overflow:scroll; list-style:none;">
 
-                <div class="chat-line" style="text-align:right;">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Sharizan</span>
+                <li>
+                    <div class="chat-line" style="text-align:right;">
+                        <div class="chat-icon" style="display:inline-block">
+                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                            <span style="display:inline-block">Sharizan</span>
+                        </div>
+                        <br/>
+                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
+                        <div class="chat-content" style="display:block">
+                            Supervisor are busy with Audit which will happened on the following week
+                        </div>
                     </div>
-                    <div class="chat-content" style="display:block">
-                        Supervisor are busy with Audit which will happened on the following week
+                </li>
+                <li>
+                    <div class="chat-line">
+                        <div class="chat-icon" style="display:inline-block">
+                            <img src="/img/user-icon-lady-64.png" style="width:48px; padding:5px; display:inline-block" />
+                            <span style="display:inline-block">Diana</span>
+                        </div>
+                        <br/>
+                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
+                        <div class="chat-content" style="display:block">
+                            Someone must really take this seriously. If not we will loose an important customer.
+                        </div>
                     </div>
-                </div>
+                </li>
+                <li>
+                    <div class="chat-line">
+                        <div class="chat-icon" style="display:inline-block">
+                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                            <span style="display:inline-block">Azhar</span>
+                        </div>
+                        <br/>
+                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
+                        <div class="chat-content" style="display:block">
+                            Agree with Diana.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="chat-line" style="text-align:right;">
+                        <div class="chat-icon" style="display:inline-block">
+                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
+                            <span style="display:inline-block">Sharizan</span>
+                        </div>
+                        <br/>
+                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
+                        <div class="chat-content" style="display:block">
+                            I will discuss with all team leader and supervisor as soon as possible.
+                        </div>
+                    </div>
+                </li>
 
-
-
-                <div class="chat-line">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-lady-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Diana</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Someone must really take this seriously. If not we will loose an important customer.
-                    </div>
-                </div>
-
-                <div class="chat-line">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Azhar</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Agree with Diana.
-                    </div>
-                </div>
-
-                <div class="chat-line" style="text-align:right;">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Sharizan</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        I will discuss with all team leader and supervisor as soon as possible.
-                    </div>
-                </div>
 
                 
 
-            </div>
+                
+
+                
+
+                
+
+            </ul>
 
         </div>
     </div>
@@ -141,6 +160,7 @@
 
             <div id="commentBox" style="display:none;">
                 <form class="msform" style="margin:0; margin-top:15px; padding:0;">
+                    <label style="text-align:left; align-self:flex-start !important; font-size:14px !important;">Enter your comment here:</label>
                     <input type="text" id="txtComment" />
                 </form>
             </div>
@@ -151,20 +171,21 @@
 </div>
 
 {{> plan/plan-new-rootcause}}
+{{> plan/plan-new-why}}
 
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
 
+    var _planID = getUrlParameter("planID");
+    var gRootcauseID = "";
+
     $(document).ready(function(){
 
         //load data and append list 
-        var _planID = getUrlParameter("planID");
         var data = { planID: _planID };
-
         var planDetails = callAjax('/api/plan-get-plandetails', data);
         $('#probstate').html(planDetails[0].ProbStatement)
-        //alert(JSON.stringify(planDetails));
         var rootCauseListResult = callAjax('/api/plan-get-rootcause', data);
 
         $.each(rootCauseListResult, function(key, val){
@@ -182,8 +203,16 @@
                 $('#modal-plan-addrootcause-txtTitle').focus();
             }, 1000);
         });
+        //add why
+        $(document).on('click', '#addwhy', function (e) {
+            $('#modal-plan-new-why').modal();
+            //focus
+            setTimeout(function(){
+                $('#modal-plan-addwhy-txtWhy').focus();
+            }, 1000);
+        });
 
-        //save new
+        //save new root cause
         $(document).on('click', '#modal-plan-addrootcause-btnSubmit', function(e){
             e.preventDefault();
             var data = { 
@@ -191,6 +220,7 @@
                 , title: $('#modal-plan-addrootcause-txtTitle').val() 
                 , desc: $('#modal-plan-addrootcause-txtDesc').val()
             };
+
             //call ajax to save
             var result = callAjax('/api/plan-add-rootcause', data);
             $(liPlanRootCauseList(result[0][0].recGuid, result[0][0].username, result[0][0].gender, 
@@ -206,9 +236,50 @@
 
         });
 
+        //save new why
+        $(document).on('click', '#modal-plan-addwhy-btnSubmit', function(e){
+            e.preventDefault();
+            var data = { 
+                planID: _planID
+                , rootcauseID: gRootcauseID 
+                , why: $('#modal-plan-addwhy-txtWhy').val() 
+            };
+
+            //call ajax to save
+            var result = callAjax('/api/plan-add-why', data);
+            $(liPlanRootCauseWhyList(result[0][0].recGuid, result[0][0].username, result[0][0].gender, 
+                $('#modal-plan-addwhy-txtWhy').val(), result[0][0].createdOn, "NEW", 0))
+                .delay(100)
+                .appendTo('#whylist')
+                .hide()
+                .slideDown('slow');
+
+            //close modal
+            $('#modal-plan-new-why').modal('toggle');
+
+        });
+
+        //add comment
+        $(document).on('keypress', '#txtComment', function(e){
+            if (e.keyCode === 13 && $(this).val().trim() !== ""){
+                e.preventDefault();
+                //$('#divcommentlist').append("<li>" + $(this).val() + "</li>")
+                
+                $(liComment("Sharizan", "sharizan_81@yahoo.com", "test@test.com", "M", $(this).val()))
+                    .appendTo("#divcommentlist")
+                ;
+                
+                $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
+                $(this).val("");
+                $(this).focus();
+            }
+        });
+
     });
 
     function viewWhyList(obj, rootcauseId){
+
+        gRootcauseID = rootcauseId;
 
         if ($(obj).closest('.li-rootcause').hasClass("selected-rootcause")){
 
@@ -234,18 +305,16 @@
             $('#divwhylist').show('slow');
 
             //Call ajax to load why list
+            var rootcauseData = { rootcauseId: rootcauseId };
+            var whyList = callAjax('/api/plan-rootcause-get_whylist', rootcauseData);
 
-            //Testing
-            $(liPlanRootCauseWhyList("12345", "Azian", "F", "Why machine down?", "2017-09-13 14:00", "Updated", 25))
-            .delay(100)
-            .appendTo('#whylist')
-            .hide()
-            .slideDown('slow');
-            $(liPlanRootCauseWhyList("23456", "Irfan", "M", "Why lack of supervision?", "2017-09-13 14:00", "Updated", 25))
-            .delay(100)
-            .appendTo('#whylist')
-            .hide()
-            .slideDown('slow');
+            $.each(whyList, function(key, val){
+                $(liPlanRootCauseWhyList(val.RecGuid, val.Username, val.Gender, val.Why, val.CreatedOn, val.CurrentStatus, 0))
+                .delay(100)
+                .appendTo('#whylist')
+                .hide()
+                .slideDown('slow');
+            });
         }
     }
 
@@ -258,6 +327,9 @@
             $('#divcommentlist').html("");
             $('#divcommentlist').hide('slow');
             $('#commentBox').hide();
+            $('#txtComment').val("");
+
+            $('#divlist').show('slow');
         } else {
 
             $(obj).closest('.li-why').siblings().hide('slow');
@@ -267,6 +339,13 @@
             $(obj).closest('.li-why').addClass("selected-why");
             $('#divcommentlist').show('slow');
             $('#commentBox').show();
+
+            $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
+            setTimeout(function(){
+                $('#txtComment').focus();
+            }, 500);
+
+            $('#divlist').hide('slow');
 
             //Call ajax to load comment list
         }

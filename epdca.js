@@ -37,6 +37,13 @@ var handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
+//to allow session to be access from view templates
+/*app.dynamicHelpers({
+    session: function(req, res){
+        return req.session;
+    }
+});*/
+
 //set port
 app.set('port', process.env.PORT || 8080);
 

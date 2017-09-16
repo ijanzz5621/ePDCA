@@ -231,10 +231,65 @@ function getPlanDetails(planID){
     return deferred.promise;
 }
 
+function getRootcauseWhyList(rootcauseId) {
+    var deferred = q.defer();
+    var sql = `select a.*, b.Username, b.Gender 
+    from user_plan_why AS a 
+    left join admin_user AS b ON a.CreatedBy = b.Email
+    where RootcauseGuid = '` + rootcauseId + `';`;
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
+function addWhy(planID, rootcauseID, why, username){
+    var deferred = q.defer();
+
+    var recGuid = uuid.v4();
+    var sql = `call sp_UserPlan_AddWhy
+        ('` + recGuid + `', '` + planID + `', '` + rootcauseID + `', '` + why + `', '` + username + `');
+    `;
+
+    //console.log(sql);
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     saveNewPlan: saveNewPlan
     , getPlanList: getPlanList
     , getRootcauseList: getRootcauseList
     , addRootCause: addRootCause
     , getPlanDetails: getPlanDetails
+    , getRootcauseWhyList: getRootcauseWhyList
+    , addWhy: addWhy
 };

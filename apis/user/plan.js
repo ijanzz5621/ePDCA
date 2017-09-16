@@ -47,4 +47,31 @@ module.exports = function (app) {
             });
     });
 
+    app.post('/api/plan-rootcause-get_whylist', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        var rootcauseId = req.body.rootcauseId;
+
+        //console.log('rootcauseId: ' + req.body.rootcauseId);
+
+        blPlan.getRootcauseWhyList(rootcauseId)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
+    app.post('/api/plan-add-why', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        var planID = req.body.planID;
+        var rootcauseID = req.body.rootcauseID;
+        var why = req.body.why;
+        var username = req.session.user;
+
+        blPlan.addWhy(planID, rootcauseID, why, username)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
 };

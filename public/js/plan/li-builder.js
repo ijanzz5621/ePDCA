@@ -193,3 +193,34 @@ function liPlanRootCauseWhyList(whyGuid, username, gender, whyTitle, createdDate
     </li>`;
 
 }
+
+function liComment(username, userEmail, createdBy, gender, message){
+
+    var imagePath = "";
+    if (gender === "F")
+        imagePath = "/img/user-icon-lady-64.png";
+    else 
+        imagePath = "/img/user-icon-man-64.png";
+
+    var commentDate = new Date().toLocaleString();
+
+    var applyStyle = "";
+
+    if (userEmail === createdBy){
+        applyStyle = "text-align:right;";
+    }
+
+    return `<li>
+        <div class="chat-line" style="` + applyStyle + `">
+            <div class="chat-icon" style="display:inline-block">
+                <img src="` + imagePath + `" style="width:48px; padding:5px; display:inline-block" />
+                <span style="display:inline-block">` + username + `</span>
+            </div>
+            <br/>
+            <span class="comment-datetime" style="display:inline-block">` + commentDate + `</span>
+            <div class="chat-content" style="display:block">
+                ` + message + `
+            </div>
+        </div>
+    </li>`;
+}

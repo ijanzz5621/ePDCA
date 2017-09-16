@@ -58,6 +58,10 @@ module.exports = function (app, auth) {
                     if (result.length > 0){
 
                         req.session.user = username;
+                        //req.ression.name1 = result[0].Username;
+                        //console.log(result[0].Username);
+                        req.session.gender = result[0].Gender;
+                        req.session.email = result[0].Email;
                         req.session.isAuthenticated = true;
 
                         //if last login is null, then redirect to change password page
