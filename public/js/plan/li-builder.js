@@ -121,7 +121,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
                 <ul class="footer-item-right">
                     <li><span class="fa fa-info-circle fa-2x" title="view root cause details"></span></li>
                     <li><span class="fa fa-question-circle fa-2x" title="view why list" onclick="viewWhyList(this, '` + rootcauseGuid + `');"></span></li>
-                    <li><span class="fa fa-flag fa-2x" title="mark as actual root cause"></span></li>
+                    <li><span class="fa fa-flag fa-2x" title="mark as actual root cause" onclick="setAsActualRootcause(this, '` + rootcauseGuid + `')"></span></li>
                 </ul>
             </div>
 
@@ -194,7 +194,7 @@ function liPlanRootCauseWhyList(whyGuid, username, gender, whyTitle, createdDate
 
 }
 
-function liComment(username, userEmail, createdBy, gender, message){
+function liComment(username, userEmail, createdBy, createdByName, gender, message, createdOn){
 
     var imagePath = "";
     if (gender === "F")
@@ -202,7 +202,7 @@ function liComment(username, userEmail, createdBy, gender, message){
     else 
         imagePath = "/img/user-icon-man-64.png";
 
-    var commentDate = new Date().toLocaleString();
+    var commentDate = new Date(createdOn).toLocaleString();
 
     var applyStyle = "";
 
@@ -214,11 +214,11 @@ function liComment(username, userEmail, createdBy, gender, message){
         <div class="chat-line" style="` + applyStyle + `">
             <div class="chat-icon" style="display:inline-block">
                 <img src="` + imagePath + `" style="width:48px; padding:5px; display:inline-block" />
-                <span style="display:inline-block">` + username + `</span>
+                <span style="display:inline-block">` + createdByName + `</span>
             </div>
             <br/>
             <span class="comment-datetime" style="display:inline-block">` + commentDate + `</span>
-            <div class="chat-content" style="display:block">
+            <div class="chat-content" style="display:block;font-size:14px;font-weight:bold;">
                 ` + message + `
             </div>
         </div>

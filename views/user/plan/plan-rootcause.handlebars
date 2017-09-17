@@ -24,11 +24,10 @@
 
     </div>
 
-    <div class="row" >
+    <div class="row">
 
         <div class="col-md-12" style="">
-            <img id="add" src="/img/add-icon.png" width="35" title="add new root cause" style="cursor:pointer;" />        
-            &nbsp;
+            <img id="add" src="/img/add-icon.png" width="35" title="add new root cause" style="cursor:pointer;" /> &nbsp;
             <img id="back" src="/img/back.png" width="35" title="back to root cause list" style="cursor:pointer;display:none;" />
         </div>
 
@@ -62,8 +61,7 @@
 <div id="divwhylist" style="margin-top:15px;display:none;">
 
     <div class="col-md-12" style="">
-        <img id="addwhy" src="/img/add-icon.png" width="35" title="add new why" style="cursor:pointer;" />        
-        &nbsp;
+        <img id="addwhy" src="/img/add-icon.png" width="35" title="add new why" style="cursor:pointer;" /> &nbsp;
         <img id="backwhy" src="/img/back.png" width="35" title="back to why list" style="cursor:pointer;display:none;" />
     </div>
 
@@ -86,70 +84,7 @@
         <div class="col-md-8 col-md-push-2">
 
             <ul id="divcommentlist" style="display:none; background:#fcfcfc; padding:30px; 
-            border:1px solid #c3c1c1; border-radius:6px;height:300px; overflow:scroll; list-style:none;">
-
-                <li>
-                    <div class="chat-line" style="text-align:right;">
-                        <div class="chat-icon" style="display:inline-block">
-                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                            <span style="display:inline-block">Sharizan</span>
-                        </div>
-                        <br/>
-                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
-                        <div class="chat-content" style="display:block">
-                            Supervisor are busy with Audit which will happened on the following week
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="chat-line">
-                        <div class="chat-icon" style="display:inline-block">
-                            <img src="/img/user-icon-lady-64.png" style="width:48px; padding:5px; display:inline-block" />
-                            <span style="display:inline-block">Diana</span>
-                        </div>
-                        <br/>
-                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
-                        <div class="chat-content" style="display:block">
-                            Someone must really take this seriously. If not we will loose an important customer.
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="chat-line">
-                        <div class="chat-icon" style="display:inline-block">
-                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                            <span style="display:inline-block">Azhar</span>
-                        </div>
-                        <br/>
-                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
-                        <div class="chat-content" style="display:block">
-                            Agree with Diana.
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="chat-line" style="text-align:right;">
-                        <div class="chat-icon" style="display:inline-block">
-                            <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                            <span style="display:inline-block">Sharizan</span>
-                        </div>
-                        <br/>
-                        <span class="comment-datetime" style="display:inline-block">2017-09-16 15:00</span>
-                        <div class="chat-content" style="display:block">
-                            I will discuss with all team leader and supervisor as soon as possible.
-                        </div>
-                    </div>
-                </li>
-
-
-                
-
-                
-
-                
-
-                
-
+            border:1px solid #c3c1c1; border-radius:6px;height:380px; overflow:scroll; list-style:none;">
             </ul>
 
         </div>
@@ -159,7 +94,7 @@
         <div class="col-md-8 col-md-push-2">
 
             <div id="commentBox" style="display:none;">
-                <form class="msform" style="margin:0; margin-top:15px; padding:0;">
+                <form class="msform" style="margin:0; margin-top:5px; padding:0;">
                     <label style="text-align:left; align-self:flex-start !important; font-size:14px !important;">Enter your comment here:</label>
                     <input type="text" id="txtComment" />
                 </form>
@@ -170,47 +105,45 @@
 
 </div>
 
-{{> plan/plan-new-rootcause}}
-{{> plan/plan-new-why}}
+{{> plan/plan-new-rootcause}} {{> plan/plan-new-why}}
 
 <script src="/js/plan/li-builder.js"></script>
 <script src="/js/plan/modal-generator.js"></script>
 <script>
-
     var _planID = getUrlParameter("planID");
     var gRootcauseID = "";
     var gWhyID = "";
 
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         //load data and append list 
-        var data = { planID: _planID }; 
+        var data = { planID: _planID };
         var request = callAjax2('/api/plan-get-plandetails', data);
-        request.done(function(result){
+        request.done(function (result) {
             $('#probstate').html(result[0].ProbStatement)
         });
-        request.fail(function(jqXHR, textStatus) {
-            alert( "Request failed: " + textStatus );
+        request.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
         });
 
         var request2 = callAjax2('/api/plan-get-rootcause', data);
-        request2.done(function(result){
-            $.each(result, function(key, val){
+        request2.done(function (result) {
+            $.each(result, function (key, val) {
                 $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, 15))
-                .delay(100)
-                .appendTo('#list')
-                .hide()
-                .slideDown('slow');
+                    .delay(100)
+                    .appendTo('#list')
+                    .hide()
+                    .slideDown('slow');
             });
         });
-        request2.fail(function(jqXHR, textStatus) {
-            alert( "Request failed: " + textStatus );
+        request2.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
         });
 
         $(document).on('click', '#add', function (e) {
             $('#modal-plan-new-rootcause').modal();
             //focus
-            setTimeout(function(){
+            setTimeout(function () {
                 $('#modal-plan-addrootcause-txtTitle').focus();
             }, 500);
         });
@@ -218,29 +151,29 @@
         $(document).on('click', '#addwhy', function (e) {
             $('#modal-plan-new-why').modal();
             //focus
-            setTimeout(function(){
+            setTimeout(function () {
                 $('#modal-plan-addwhy-txtWhy').focus();
             }, 500);
         });
 
         //save new root cause
-        $(document).on('click', '#modal-plan-addrootcause-btnSubmit', function(e){
+        $(document).on('click', '#modal-plan-addrootcause-btnSubmit', function (e) {
             e.preventDefault();
-            var data = { 
+            var data = {
                 planID: _planID
-                , title: $('#modal-plan-addrootcause-txtTitle').val() 
+                , title: $('#modal-plan-addrootcause-txtTitle').val()
                 , desc: $('#modal-plan-addrootcause-txtDesc').val()
             };
 
             //call ajax to save
             var result = callAjax('/api/plan-add-rootcause', data);
-            $(liPlanRootCauseList(result[0][0].recGuid, result[0][0].username, result[0][0].gender, 
-                $('#modal-plan-addrootcause-txtTitle').val(), 
+            $(liPlanRootCauseList(result[0][0].recGuid, result[0][0].username, result[0][0].gender,
+                $('#modal-plan-addrootcause-txtTitle').val(),
                 result[0][0].createdOn, "NEW", 15))
-            .delay(100)
-            .appendTo('#list')
-            .hide()
-            .slideDown('slow');
+                .delay(100)
+                .appendTo('#list')
+                .hide()
+                .slideDown('slow');
 
             //close modal
             $('#modal-plan-new-rootcause').modal('toggle');
@@ -248,17 +181,17 @@
         });
 
         //save new why
-        $(document).on('click', '#modal-plan-addwhy-btnSubmit', function(e){
+        $(document).on('click', '#modal-plan-addwhy-btnSubmit', function (e) {
             e.preventDefault();
-            var data = { 
+            var data = {
                 planID: _planID
-                , rootcauseID: gRootcauseID 
-                , why: $('#modal-plan-addwhy-txtWhy').val() 
+                , rootcauseID: gRootcauseID
+                , why: $('#modal-plan-addwhy-txtWhy').val()
             };
 
             //call ajax to save
             var result = callAjax('/api/plan-add-why', data);
-            $(liPlanRootCauseWhyList(result[0][0].recGuid, result[0][0].username, result[0][0].gender, 
+            $(liPlanRootCauseWhyList(result[0][0].recGuid, result[0][0].username, result[0][0].gender,
                 $('#modal-plan-addwhy-txtWhy').val(), result[0][0].createdOn, "NEW", 0))
                 .delay(100)
                 .appendTo('#whylist')
@@ -271,8 +204,8 @@
         });
 
         //add comment
-        $(document).on('keypress', '#txtComment', function(e){
-            if (e.keyCode === 13 && $(this).val().trim() !== ""){
+        $(document).on('keypress', '#txtComment', function (e) {
+            if (e.keyCode === 13 && $(this).val().trim() !== "") {
                 e.preventDefault();
 
                 //call ajax to save to database
@@ -283,31 +216,31 @@
                     , comment: $(this).val()
                 };
                 var request = callAjax2('/api/plan-rootcause-addwhycomment', data);
-                request.done(function(result){
+                request.done(function (result) {
                     //append the comment to the list
-                    $(liComment(result[0][0].username, result[0][0].userID, result[0][0].userID, result[0][0].gender, $('#txtComment').val()))
-                       .appendTo("#divcommentlist");
+                    $(liComment(result[0][0].username, result[0][0].userID, result[0][0].userID, result[0][0].username, result[0][0].gender, $('#txtComment').val(), result[0][0].createdOn))
+                        .appendTo("#divcommentlist");
 
                     //send to socket to update to other members
 
-                    $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
+                    $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight") }, 1000);
                     $('#txtComment').val("");
                     $('#txtComment').focus();
 
                 });
-                request.fail(function(jqXHR, textStatus) {
-                    alert( "Request failed: " + textStatus );
+                request.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
                 });
             }
         });
 
     });
 
-    function viewWhyList(obj, rootcauseId){
+    function viewWhyList(obj, rootcauseId) {
 
         gRootcauseID = rootcauseId;
 
-        if ($(obj).closest('.li-rootcause').hasClass("selected-rootcause")){
+        if ($(obj).closest('.li-rootcause').hasClass("selected-rootcause")) {
 
             $('#whylist').html("");
             $('#divcommentlist').html("");
@@ -334,21 +267,21 @@
             var rootcauseData = { rootcauseId: rootcauseId };
             var whyList = callAjax('/api/plan-rootcause-get_whylist', rootcauseData);
 
-            $.each(whyList, function(key, val){
+            $.each(whyList, function (key, val) {
                 $(liPlanRootCauseWhyList(val.RecGuid, val.Username, val.Gender, val.Why, val.CreatedOn, val.CurrentStatus, 0))
-                .delay(100)
-                .appendTo('#whylist')
-                .hide()
-                .slideDown('slow');
+                    .delay(100)
+                    .appendTo('#whylist')
+                    .hide()
+                    .slideDown('slow');
             });
         }
     }
 
-    function viewCommentList(obj, whyGuid){
+    function viewCommentList(obj, whyGuid) {
 
         gWhyID = whyGuid;
 
-        if ($(obj).closest('.li-why').hasClass("selected-why")){
+        if ($(obj).closest('.li-why').hasClass("selected-why")) {
             $(obj).closest('.li-why').siblings().show('slow');
             $('.li-why .liFooter .footer-item-right > li > span').removeClass("li-active");
 
@@ -369,16 +302,46 @@
             $('#divcommentlist').show('slow');
             $('#commentBox').show();
 
-            $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
-            setTimeout(function(){
-                $('#txtComment').focus();
-            }, 500);
-
             $('#divlist').hide('slow');
 
             //Call ajax to load comment list from database
-            //TODO ...
+            var data = {
+                planID: _planID
+                , rootcauseID: gRootcauseID
+                , whyID: gWhyID
+            };
+            var request = callAjax2('/api/plan-rootcause-get_whycomment', data);
+            request.done(function (result) {
+                $.each(result, function (key, val) {
+                    $(liComment(val.username, val.userID, val.CreatedBy, val.createdByName, val.gender, val.Comment, val.CreatedOn))
+                        .appendTo("#divcommentlist");
+                });
+
+                $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight") }, 1000);
+                setTimeout(function () {
+                    $('#txtComment').focus();
+                }, 500);
+            });
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
         }
+    }
+
+    function setAsActualRootcause(obj, rootcauseID) {
+        $.confirm({
+            title: 'Actual Root Cause',
+            content: 'Are you sure this is an actual root cause? (No undoable)',
+            type: 'orange',
+            buttons: {
+                confirm: function () {
+                    $.alert('Confirmed!');
+                },
+                cancel: function () {
+                    $.alert('Canceled!');
+                }
+            }
+        });
     }
 
 </script>

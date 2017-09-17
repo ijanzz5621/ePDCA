@@ -74,7 +74,23 @@ module.exports = function (app) {
             });
     });
 
-    //Plan -> Root cause -> Why comment
+    //Plan -> Root cause -> Why 
+    app.post('/api/plan-rootcause-get_whycomment', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        var planID = req.body.planID;
+        var rootcauseID = req.body.rootcauseID;
+        var whyID = req.body.whyID;
+        var username = req.session.username;
+        var userID = req.session.user;
+        var gender = req.session.gender;
+
+        blPlan.getRootcauseWhyComments(planID, rootcauseID, whyID, username, userID, gender)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
     app.post('/api/plan-rootcause-addwhycomment', function (req, res) {
         var blPlan = require('../../business-logic/user/plan');
 

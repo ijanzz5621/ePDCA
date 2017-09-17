@@ -288,11 +288,38 @@ function addWhyComment(planID, rootcauseID, whyID, comment, userID, username, ge
     var deferred = q.defer();
 
     var recGuid = uuid.v4();
+    
     var sql = `call sp_UserPlan_AddWhyComment
         ('` + recGuid + `', '` + planID + `', '` + rootcauseID + `', '` + whyID + `', '` + comment + `', '` + userID + `', '` + username + `', '` + gender + `');
     `;
 
     //console.log(sql);
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
+function getRootcauseWhyComments(planID, rootcauseID, whyID, username, userID, gender) {
+    var deferred = q.defer();
+    var sql = `select a.*, '` + username + `' as username, '` + userID + `' as userID, '` + gender + `' as gender,
+        b.Username AS createdByName 
+        from user_plan_whycomment AS a
+        left join admin_user as b ON a.CreatedBy = b.Email
+        where a.PlanGuid = '` + planID + `' and a.RootcauseGuid = '` + rootcauseID + `' and a.WhyGuid = '` + whyID + `' order by a.CreatedOn;`;
 
     connectionManager.getConnection()
         .then(function (connection) {
@@ -321,4 +348,5 @@ module.exports = {
     , getRootcauseWhyList: getRootcauseWhyList
     , addWhy: addWhy
     , addWhyComment: addWhyComment
+    , getRootcauseWhyComments: getRootcauseWhyComments
 };
