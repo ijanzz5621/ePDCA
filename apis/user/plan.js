@@ -86,7 +86,7 @@ module.exports = function (app) {
         var username = req.session.username;
         var gender = req.session.gender;
 
-        blPlan.addRootCauseWhyComment(planID, rootcauseID, whyID, comment, userID, username, gender)
+        blPlan.addWhyComment(planID, rootcauseID, whyID, comment, userID, username, gender)
             .then(function(result){
                 res.send(result);
             });

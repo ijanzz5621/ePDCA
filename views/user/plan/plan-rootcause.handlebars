@@ -179,6 +179,7 @@
 
     var _planID = getUrlParameter("planID");
     var gRootcauseID = "";
+    var gWhyID = "";
 
     $(document).ready(function(){
 
@@ -211,7 +212,7 @@
             //focus
             setTimeout(function(){
                 $('#modal-plan-addrootcause-txtTitle').focus();
-            }, 1000);
+            }, 500);
         });
         //add why
         $(document).on('click', '#addwhy', function (e) {
@@ -219,7 +220,7 @@
             //focus
             setTimeout(function(){
                 $('#modal-plan-addwhy-txtWhy').focus();
-            }, 1000);
+            }, 500);
         });
 
         //save new root cause
@@ -275,23 +276,28 @@
                 e.preventDefault();
 
                 //call ajax to save to database
-                var data = {};
+                var data = {
+                    planID: _planID
+                    , rootcauseID: gRootcauseID
+                    , whyID: gWhyID
+                    , comment: $(this).val()
+                };
                 var request = callAjax2('/api/plan-rootcause-addwhycomment', data);
                 request.done(function(result){
                     //append the comment to the list
-                    $(liComment("Sharizan", "sharizan_81@yahoo.com", "test@test.com", "M", $(this).val()))
-                        .appendTo("#divcommentlist")
-                    ;
+                    $(liComment(result[0][0].username, result[0][0].userID, result[0][0].userID, result[0][0].gender, $('#txtComment').val()))
+                       .appendTo("#divcommentlist");
+
                     //send to socket to update to other members
-                    
+
+                    $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
+                    $('#txtComment').val("");
+                    $('#txtComment').focus();
+
                 });
                 request.fail(function(jqXHR, textStatus) {
                     alert( "Request failed: " + textStatus );
                 });
-
-                $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
-                $(this).val("");
-                $(this).focus();
             }
         });
 
@@ -339,6 +345,9 @@
     }
 
     function viewCommentList(obj, whyGuid){
+
+        gWhyID = whyGuid;
+
         if ($(obj).closest('.li-why').hasClass("selected-why")){
             $(obj).closest('.li-why').siblings().show('slow');
             $('.li-why .liFooter .footer-item-right > li > span').removeClass("li-active");
@@ -368,6 +377,7 @@
             $('#divlist').hide('slow');
 
             //Call ajax to load comment list from database
+            //TODO ...
         }
     }
 

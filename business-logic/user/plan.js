@@ -284,7 +284,7 @@ function addWhy(planID, rootcauseID, why, username){
     return deferred.promise;
 }
 
-function addRootCauseWhyComment(planID, rootcauseID, whyID, comment, userID, username, gender){
+function addWhyComment(planID, rootcauseID, whyID, comment, userID, username, gender){
     var deferred = q.defer();
 
     var recGuid = uuid.v4();
@@ -320,4 +320,5 @@ module.exports = {
     , getPlanDetails: getPlanDetails
     , getRootcauseWhyList: getRootcauseWhyList
     , addWhy: addWhy
+    , addWhyComment: addWhyComment
 };
