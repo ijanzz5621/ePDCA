@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+//var io = require("socket.io");
 
 //database
 var db = require('./lib/db');
@@ -108,9 +109,15 @@ function startServer() {
             process.exit(1)
         } else {
             //start the server
-            app.listen(app.get('port'), function () {
+            /*app.listen(app.get('port'), function () {
                 console.log("ePDCA running at port " + app.get('port') + "....");
-            });
+            });*/
+            var io = require("socket.io").listen(app.listen(app.get('port'), function () {
+                console.log("ePDCA running at port " + app.get('port') + "....");
+            }));
+
+            //Socket IO
+            require('./lib/socket')(io);
         }
     })
 }

@@ -1,6 +1,6 @@
 var gDomainName = "http://localhost:8080";
 
-function callAjax(url, data){
+function callAjax(url, data) {
 
     var result = {};
 
@@ -18,17 +18,30 @@ function callAjax(url, data){
     return result;
 }
 
-(function(){    
+function callAjax2(url, data) {
+    return $.ajax({
+        type: 'POST',
+        async: true,
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        url: gDomainName + url
+        /*, success: function (data) {
+            result = data;
+        }*/
+    });
+}
+
+(function () {
 });
 
-$(document).ready(function(){   
+$(document).ready(function () {
 });
 
-$(document).ajaxStart(function(){
+$(document).ajaxStart(function () {
     $('#img-ajax-loading').show('slow');
 });
 
-$(document).ajaxStop(function(){
+$(document).ajaxStop(function () {
     $('#img-ajax-loading').hide('slow');
 });
 
@@ -49,7 +62,7 @@ function getUrlParameter(name) {
     
 });*/
 
-$('input').on("keypress", function(e) {
+$('input').on("keypress", function (e) {
     /* ENTER PRESSED*/
     if (e.keyCode == 13) {
         /* FOCUS ELEMENT */

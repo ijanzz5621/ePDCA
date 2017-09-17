@@ -136,18 +136,22 @@
     function loadPlanlist() {
         //Call ajax and get all plan list
         var data = {};
-        var result = callAjax('/api/plan-get-list', data);
-
-        $.each(result, function(key, val){
-            console.log(val);
-            $('#ulItemList').append(liPlanList(val.RecGuid, val.CreatedBy, val.Gender, val.ProbStatement, val.CreatedOn, val.CurrentStatus));
+        var request = callAjax2('/api/plan-get-list', data);
+        request.done(function(result){
+            $.each(result, function(key, val){
+                $('#ulItemList').append(liPlanList(val.RecGuid, val.CreatedBy, val.Gender, val.ProbStatement, val.CreatedOn, val.CurrentStatus));
+            });
         });
+        request.fail(function(jqXHR, textStatus) {
+            alert( "Request failed: " + textStatus );
+        });
+
     };
 
     function fnViewRootCause(planGuid) {
         //alert('View root cause for ' + planGuid);
-        var data = {};
-        var result = callAjax('/api/team-get-user', data);
+        //var data = {};
+        //var result = callAjax('/api/team-get-user', data);
 
         //$('#modal-plan-root-cause').modal();
         location.href = "/user/plan-rootcause?planID="+planGuid;

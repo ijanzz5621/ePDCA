@@ -183,19 +183,29 @@
     $(document).ready(function(){
 
         //load data and append list 
-        var data = { planID: _planID };
-        var planDetails = callAjax('/api/plan-get-plandetails', data);
-        $('#probstate').html(planDetails[0].ProbStatement)
-        var rootCauseListResult = callAjax('/api/plan-get-rootcause', data);
-
-        $.each(rootCauseListResult, function(key, val){
-            $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, 15))
-            .delay(100)
-            .appendTo('#list')
-            .hide()
-            .slideDown('slow');
+        var data = { planID: _planID }; 
+        var request = callAjax2('/api/plan-get-plandetails', data);
+        request.done(function(result){
+            $('#probstate').html(result[0].ProbStatement)
         });
-        
+        request.fail(function(jqXHR, textStatus) {
+            alert( "Request failed: " + textStatus );
+        });
+
+        var request2 = callAjax2('/api/plan-get-rootcause', data);
+        request2.done(function(result){
+            $.each(result, function(key, val){
+                $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, 15))
+                .delay(100)
+                .appendTo('#list')
+                .hide()
+                .slideDown('slow');
+            });
+        });
+        request2.fail(function(jqXHR, textStatus) {
+            alert( "Request failed: " + textStatus );
+        });
+
         $(document).on('click', '#add', function (e) {
             $('#modal-plan-new-rootcause').modal();
             //focus
