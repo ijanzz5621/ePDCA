@@ -284,6 +284,34 @@ function addWhy(planID, rootcauseID, why, username){
     return deferred.promise;
 }
 
+function addRootCauseWhyComment(planID, rootcauseID, whyID, comment, userID, username, gender){
+    var deferred = q.defer();
+
+    var recGuid = uuid.v4();
+    var sql = `call sp_UserPlan_AddWhyComment
+        ('` + recGuid + `', '` + planID + `', '` + rootcauseID + `', '` + whyID + `', '` + comment + `', '` + userID + `', '` + username + `', '` + gender + `');
+    `;
+
+    //console.log(sql);
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     saveNewPlan: saveNewPlan
     , getPlanList: getPlanList

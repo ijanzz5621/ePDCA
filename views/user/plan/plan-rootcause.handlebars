@@ -273,12 +273,22 @@
         $(document).on('keypress', '#txtComment', function(e){
             if (e.keyCode === 13 && $(this).val().trim() !== ""){
                 e.preventDefault();
-                //$('#divcommentlist').append("<li>" + $(this).val() + "</li>")
-                
-                $(liComment("Sharizan", "sharizan_81@yahoo.com", "test@test.com", "M", $(this).val()))
-                    .appendTo("#divcommentlist")
-                ;
-                
+
+                //call ajax to save to database
+                var data = {};
+                var request = callAjax2('/api/plan-rootcause-addwhycomment', data);
+                request.done(function(result){
+                    //append the comment to the list
+                    $(liComment("Sharizan", "sharizan_81@yahoo.com", "test@test.com", "M", $(this).val()))
+                        .appendTo("#divcommentlist")
+                    ;
+                    //send to socket to update to other members
+                    
+                });
+                request.fail(function(jqXHR, textStatus) {
+                    alert( "Request failed: " + textStatus );
+                });
+
                 $("#divcommentlist").animate({ scrollTop: $('#divcommentlist').prop("scrollHeight")}, 1000);
                 $(this).val("");
                 $(this).focus();
@@ -357,7 +367,7 @@
 
             $('#divlist').hide('slow');
 
-            //Call ajax to load comment list
+            //Call ajax to load comment list from database
         }
     }
 
