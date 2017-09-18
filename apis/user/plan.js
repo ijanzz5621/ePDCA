@@ -108,4 +108,16 @@ module.exports = function (app) {
             });
     });
 
+    app.post('/api/plan-update-actualrootcause', function (req, res) {
+        var blPlan = require('../../business-logic/user/plan');
+
+        var rootcauseID = req.body.rootcauseID;
+        var username = req.session.user;
+
+        blPlan.updateAsActualRootcause(rootcauseID, username)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
 };

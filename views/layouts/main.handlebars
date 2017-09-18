@@ -56,6 +56,7 @@
             <ul class="nav navbar-nav navbar-right" style="margin-right:5px;">
                 <li><a href="#about">Settings</a></li>
                 <li><a href="#about">Account Info</a></li>
+                <li><a href="/logout"><span class="fa fa-sign-out"></span> Logout</a></li>
                 <!--<li>
                     <a href="/logout" class="title" style="position:relative;">
                         <ul style="list-style:none;">
@@ -105,9 +106,9 @@
 
             //socket io
             var socket = io('ws://' + window.location.host, {transports: ['websocket']});
-            socket.on("Start_Chat",function(){
+            /*socket.on("Start_Chat",function(){
                 console.log("Ready!");
-            });
+            });*/
 
             var pgurl = window.location.pathname;
             $("#nav ul li a").each(function () {
@@ -124,7 +125,7 @@
                 $('.row-offcanvas').toggleClass('active');
             });
 
-            $.notify("{{result}}", { position: "bottom-center", className: "error" });
+            //$.notify("{{result}}", { position: "bottom-center", className: "error" });
 
         });
 

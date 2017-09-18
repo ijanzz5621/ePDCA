@@ -63,15 +63,30 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, c
 
 }; 
 
-function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, createdDate, currentStatus, whyCount){
+function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, createdDate, currentStatus, isActualRootcause, whyCount){
 
     var displayDate = new Date(createdDate).toLocaleString();
     
     var imagePath = "";
+    var actualRTStyle = "";
+    var onclick = "";
+    var title = "";
+
     if (gender === "F")
         imagePath = "/img/user-icon-lady-64.png";
     else 
         imagePath = "/img/user-icon-man-64.png";
+
+    if (isActualRootcause === "Y"){
+        actualRTStyle = "color:green;cursor:default;";
+        onclick = "";
+        title = "Actual root cause";
+    } else {
+        actualRTStyle = "";
+        onclick = "setAsActualRootcause(this, '" + rootcauseGuid + "')";
+        title = "Mark as actual root cause";
+    }
+        
 
     var liIsNew = "";
     if (currentStatus === "NEW")
@@ -121,7 +136,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
                 <ul class="footer-item-right">
                     <li><span class="fa fa-info-circle fa-2x" title="view root cause details"></span></li>
                     <li><span class="fa fa-question-circle fa-2x" title="view why list" onclick="viewWhyList(this, '` + rootcauseGuid + `');"></span></li>
-                    <li><span class="fa fa-flag fa-2x" title="mark as actual root cause" onclick="setAsActualRootcause(this, '` + rootcauseGuid + `')"></span></li>
+                    <li><span class="fa fa-flag fa-2x" title="` + title + `" onclick="` + onclick + `" style="` + actualRTStyle + `"></span></li>
                 </ul>
             </div>
 

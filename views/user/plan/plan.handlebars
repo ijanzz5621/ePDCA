@@ -5,13 +5,19 @@
     <div id="divContentHeader" style="">
         <div style="margin-top:15px; margin-bottom:15px;">
 
-            <div style="display:inline-block">
-                <h3 style="margin:0; padding:0; margin-left:15px;">My Plan</h3>
-            </div>
+            <ul style="list-style:none;">
+                <li style="display:inline-block">
+                    <div>
+                        <h3 style="margin:0; padding:0; margin-left:15px;">Plan List</h3>
+                    </div>
+                </li>
+                <li style="display:inline-block">
+                    <div style="margin:0 auto;">
+                        <img id="imgAdd" title="Create new plan" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
+                    </div>
+                </li>
+            </ul>
 
-            <div style="display:inline-block">
-                <img id="imgAdd" title="Create new plan" src="/img/add-icon.png" width="25px" style="cursor: pointer;" />
-            </div>
         </div>
     </div>
 
@@ -24,36 +30,10 @@
 
     <div id="divRightPanel" style="height:100vh; width:30vw; background:#fff; position:fixed; top:0; right:0;z-index:3; margin-top:65px;">
 
-        <div id="divItemDetails" style="margin-bottom:25px;">
+        <div id="divFilter" style="margin-bottom:25px;">
 
             <div>
-                <h3 style="margin:0 !important; padding:0 !important;">Details</h3>
-            </div>
-
-            <div class="div-detail-plan-master" style="margin-top:15px; margin-right:15px;">
-                <span id="div-details-probstat-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
-                    Problem Statement:
-                </span>
-                <br/>
-                <span id="div-details-probstat">
-                    Low yield for product A. This has happened few weeks ago due to some of the operators do not follows the standard provided.
-                </span>
-                <br/><br/>
-                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
-                    Risk Level:
-                </span>
-                <br/>
-                <span id="div-details-risklevel">
-                    HIGH
-                </span>
-                <br/><br/>
-                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
-                    Financial Impact:
-                </span>
-                <br/>
-                <span id="div-details-risklevel">
-                    RM 1,000,000
-                </span>
+                <h3 style="margin:0 !important; padding:0 !important;">Filter</h3>
             </div>
 
         </div>
@@ -64,53 +44,27 @@
         <div id="divConversation">
 
             <div>
-                <h3 style="margin:0 !important; padding:0 !important;">Conversation</h3>
+                <h3 style="margin:0 !important; padding:0 !important;">Details</h3>
             </div>
 
-            <div id="divConversationDetails">
-
-                <div class="chat-line" style="text-align:right;">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Sharizan</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Hi Diana, Please help to review this plan details. Thanks
-                    </div>
-                </div>
-
-
-
-                <div class="chat-line">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-lady-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Diana</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Hi Izan, I have review it and you may proceed! :)
-                    </div>
-                </div>
-
-                <div class="chat-line">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Azhar</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Agree with Diana.
-                    </div>
-                </div>
-
-                <div class="chat-line" style="text-align:right;">
-                    <div class="chat-icon" style="display:inline-block">
-                        <img src="/img/user-icon-man-64.png" style="width:48px; padding:5px; display:inline-block" />
-                        <span style="display:inline-block">Sharizan</span>
-                    </div>
-                    <div class="chat-content" style="display:block">
-                        Thanks guys!
-                    </div>
-                </div>
-
+            <div class="div-detail-plan-master" style="margin-top:15px; margin-right:15px;">
+                <span id="div-details-probstat-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-probstat">
+                </span>
+                <br/><br/>
+                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-risklevel">
+                </span>
+                <br/><br/>
+                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-risklevel">
+                </span>
             </div>
 
         </div>

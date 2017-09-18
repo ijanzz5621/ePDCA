@@ -129,7 +129,7 @@
         var request2 = callAjax2('/api/plan-get-rootcause', data);
         request2.done(function (result) {
             $.each(result, function (key, val) {
-                $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, 15))
+                $(liPlanRootCauseList(val.RecGuid, val.Username, val.Gender, val.Title, val.CreatedOn, val.CurrentStatus, val.IsActualRootcause, 15))
                     .delay(100)
                     .appendTo('#list')
                     .hide()
@@ -335,10 +335,29 @@
             type: 'orange',
             buttons: {
                 confirm: function () {
-                    $.alert('Confirmed!');
+
+                    //update database set flag to Y
+                    var data = {rootcauseID: rootcauseID};
+                    var request = callAjax2('/api/plan-update-actualrootcause', data);
+                    request.done(function (result) {
+                        $.alert({
+                            title: 'Actual root cause',
+                            content: 'The root cause successfully set to Actual root cause!',
+                        });
+                        //change the flag color to green and pointer to normal
+                        $(obj).attr('style','color:green;cursor:default;');
+                        $(obj).attr('onclick','');
+                        $(obj).attr('title','Actual root cause');
+                    });
+                    request.fail(function (jqXHR, textStatus) {
+                        $.alert({
+                            title: 'Error: Actual root cause',
+                            content: "Request failed: " + textStatus,
+                        });
+                    });
                 },
                 cancel: function () {
-                    $.alert('Canceled!');
+                    //$.alert('Canceled!');
                 }
             }
         });

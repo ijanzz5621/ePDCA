@@ -33,7 +33,7 @@ module.exports = function (app, auth) {
                 var passwordHash = encryptor.generateHashCode(passwordOri);
                 //console.log("hash password= " + passwordHash);
                 commonController
-                    .executeQuery("update admin_user set Password = '" + passwordHash + "' where Email = '" + req.body.email + "'")
+                    .executeQuery("update admin_user set Password = '" + passwordHash + "', LastLogin = null where Email = '" + req.body.email + "'")
                     .then(function (result) {
 
                         //console.log(result);

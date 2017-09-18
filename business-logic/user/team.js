@@ -11,12 +11,16 @@ function getTeamMembers(userEmailId) {
         "union all " +
         "select *, 'COLLEAGUE' as GroupName from admin_user where SupervisorId =  " +
         "(select SupervisorId from admin_user where Email = '" + userEmailId + "') " +
-        "and Email <> '" + userEmailId + "' and SupervisorId <> '" + userEmailId + "' " +
+        //"and Email <> '" + userEmailId + "' and SupervisorId <> '" + userEmailId + "' " +
         "and Email <> ( " +
         "select SupervisorId from admin_user where Email = '" + userEmailId + "') " +
+        "and DepartmentCode = (select DepartmentCode from admin_user where Email = '" + userEmailId + "') " +
+        "and CompanyCode = (select CompanyCode from admin_user where Email = '" + userEmailId + "')" +
         "union all " +
         "select *, 'SUBORDINATES' as GroupName from admin_user where SupervisorId = '" + userEmailId + "' " +
         ";"
+
+    //console.log(sql);
 
     connectionManager.getConnection()
         .then(function (connection) {

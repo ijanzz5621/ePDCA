@@ -339,6 +339,31 @@ function getRootcauseWhyComments(planID, rootcauseID, whyID, username, userID, g
     return deferred.promise;
 }
 
+function updateAsActualRootcause(rootcauseID, username){
+    var deferred = q.defer();
+    var sql = `update user_plan_rootcause set IsActualRootcause = 'Y', UpdatedBy = '` + username + `',
+    UpdatedOn = now() where RecGuid = '` + rootcauseID + `' `;
+
+    console.log(sql);
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     saveNewPlan: saveNewPlan
     , getPlanList: getPlanList
@@ -349,4 +374,5 @@ module.exports = {
     , addWhy: addWhy
     , addWhyComment: addWhyComment
     , getRootcauseWhyComments: getRootcauseWhyComments
+    , updateAsActualRootcause: updateAsActualRootcause
 };
