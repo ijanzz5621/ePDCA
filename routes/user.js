@@ -39,12 +39,16 @@ module.exports = function (app, auth) {
     //plan root cause
     app.get('/user/plan-rootcause', auth, function (req, res) {
         res.render('user/plan/plan-rootcause');
-    })
+    });
 
     //Do
     app.get('/user/do', auth, function (req, res) {
-        res.render('user/do/do', { result: "Record save successfully!" });
-    })
+        res.render('user/do/do', { });
+    });
+    app.get('/user/do-action', auth, function (req, res) {
+        res.render('user/do/do-action', { });
+    });
+
 
     app.get('/user/create', auth, function (req, res) {
         res.render('user/create/create');

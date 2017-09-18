@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="/css/do/do.css" />
+
+<div class="" style="">
+
+    <div id="divContentHeader" style="" class="row">
+        <div class="col-md-12" style="margin-top:15px; margin-bottom:15px;">
+
+            <ul style="list-style:none;">
+                <li style="display:inline-block">
+                    <div>
+                        <h3 style="margin:0; padding:0; margin-left:15px;">Do - Root Cause Action </h3>
+                    </div>
+                </li>
+                <li style="display:inline-block">
+                    <div style="margin:0 auto;">
+                        <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row" style="">
+        <div class="col-md-12">
+            <div id="divProbStatement">
+                Problem Statement
+                <br/>
+                <span id="spanProbStatement"></span>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div id="divRootCause">
+        Root Cause
+        <br/>
+        <span id="spanRootcause"></span>
+    </div>
+
+    <div id="divContent" style="margin-top:80px; margin-right:250px; width:45vw;z-index:0;">
+        <ul id="ulItemList">
+        </ul>
+    </div>
+
+</div>
+
+<script src="/js/do/li-builder.js"></script>
+<script>
+
+    var gRootcauseID = getUrlParameter("rootcauseID");
+
+    $(document).ready(function(){
+
+        //Load rootcause detail from root cause id
+        var data = {rootcauseID: gRootcauseID};
+        var request = callAjax2('/api/do-get-actualrootcausedetails', data);
+        request.done(function (result) {
+            $('#spanProbStatement').html(result[0].ProbStatement);
+            $('#spanRootcause').html(result[0].Title);
+
+        });
+        request.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
+        });
+
+    });
+
+
+
+</script>

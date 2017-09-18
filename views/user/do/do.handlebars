@@ -9,9 +9,6 @@
                 <h3 style="margin:0; padding:0; margin-left:15px;">Do - Actual Root Cause</h3>
             </div>
 
-            <!--<div style="display:inline-block">
-                <img id="imgAdd" title="Create new plan" src="/img/add-icon.png" width="25px" style="cursor: pointer;" />
-            </div>-->
         </div>
     </div>
 
@@ -38,3 +35,36 @@
     </div>
 
 </div>
+
+<script src="/js/do/li-builder.js"></script>
+<script>
+
+    $(document).ready(function(){
+
+        //load data and append list 
+        var data = {};
+        var request = callAjax2('/api/do-get-actualrootcauselist', data);
+        request.done(function (result) {
+            //$.alert({
+            //    title: 'Test alert',
+            //    content: JSON.stringify(result),
+            //});
+            $.each(result, function (key, val) {
+                $(liActualRootcauseList(val.RecGuid, val.Username, val.Gender, val.ProbStatement, val.Title, val.CreatedOn, val.CurrentStatus, 15))
+                    .delay(100)
+                    .appendTo('#ulItemList')
+                    .hide()
+                    .slideDown('slow');
+            });
+        });
+        request.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
+        });
+
+    });
+
+    function viewActionList(obj, rootcauseID){
+        location.href = "/user/do-action?rootcauseID=" + rootcauseID;
+    }
+
+</script>

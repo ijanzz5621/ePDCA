@@ -137,6 +137,8 @@ function getPlanList(loginUser, data){
         "where a.CreatedBy = '" + loginUser + "' " +
         "or b.UserId = '" + loginUser + "';";
 
+    //console.log(sql);
+
     connectionManager.getConnection()
         .then(function (connection) {
             connection.query(sql, function (err, results) {

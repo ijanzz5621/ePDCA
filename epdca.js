@@ -96,6 +96,7 @@ require('./apis/admin/department')(app);
 require('./apis/admin/user')(app);
 require('./apis/user/team')(app);
 require('./apis/user/plan')(app);
+require('./apis/user/do')(app);
 
 //******************* */
 //INIT and START server
