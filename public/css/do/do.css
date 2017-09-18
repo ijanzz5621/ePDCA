@@ -111,10 +111,13 @@
     }
 
 #divProbStatement{
-    border:1px solid #c3c1c1;
+    border:1px solid #f0f0f0;
     margin: 15px;
     padding: 15px;
     border-radius: 6px;
+    background: #fcfcfc;
+    box-shadow: 3px 3px 1px #f0f0f0;
+    margin-top:0;
 }
 
 #spanProbStatement{
@@ -123,8 +126,12 @@
 }
 
 #divRootCause{
-    margin-top:15px;
-    
+    border:1px solid #f0f0f0;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #fcfcfc;
+    box-shadow: 3px 3px 1px #f0f0f0;
 }
 
 #spanRootcause{
