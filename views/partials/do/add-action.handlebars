@@ -1,0 +1,81 @@
+<form id="formDoNewAction" class="msform" method="post" action="" style="text-align:left;">
+
+    <div id="modal-do-new-action" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 45px !important;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Action</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="modal-do-newaction-txtActionName">Action Name</label>
+                            <input type="text" id="modal-do-newaction-txtActionName" name="modal-do-newaction-txtActionName" maxlength="45" required="required"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="modal-do-newaction-ddlAssignTo">Assign To</label>
+                            <div id="modal-do-newaction-ddlAssignTo" style="width:100%;"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-button-cancel" data-dismiss="modal">Close</button>
+                    <input type="submit" id="modal-do-newaction-btnSubmit" class="action-button" value="Submit" style="width:80px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    var ddData = [
+        {
+            text: "Facebook",
+            value: 1,
+            selected: false,
+            description: "Description with Facebook",
+            imageSrc: "http://i.imgur.com/XkuTj3B.png"
+        },
+        {
+            text: "Twitter",
+            value: 2,
+            selected: false,
+            description: "Description with Twitter",
+            imageSrc: "http://i.imgur.com/8ScLNnk.png"
+        },
+        {
+            text: "LinkedIn",
+            value: 3,
+            selected: true,
+            description: "Description with LinkedIn",
+            imageSrc: "http://i.imgur.com/aDNdibj.png"
+        },
+        {
+            text: "Foursquare",
+            value: 4,
+            selected: false,
+            description: "Description with Foursquare",
+            imageSrc: "http://i.imgur.com/kFAk2DX.png"
+        }
+    ];
+
+    $('#modal-do-newaction-ddlAssignTo').ddslick({
+        data: ddData,
+        width: 300,
+        selectText: "Select your preferred social network",
+        imagePosition: "left",
+        onSelected: function (selectedData) {
+            //callback function: do something with selectedData;
+            //alert('You have selected ' + selectedData.value);
+        }
+    });
+
+</script>

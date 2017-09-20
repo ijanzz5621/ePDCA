@@ -52,6 +52,8 @@
 
 </div>
 
+{{> do/add-action}}
+
 <script src="/js/do/li-builder.js"></script>
 <script>
 
@@ -69,6 +71,10 @@
         });
         request.fail(function (jqXHR, textStatus) {
             alert("Request failed: " + textStatus);
+        });
+
+        $(document).on('click', '#imgAdd', function(e){
+            $('#modal-do-new-action').modal();
         });
 
     });
