@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/do/do.css" />
 <link rel="stylesheet" href="/css/checkbox.css" />
+<link rel="stylesheet" href="/css/dd.css" />
 
 <div class="" style="">
 
@@ -85,17 +86,19 @@
     <div class="row">
         <div class="col-md-12">
 
-            <ul style="list-style:none;">
-                <li style="display:inline-block">
-                    <div style="margin:0 auto;">
-                        <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
-                    </div>
-                </li>
-            </ul>
-
             <div class="panel panel-info" style="min-height:400px;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Action List</h3>
+                    <ul style="list-style:none; margin-bottom:0;">
+                        <li style="display:inline-block">
+                            <h3 class="panel-title">Action List</h3>
+                        </li>
+                        <li style="display:inline-block">
+                            <div style="margin:0 auto;">
+                                <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
+                            </div>
+                        </li>
+                    </ul>
+                    
                 </div>
                 <div class="panel-body">
                     <ul id="ulItemList">
@@ -110,6 +113,7 @@
 
 {{> do/add-action}}
 
+<script src="/js/jquery.dd.js"></script>
 <script src="/js/do/li-builder.js"></script>
 <script>
 
@@ -132,6 +136,12 @@
         $(document).on('click', '#imgAdd', function(e){
             $('#modal-do-new-action').modal();
         });
+
+        try {
+            $("body select").msDropDown();
+        } catch(e) {
+            alert(e.message);
+        }
 
     });
 

@@ -11,7 +11,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="modal-do-newaction-txtActionName">Action Name</label>
+                            <label for="modal-do-newaction-txtActionName">Action</label>
                             <input type="text" id="modal-do-newaction-txtActionName" name="modal-do-newaction-txtActionName" maxlength="45" required="required"
                             />
                         </div>
@@ -20,7 +20,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="modal-do-newaction-ddlAssignTo">Assign To</label>
-                            
+                             <select style="width:100%; height:100%;" name="ddl-user-list" id="ddl-user-list">
+                                <option value="" selected="selected" data-description="Choose person to assign the action">-- Please Select --</option>
+                                <option value="00001" data-image="/img/user-icon-man-32.png">Sharizan</option>
+                                <option value="00002" data-image="/img/user-icon-lady-32.png">Diana</option>
+                            </select>
                         </div>
                     </div>
 
