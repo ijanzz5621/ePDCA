@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/do/do.css" />
+<link rel="stylesheet" href="/css/checkbox.css" />
 
 <div class="" style="">
 
@@ -11,6 +12,80 @@
                         <h3 style="margin:0; padding:0; margin-left:15px;">Do - Root Cause Action </h3>
                     </div>
                 </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Problem Statement</h3>
+                </div>
+                <div class="panel-body">
+                    <span id="spanProbStatement"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="panel panel-info" style="min-height:110px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Root Cause</h3>
+                </div>
+                <div class="panel-body">
+                    <span id="spanRootcause"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-5">
+
+            <div class="panel panel-info" style="min-height:110px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Key Factor</h3>
+                </div>
+                <div class="panel-body">
+                    <ul style="list-style:none;">
+                        <li style="display:inline-block;">
+                            <input type="checkbox" id="cbMan" />
+                            <label for="cbMan">Man</label>
+                        </li>
+                        <li style="display:inline-block;">
+                            <input type="checkbox" id="cbMachine" />
+                            <label for="cbMachine">Machine</label>
+                        </li>
+                        <li style="display:inline-block;">
+                            <input type="checkbox" id="cbMethod" />
+                            <label for="cbMethod">Method</label>
+                        </li>
+                        <li style="display:inline-block;">
+                            <input type="checkbox" id="cbMaterial" />
+                            <label for="cbMaterial">Material</label>
+                        </li>
+                        <li style="display:inline-block;">
+                            <input type="checkbox" id="cbEnvironment" />
+                            <label for="cbEnvironment">Environment</label>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <ul style="list-style:none;">
                 <li style="display:inline-block">
                     <div style="margin:0 auto;">
                         <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
@@ -18,35 +93,16 @@
                 </li>
             </ul>
 
-        </div>
-    </div>
-
-    <div class="row" style="">
-        <div class="col-md-12">
-            <div id="divProbStatement">
-                Problem Statement
-                <br/>
-                <span id="spanProbStatement"></span>
+            <div class="panel panel-info" style="min-height:400px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Action List</h3>
+                </div>
+                <div class="panel-body">
+                    <ul id="ulItemList">
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row" style="">
-        <div class="col-md-12">
-            <div id="divRootCause">
-                Root Cause
-                <br/>
-                <span id="spanRootcause"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" style="">
-        <div class="col-md-12">
-            <div id="divContent" style="margin-top:80px; margin-right:250px; width:45vw;z-index:0;">
-                <ul id="ulItemList">
-                </ul>
-            </div>
         </div>
     </div>
 
