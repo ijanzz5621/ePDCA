@@ -37,6 +37,10 @@
 		cursor: move;
 	}
 
+	.userList h4 {
+		font-size: 14px;
+	}
+
 	#teamLead {
 		/*float: right;*/
 		width: 96px;
@@ -51,6 +55,7 @@
 	#teamLead h4 {
 		line-height: 16px;
 		margin: 0 0 0.4em;
+		font-size: 14px;
 	}
 
 	#teamLead h4 .ui-icon {
@@ -75,6 +80,7 @@
 	#teamMember h4 {
 		line-height: 16px;
 		margin: 0 0 0.4em;
+		font-size: 14px;
 	}
 
 	#teamMember h4 .ui-icon {
@@ -125,33 +131,21 @@
 				<div class="col-md-5">
 
 					<ul id="userList" class="userList ui-helper-reset ui-helper-clearfix drop-target">
-						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-userList">userList</span> Employee List</h4>
-						<!--<li class="ui-widget-content ui-corner-tr" value="00001-azhar">
-								<h5 class="ui-widget-header">Kassim</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-							</li>
-							<li class="ui-widget-content ui-corner-tr" value="00002-diana">
-								<h5 class="ui-widget-header">Abu</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-							</li>
-							<li class="ui-widget-content ui-corner-tr" value="00003-sharizan">
-								<h5 class="ui-widget-header">Aminah</h5>
-								<img src="/img/user-icon-128.png" alt="user image" width="96" height="72">
-							</li>-->
+						<h4>Employee List</h4>
 					</ul>
 
 				</div>
 				<div class="col-md-2">
 
 					<div id="teamLead" class="ui-widget-content ui-state-default drop-target">
-						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamLead">teamLead</span> Team Lead</h4>
+						<h4>Team Lead</h4>
 					</div>
 
 				</div>
 				<div class="col-md-5">
 
 					<div id="teamMember" class="ui-widget-content ui-state-default drop-target">
-						<h4 class="ui-widget-header"><span class="ui-icon ui-icon-teamMember">teamLead</span> Team Members</h4>
+						<h4>Team Members</h4>
 					</div>
 
 				</div>
@@ -243,9 +237,9 @@
 				if (val.Gender === 'F')
 					iconName = "user-icon-lady-256.png";
 
-				var li = "<li class='ui-widget-content ui-corner-tr' value='" + val.Email + "-" + val.Username + "'>" +
+				var li = "<li class='' value='" + val.Email + "-" + val.Username + "'>" +
 					"<img src='/img/" + iconName + "' alt='user image' style='width:64px;'>" +
-					"<h5 class='ui-widget-header'>" + val.Username + "</h5>" +
+					"<h5 class='	'>" + val.Username + "</h5>" +
 					"</li>";
 				$('#userList').append(li);
 			});

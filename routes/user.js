@@ -46,7 +46,22 @@ module.exports = function (app, auth) {
         res.render('user/do/do', { });
     });
     app.get('/user/do-action', auth, function (req, res) {
-        res.render('user/do/do-action', { });
+
+        //get team member list to bind to add new action
+        var blTeam = require('../business-logic/user/team');
+        try {
+            blTeam.getTeamMembers(req.session.user)
+                .then(function(result){
+                    //console.log(result);
+                    var data = result[0];
+                    res.render('user/do/do-action', { team: result });
+                });
+
+        } catch (error) {
+            res.render('user/do/do-action', { team: [] });
+        }
+
+        
     });
 
 

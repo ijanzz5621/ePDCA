@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="/css/do/do.css" />
 <link rel="stylesheet" href="/css/checkbox.css" />
-<link rel="stylesheet" href="/css/dd.css" />
 
 <div class="" style="">
 
@@ -76,7 +75,7 @@
                             <label for="cbEnvironment">Environment</label>
                         </li>
                     </ul>
-                    
+
                 </div>
             </div>
 
@@ -94,11 +93,12 @@
                         </li>
                         <li style="display:inline-block">
                             <div style="margin:0 auto;">
-                                <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
+                                <img id="imgAdd" title="Create new action" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;"
+                                />
                             </div>
                         </li>
                     </ul>
-                    
+
                 </div>
                 <div class="panel-body">
                     <ul id="ulItemList">
@@ -113,39 +113,45 @@
 
 {{> do/add-action}}
 
-<script src="/js/jquery.dd.js"></script>
 <script src="/js/do/li-builder.js"></script>
 <script>
-
     var gRootcauseID = getUrlParameter("rootcauseID");
 
-    $(document).ready(function(){
-
-        //Load rootcause detail from root cause id
-        var data = {rootcauseID: gRootcauseID};
-        var request = callAjax2('/api/do-get-actualrootcausedetails', data);
-        request.done(function (result) {
-            $('#spanProbStatement').html(result[0].ProbStatement);
-            $('#spanRootcause').html(result[0].Title);
-
-        });
-        request.fail(function (jqXHR, textStatus) {
-            alert("Request failed: " + textStatus);
-        });
-
-        $(document).on('click', '#imgAdd', function(e){
-            $('#modal-do-new-action').modal();
-        });
+    $(document).ready(function () {
 
         try {
-            $("body select").msDropDown();
-            $( "#modal-do-newaction-txtDueDate" ).datepicker();
-        } catch(e) {
+
+            //Load rootcause detail from root cause id
+            var data = { rootcauseID: gRootcauseID };
+            var request = callAjax2('/api/do-get-actualrootcausedetails', data);
+            request.done(function (result) {
+                $('#spanProbStatement').html(result[0].ProbStatement);
+                $('#spanRootcause').html(result[0].Title);
+
+            });
+            request.fail(function (jqXHR, textStatus) {
+                alert("Request failed: " + textStatus);
+            });
+
+            $(document).on('click', '#imgAdd', function (e) {
+                var data = {};
+                var request = callAjax2('/api/team-get-user', data);
+                request.done(function (result) {
+                    $.each(result, function (key, val) {
+                        $('#modal-do-newaction-ddlAssignTo').append('<option value="' + val.Email + '" data-image="/img/user-icon-man-32.png">' + val.Username + '</option>');        
+                    });
+                });
+                request.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
+                });
+                $('#modal-do-new-action').modal();
+            });
+
+            $("#modal-do-newaction-txtDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
+        } catch (e) {
             alert(e.message);
         }
 
     });
-
-
 
 </script>

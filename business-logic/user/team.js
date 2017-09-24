@@ -18,7 +18,7 @@ function getTeamMembers(userEmailId) {
         "and CompanyCode = (select CompanyCode from admin_user where Email = '" + userEmailId + "')" +
         "union all " +
         "select *, 'SUBORDINATES' as GroupName from admin_user where SupervisorId = '" + userEmailId + "' " +
-        ";"
+        "order by Username ;"
 
     //console.log(sql);
 
