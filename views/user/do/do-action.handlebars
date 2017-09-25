@@ -145,6 +145,35 @@
                     alert("Request failed: " + textStatus);
                 });
                 $('#modal-do-new-action').modal();
+                setTimeout(function(){
+                    $('#modal-do-newaction-txtActionName').focus();
+                }, 500);
+            });
+
+            $(document).on('click', '#modal-do-newaction-btnSubmit', function(e){
+
+                var data = { 
+                    rootcauseID: gRootcauseID 
+                    , actionName: $('#modal-do-newaction-txtActionName').val()
+                    , assignee: $('#modal-do-newaction-ddlAssignTo').val()
+                    , dueDate: $('#modal-do-newaction-txtDueDate').val()
+                };
+                var request = callAjax2('/api/do-save-action', data);
+                request.done(function (result) {
+                    
+                    $('#modal-do-new-action').modal('toggle');
+                    //Append the new action to the action list
+                    //TODO
+
+                    //Send email to team members as notification
+                    //TODO
+
+                });
+                request.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
+                });
+
+
             });
 
             $("#modal-do-newaction-txtDueDate").datepicker({ dateFormat: 'yy-mm-dd' });

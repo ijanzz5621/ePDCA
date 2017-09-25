@@ -64,7 +64,34 @@ function getDoActualRootcauseDetails(rootcauseID){
     return deferred.promise;
 }
 
+function saveDoAction(rootcauseID, actionName, assignee, dueDate, createdBy){
+    var deferred = q.defer();
+    var actionGuid = uuid.v4();
+
+    var sql = `insert into user_do_action (RecGuid, RootcauseGuid, ActionName, Assignee, DueDate, Status, CreatedBy, CreatedOn)
+        values ('` + actionGuid + `', '` + rootcauseID + `', '` + actionName + `', '` + assignee + `', '` + dueDate + `', 'OPEN', '` + createdBy + `', now());
+    `;
+
+    connectionManager.getConnection()
+        .then(function (connection) {
+            connection.query(sql, function (err, results) {
+                if (err) {
+                    console.error(err);
+                    deferred.reject(error);
+                }
+                deferred.resolve(results);
+            })
+        })
+        .fail(function (err) {
+            console.error(JSON.stringify(err));
+            deferred.reject(err);
+        });
+
+    return deferred.promise;
+}
+
 module.exports = {
     getDoActualRootcauseList: getDoActualRootcauseList
     , getDoActualRootcauseDetails: getDoActualRootcauseDetails
+    , saveDoAction: saveDoAction
 };
