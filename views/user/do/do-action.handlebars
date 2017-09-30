@@ -101,7 +101,7 @@
 
                 </div>
                 <div class="panel-body">
-                    <ul id="ulDoActionList">
+                    <ul id="ulItemList">
                     </ul>
                 </div>
             </div>
@@ -137,34 +137,35 @@
                 var data = {};
                 var request = callAjax2('/api/team-get-user', data);
                 request.done(function (result) {
+                    $('#modal-do-newaction-ddlAssignTo option').remove();
                     $.each(result, function (key, val) {
-                        $('#modal-do-newaction-ddlAssignTo').append('<option value="' + val.Email + '" data-image="/img/user-icon-man-32.png">' + val.Username + '</option>');        
+                        $('#modal-do-newaction-ddlAssignTo').append('<option value="' + val.Email + '" data-image="/img/user-icon-man-32.png">' + val.Username + '</option>');
                     });
                 });
                 request.fail(function (jqXHR, textStatus) {
                     alert("Request failed: " + textStatus);
                 });
                 $('#modal-do-new-action').modal();
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#modal-do-newaction-txtActionName').focus();
                 }, 500);
             });
 
-            $(document).on('click', '#modal-do-newaction-btnSubmit', function(e){
+            $(document).on('click', '#modal-do-newaction-btnSubmit', function (e) {
 
-                var data = { 
-                    rootcauseID: gRootcauseID 
+                var data = {
+                    rootcauseID: gRootcauseID
                     , actionName: $('#modal-do-newaction-txtActionName').val()
                     , assignee: $('#modal-do-newaction-ddlAssignTo').val()
                     , dueDate: $('#modal-do-newaction-txtDueDate').val()
                 };
                 var request = callAjax2('/api/do-save-action', data);
                 request.done(function (result) {
-                    
+
                     $('#modal-do-new-action').modal('toggle');
                     //Append the new action to the action list
                     //TODO
-                    $('#ulItemList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
+                    $('#ulItemList').append(liDoActionList(result[0][0].ActionID, result[0][0].Username, result[0][0].Gender, result[0][0].ActionName, result[0][0].CreatedOn, result[0][0].Status));
 
                     //Send email to team members as notification
                     //TODO
@@ -179,17 +180,33 @@
 
             $("#modal-do-newaction-txtDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 
-            //Testing only
-            $('#ulDoActionList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
-            $('#ulDoActionList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
-            $('#ulDoActionList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
-            $('#ulDoActionList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
-            $('#ulDoActionList').append(liDoActionList("12345", "Sharizan", "M", "Check with vendor 111", "2017-09-25 22:00:00", "OPEN"));
-
+            loadActionList();
         } catch (e) {
             alert(e.message);
         }
 
     });
+
+    function loadActionList() {
+
+        var data = {
+            rootcauseID: gRootcauseID
+        };
+        var request = callAjax2('/api/do-get-rootcause-action', data);
+        request.done(function (result) {
+
+            $.each(result, function(key, val){
+                $('#ulItemList').append(liDoActionList(val.RecGuid, val.Username, val.Gender, val.ActionName, val.CreatedOn, val.Status));
+            });
+
+        });
+        request.fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
+        });
+    }
+
+    function removeAction(actionID){
+        $('#ulItemList').find("#" + actionID).remove();
+    }
 
 </script>

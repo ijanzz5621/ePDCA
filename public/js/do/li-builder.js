@@ -20,7 +20,7 @@ function liActualRootcauseList(rootcauseGuid, username, gender, probStatement, r
     if (currentStatus === "NEW")
         liIsNew = "<img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\">";
 
-    return `<li class="li-rootcause">
+    return `<li class="li-rootcause" style="min-height:160px;">
             <div class="liContent">
     
                 <div class="liHeader">
@@ -89,7 +89,7 @@ function liDoActionList(actionGuid, username, gender, actionName, createdDate, c
     if (currentStatus === "OPEN")
         liIsNew = "<img src=\"/img/new-icon.png\" style=\"width:60px; height:30px;\">";
 
-    return `<li class="li-rootcause" style="width:250px; display:inline-block;">
+    return `<li class="li-rootcause" style="width:350px; display:inline-block;" id="` + actionGuid + `">
             <div class="liContent">
     
                 <div class="liHeader">
@@ -114,20 +114,19 @@ function liDoActionList(actionGuid, username, gender, actionName, createdDate, c
                                                 <span class="caret"></span>
                                                 </button>
                             <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="#">Edit</a></li>
-                                <li><a tabindex="-1" href="#">Remove</a></li>
+                                <li><a tabindex="-1" href="#" onclick="editAction('` + actionGuid + `')">Edit</a></li>
+                                <li><a tabindex="-1" href="#" onclick="removeAction('` + actionGuid + `')">Remove</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="liContent" style="clear:both;">
                     <span class="liContent-title">` + actionName + `</span>
-                    <br/><br/>
-                    <span class="liContent-date">` + displayDate + `</span>
                 </div>
                 <div class="liFooter">
                     <ul class="footer-item-left">
-                        <li><span></span></li>
+                        <li><span class="liContent-status">` + currentStatus + `</span></li>
+                        <li><span class="liContent-date">` + displayDate + `</span></li>
                     </ul>
     
                     <ul class="footer-item-right">

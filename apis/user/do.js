@@ -36,4 +36,14 @@ module.exports = function (app) {
             });
     });
 
+    app.post('/api/do-get-rootcause-action', function (req, res) {
+        var blDo = require('../../business-logic/user/do');
+
+        var rootcauseID = req.body.rootcauseID;
+        blDo.getDoActualRootcauseActions(rootcauseID)
+            .then(function(result){
+                res.send(result);
+            });
+    });
+
 }
