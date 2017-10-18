@@ -31,7 +31,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, c
                 </ul>
             </div>
             <div style="float:right">
-                <div class="dropdown">
+                <!--<div class="dropdown">
                     <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="caret"></span>
                     </button>
@@ -39,7 +39,7 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, c
                         <li><a tabindex="-1" href="/user/plan-edit?planGuid=` + planGuid + `">Edit</a></li>
                         <li><a tabindex="-1" href="/user/plan-remove?planGuid=` + planGuid + `">Remove</a></li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="liContent" style="clear:both;">
@@ -55,8 +55,8 @@ function liPlanList(planGuid, username, gender, problemStatement, createdDate, c
 
             <ul class="footer-item-right">
                 <li><input type="button" value="Root Cause" class="btn btn-default" onclick="fnViewRootCause('` + planGuid + `')" /></li>
-                <li><input type="button" value="View Details" class="btn btn-default" onclick="fnViewDetails('` + planGuid + `')" /></li>
-                <li><input type="button" value="Conversation" class="btn btn-default" onclick="fnViewConversation('` + planGuid + `')" /></li>
+                <!--<li><input type="button" value="View Details" class="btn btn-default" onclick="fnViewDetails('` + planGuid + `')" /></li>
+                <li><input type="button" value="Conversation" class="btn btn-default" onclick="fnViewConversation('` + planGuid + `')" /></li>-->
             </ul>
         </div>
     </li>`;
@@ -112,7 +112,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
                     </ul>
                 </div>
                 <div style="float:right">
-                    <div class="dropdown">
+                    <!--<div class="dropdown">
                         <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
                                             <span class="caret"></span>
                                             </button>
@@ -120,7 +120,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
                             <li><a tabindex="-1" href="#">Edit</a></li>
                             <li><a tabindex="-1" href="#">Remove</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="liContent" style="clear:both;">
@@ -134,7 +134,7 @@ function liPlanRootCauseList(rootcauseGuid, username, gender, rootcauseTitle, cr
                 </ul>
 
                 <ul class="footer-item-right">
-                    <li><span class="fa fa-info-circle fa-2x" title="view root cause details"></span></li>
+                    <!--<li><span class="fa fa-info-circle fa-2x" title="view root cause details"></span></li>-->
                     <li><span class="fa fa-question-circle fa-2x" title="view why list" onclick="viewWhyList(this, '` + rootcauseGuid + `');"></span></li>
                     <li><span class="fa fa-flag fa-2x" title="` + title + `" onclick="` + onclick + `" style="` + actualRTStyle + `"></span></li>
                 </ul>
@@ -177,7 +177,7 @@ function liPlanRootCauseWhyList(whyGuid, username, gender, whyTitle, createdDate
                     </ul>
                 </div>
                 <div style="float:right">
-                    <div class="dropdown">
+                    <!--<div class="dropdown">
                         <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
                                             <span class="caret"></span>
                                             </button>
@@ -185,7 +185,7 @@ function liPlanRootCauseWhyList(whyGuid, username, gender, whyTitle, createdDate
                             <li><a tabindex="-1" href="#">Edit</a></li>
                             <li><a tabindex="-1" href="#">Remove</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="liContent" style="clear:both;">

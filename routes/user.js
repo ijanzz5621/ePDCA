@@ -65,8 +65,8 @@ module.exports = function (app, auth) {
     });
 
 
-    app.get('/user/create', auth, function (req, res) {
-        res.render('user/create/create');
+    app.get('/user/check', auth, function (req, res) {
+        res.render('user/check/check');
     });
     app.get('/user/action', auth, function (req, res) {
         res.render('user/action/action');

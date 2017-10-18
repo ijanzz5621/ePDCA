@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/do/do.css" />
 
-<h3>Do - Actual Root Cause</h3>
+<h3>Check - Action List</h3>
 
 <div class="">
 
@@ -25,35 +25,30 @@
 
 </div>
 
-<script src="/js/do/li-builder.js"></script>
+<script src="/js/check/li-builder.js"></script>
 <script>
 
     $(document).ready(function(){
 
-        //load data and append list 
-        var data = {};
-        var request = callAjax2('/api/do-get-actualrootcauselist', data);
+        loadActionList();
+
+    });
+
+    function loadActionList() {
+
+        var data = {
+        };
+        var request = callAjax2('/api/check-get-actionlist', data);
         request.done(function (result) {
-            //$.alert({
-            //    title: 'Test alert',
-            //    content: JSON.stringify(result),
-            //});
-            $.each(result, function (key, val) {
-                $(liActualRootcauseList(val.RecGuid, val.Username, val.Gender, val.ProbStatement, val.Title, val.CreatedOn, val.CurrentStatus, 15))
-                    .delay(100)
-                    .appendTo('#ulItemList')
-                    .hide()
-                    .slideDown('slow');
+
+            $.each(result, function(key, val){
+                $('#ulItemList').append(liCheckActionList(val.RecGuid, val.Username, val.Gender, val.ActionName, val.CreatedOn, val.Status));
             });
+
         });
         request.fail(function (jqXHR, textStatus) {
             alert("Request failed: " + textStatus);
         });
-
-    });
-
-    function viewActionList(obj, rootcauseID){
-        location.href = "/user/do-action?rootcauseID=" + rootcauseID;
     }
 
 </script>

@@ -64,12 +64,12 @@
 
 <div id="divwhylist" style="margin-top:15px;display:none;">
 
-    <div class="col-md-12" style="">
+    <div class="col-md-12" style=" display:none;">
         <img id="addwhy" src="/img/add-icon.png" width="35" title="add new why" style="cursor:pointer;" /> &nbsp;
         <img id="backwhy" src="/img/back.png" width="35" title="back to why list" style="cursor:pointer;display:none;" />
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12" style=" display:none;">
         <span style="font-size:18px;">Why List</span>
     </div>
 
@@ -83,6 +83,73 @@
         </div>
 
     </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            
+            <form class="msform" style="text-align:left; margin:0 auto;">
+
+                <label for="txtWhy1">Why 1</label>
+                <input type="text" id="txtWhy1" style="width:100%" />
+
+                <label for="txtEvident1">Evident 1</label>
+                <textarea rows="5" id="txtEvident1" name="txtEvident1" style="width:100%;" required="required"></textarea>
+
+                <label for="txtEvidentAttach1">Evident Attachment 1</label>
+                <input type="file" id="fupEvident1" style="width:100%" />
+
+                <hr style="border-style:solid; border:1px solid #000; margin-bottom:5px;"/>
+
+                <label for="txtWhy2">Why 2</label>
+                <input type="text" id="txtWhy2" style="width:100%" />
+
+                <label for="txtEvident2">Evident 2</label>
+                <textarea rows="5" id="txtEvident2" name="txtEvident2" style="width:100%;" required="required"></textarea>
+
+                <label for="txtEvidentAttach2">Evident Attachment 2</label>
+                <input type="file" id="fupEvident2" style="width:100%" />
+
+                <hr style="border-style:solid; border:1px solid #000; margin-bottom:5px;"/>
+
+                <label for="txtWhy3">Why 3</label>
+                <input type="text" id="txtWhy3" style="width:100%" />
+
+                <label for="txtEvident3">Evident 3</label>
+                <textarea rows="5" id="txtEvident3" name="txtEvident3" style="width:100%;" required="required"></textarea>
+
+                <label for="txtEvidentAttach3">Evident Attachment 3</label>
+                <input type="file" id="fupEvident3" style="width:100%" />
+
+                <hr style="border-style:solid; border:1px solid #000; margin-bottom:5px;"/>
+
+                <label for="txtWhy4">Why 4</label>
+                <input type="text" id="txtWhy4" style="width:100%" />
+
+                <label for="txtEvident4">Evident 4</label>
+                <textarea rows="5" id="txtEvident4" name="txtEvident4" style="width:100%;" required="required"></textarea>
+
+                <label for="txtEvidentAttach4">Evident Attachment 4</label>
+                <input type="file" id="fupEvident4" style="width:100%" />
+
+                <hr style="border-style:solid; border:1px solid #000; margin-bottom:5px;"/>
+
+                <label for="txtWhy5">Why 5</label>
+                <input type="text" id="txtWhy5" style="width:100%" />
+
+                <label for="txtEvident5">Evident 5</label>
+                <textarea rows="5" id="txtEvident5" name="txtEvident5" style="width:100%;" required="required"></textarea>
+
+                <label for="txtEvidentAttach5">Evident Attachment 5</label>
+                <input type="file" id="fupEvident5" style="width:100%" />
+
+            </form>
+            
+
+        </div>
+
+    </div>
+
 
     <div class="row">
         <div class="col-md-8 col-md-push-2">
@@ -267,7 +334,7 @@
             $('#divwhylist').show('slow');
 
             //Call ajax to load why list
-            var rootcauseData = { rootcauseId: rootcauseId };
+            /*var rootcauseData = { rootcauseId: rootcauseId };
             var whyList = callAjax('/api/plan-rootcause-get_whylist', rootcauseData);
 
             $.each(whyList, function (key, val) {
@@ -276,7 +343,7 @@
                     .appendTo('#whylist')
                     .hide()
                     .slideDown('slow');
-            });
+            });*/
         }
     }
 

@@ -40,7 +40,7 @@ function liActualRootcauseList(rootcauseGuid, username, gender, probStatement, r
                         </ul>
                     </div>
                     <div style="float:right">
-                        <div class="dropdown">
+                        <!--<div class="dropdown">
                             <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
                                                 <span class="caret"></span>
                                                 </button>
@@ -48,7 +48,7 @@ function liActualRootcauseList(rootcauseGuid, username, gender, probStatement, r
                                 <li><a tabindex="-1" href="#">Edit</a></li>
                                 <li><a tabindex="-1" href="#">Remove</a></li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="liContent" style="clear:both;">
@@ -64,7 +64,7 @@ function liActualRootcauseList(rootcauseGuid, username, gender, probStatement, r
                     </ul>
     
                     <ul class="footer-item-right">
-                        <li><span class="fa fa-info-circle fa-2x" title="view details"></span></li>
+                        <!--<li><span class="fa fa-info-circle fa-2x" title="view details"></span></li>-->
                         <li><span class="fa fa-edit fa-2x" title="view action list" onclick="viewActionList(this, '` + rootcauseGuid + `');"></span></li>
                     </ul>
                 </div>
@@ -109,14 +109,14 @@ function liDoActionList(actionGuid, username, gender, actionName, createdDate, c
                         </ul>
                     </div>
                     <div style="float:right">
-                        <div class="dropdown">
+                        <!--<div class="dropdown">
                             <button id="btnLiMenu" class="dropdown-toggle" type="button" data-toggle="dropdown">
                                                 <span class="caret"></span>
                                                 </button>
                             <ul class="dropdown-menu">
                                 <li><a tabindex="-1" href="#" onclick="editAction('` + actionGuid + `')">Edit</a></li>
                                 <li><a tabindex="-1" href="#" onclick="removeAction('` + actionGuid + `')">Remove</a></li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@ function liDoActionList(actionGuid, username, gender, actionName, createdDate, c
                     </ul>
     
                     <ul class="footer-item-right">
-                        <li><span class="fa fa-info-circle fa-2x" title="view action details"></span></li>
+                        <!--<li><span class="fa fa-info-circle fa-2x" title="view action details"></span></li>-->
                     </ul>
                 </div>
     
