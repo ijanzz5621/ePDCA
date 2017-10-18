@@ -112,6 +112,7 @@
 </div>
 
 {{> do/add-action}}
+{{> do/update-status}}
 
 <script src="/js/do/li-builder.js"></script>
 <script>
@@ -207,6 +208,14 @@
 
     function removeAction(actionID){
         $('#ulItemList').find("#" + actionID).remove();
+    }
+
+    function updateStatus(actionGuid){
+
+        //alert("guid: " + actionGuid);
+
+        $('#modal-do-update-status').modal();
+
     }
 
 </script>

@@ -55,7 +55,7 @@ function liCheckActionList(actionGuid, username, gender, actionName, createdDate
                         </ul>
         
                         <ul class="footer-item-right">
-                            <!--<li><span class="fa fa-info-circle fa-2x" title="view action details"></span></li>-->
+                            <li><span class="fa fa-check fa-2x" title="Update"></span></li>
                         </ul>
                     </div>
         
