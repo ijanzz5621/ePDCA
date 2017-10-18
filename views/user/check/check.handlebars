@@ -25,6 +25,8 @@
 
 </div>
 
+{{> check/update-action }}
+
 <script src="/js/check/li-builder.js"></script>
 <script>
 
@@ -49,6 +51,10 @@
         request.fail(function (jqXHR, textStatus) {
             alert("Request failed: " + textStatus);
         });
+    }
+
+    function updateAction(actionGuid){
+        $('#modal-check-update-action').modal();
     }
 
 </script>
