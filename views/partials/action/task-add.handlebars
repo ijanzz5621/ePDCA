@@ -1,0 +1,41 @@
+<form id="formActionNewTask" class="msform" method="post" action="" style="text-align:left;">
+
+    <div id="modal-action-new-task" class="modal fade" tabindex="-1" role="dialog" style="margin-top: 45px !important;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">New Task</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="modal-action-newtask-txtTaskName">Task Name</label>
+                            <textarea rows="5" id="modal-action-newtask-txtTaskName" name="modal-action-newtask-txtTaskName" style="width:100%;" required="required"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="modal-action-newtask-ddlAssignTo">Assign To</label>
+                             <select style="width:100%; height:50px;" name="modal-action-newtask-ddlAssignTo" id="modal-action-newtask-ddlAssignTo">
+                                <option value="" selected="selected" data-description="Choose person to assign the action">-- Please Select --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="modal-action-newtask-txtDueDate">Due Date</label>
+                            <input type="text" id="modal-action-newtask-txtDueDate" name="modal-action-newtask-txtDueDate" maxlength="45" required="required" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="action-button-cancel" data-dismiss="modal">Close</button>
+                    <input type="button" id="modal-action-newtask-btnSubmit" class="action-button" value="Submit" style="width:80px;" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,1 +1,89 @@
-<h3>Action</h3>
+<link rel="stylesheet" href="/css/action/action.css" />
+
+<div class="">
+
+    <div id="divContentHeader" style="">
+        <div style="margin-top:15px; margin-bottom:15px;">
+
+            <ul style="list-style:none;">
+                <li style="display:inline-block">
+                    <div>
+                        <h3 style="margin:0; padding:0; margin-left:15px;">Task List</h3>
+                    </div>
+                </li>
+                <li style="display:inline-block">
+                    <div style="margin:0 auto;">
+                        <img id="imgAdd" title="Create new Task" src="/img/add-icon.png" width="25px" style="cursor: pointer; vertical-align:bottom !important;" />
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <div id="divContent" style="margin-top:80px; margin-right:250px; width:45vw;z-index:0;">
+        <ul id="ulItemList">
+        </ul>
+    </div>
+
+
+    <div id="divRightPanel" style="height:100vh; width:30vw; background:#fff; position:fixed; top:0; right:0;z-index:3; margin-top:65px;">
+
+        <!--<div id="divFilter" style="margin-bottom:25px;">
+
+            <div>
+                <h3 style="margin:0 !important; padding:0 !important;">Filter</h3>
+            </div>
+
+        </div>
+
+        <hr style="margin-bottom:15px;" />
+
+        <div id="divConversation">
+
+            <div>
+                <h3 style="margin:0 !important; padding:0 !important;">Details</h3>
+            </div>
+
+            <div class="div-detail-plan-master" style="margin-top:15px; margin-right:15px;">
+                <span id="div-details-probstat-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-probstat">
+                </span>
+                <br/><br/>
+                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-risklevel">
+                </span>
+                <br/><br/>
+                <span id="div-details-risklevel-title" style="margin-bottom:15px; font-weight:bold; font-size:18px;">
+                </span>
+                <br/>
+                <span id="div-details-risklevel">
+                </span>
+            </div>
+
+        </div>-->
+
+    </div>
+
+</div>
+
+{{> action/task-add }}
+
+<script>
+
+    $(document).ready(function(){
+
+        $('#imgAdd').on('click', function(e){
+
+            $('#modal-action-new-task').modal();
+
+        });
+
+    });
+
+</script>
