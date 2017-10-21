@@ -46,7 +46,7 @@ app.set('view engine', 'handlebars');
 });*/
 
 //set port
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 12345);
 
 //expose static files
 app.use(express.static(__dirname + '/public'));

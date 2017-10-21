@@ -1,4 +1,4 @@
-var gDomainName = "http://localhost:8080";
+var gDomainName = "http://localhost:12345";
 
 function callAjax(url, data) {
 

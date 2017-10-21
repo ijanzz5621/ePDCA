@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ijanzz5621/ePDCA.git"
+    "url": ""
   },
   "author": "Sharizan Redzuan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ijanzz5621/ePDCA/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/ijanzz5621/ePDCA#readme",
+  "homepage": "",
   "dependencies": {
     "body-parser": "^1.17.2",
     "chart.js": "^2.6.0",

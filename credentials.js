@@ -3,7 +3,7 @@ module.exports = {
     sessioncookieSecret: 'ch@rm1n9'
     , sessionCookieName: 'ePDCACookies'
 
-    , domainPath: 'http://localhost:8080/'
+    , domainPath: 'http://localhost:12345/'
 
     , mysql: {
         host: 'localhost'
