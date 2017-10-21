@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/ijanzz5621/ePDCA-diana.git"
   },
   "author": "Sharizan Redzuan",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/ijanzz5621/ePDCA-diana/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/ijanzz5621/ePDCA-diana#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "chart.js": "^2.6.0",
