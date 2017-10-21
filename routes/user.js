@@ -22,7 +22,7 @@ module.exports = function (app, auth) {
         });*/
 
         //render plan-submitted page
-        res.render('user/plan/plan');
+        res.render('user/plan/plan2');
     })
 
     app.get('/user/plan-add', auth, function (req, res) {
@@ -43,7 +43,7 @@ module.exports = function (app, auth) {
 
     //Do
     app.get('/user/do', auth, function (req, res) {
-        res.render('user/do/do', { });
+        res.render('user/do/do2', { });
     });
     app.get('/user/do-action', auth, function (req, res) {
 
@@ -66,10 +66,10 @@ module.exports = function (app, auth) {
 
 
     app.get('/user/check', auth, function (req, res) {
-        res.render('user/check/check');
+        res.render('user/check/check2');
     });
     app.get('/user/action', auth, function (req, res) {
-        res.render('user/action/action');
+        res.render('user/action/action2');
     });
 
     //team routers
